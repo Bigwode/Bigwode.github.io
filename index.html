@@ -293,25 +293,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>1、新环境下配置git</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">"你的GitHub注册名"</span></span><br><span class="line"><span class="comment"># 回车，再输入</span></span><br><span class="line">$ git config --global user.email <span class="string">"你的Github注册邮箱"</span></span><br><span class="line"><span class="comment"># 以上两条命令如果报错ubknown option，需要安装Nodejs。</span></span><br><span class="line">$ ssh-keygen -t rsa -C <span class="string">"你的GitHub注册邮箱"</span></span><br><span class="line"><span class="comment"># 什么都不要输入，三个回车就好。</span></span><br></pre></td></tr></table></figure>
-
-<p>2、安装Hexo</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo-cil <span class="comment"># 进行全局安装</span></span><br><span class="line">$ hexo init  <span class="comment"># 须在空文件下执行</span></span><br></pre></td></tr></table></figure>
-
-<p>3、Quick Start Hexo</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save  <span class="comment"># 安装git部署插件</span></span><br><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br><span class="line">$ hexo server  <span class="comment"># 用于在deploy之前在http://localhost:4000起一个server来查看效果，如果满意，则可以继续执行接下来的deploy步骤。</span></span><br><span class="line">$ hexo clean</span><br><span class="line">$ hexo generate  <span class="comment"># 可以简写为$ hexo g</span></span><br><span class="line">$ hexo deploy  <span class="comment"># 可以简写为$ hexo d</span></span><br><span class="line"><span class="comment"># 第一次deploy出现404，原因是repository的名称必须是"your github username".github.io，修正之后，效果正常。</span></span><br></pre></td></tr></table></figure>
-
-<p>4、Download Themes adn enable it</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/hexojs/hexo-theme-landscape.git themes/landscape</span><br><span class="line"><span class="comment"># Modify theme setting in _config.yml</span></span><br><span class="line">$ <span class="built_in">cd</span> themes/landscape</span><br><span class="line">$ git pull</span><br></pre></td></tr></table></figure>
-
-<p>5、NexT主题使用</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> git@github.com:iissnan/hexo-theme-next.git themes/next</span><br></pre></td></tr></table></figure>
-
-<p><strong>参考资料：</strong></p>
-<p>[1]. <a href="https://zhuanlan.zhihu.com/p/56036703" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/56036703</a> </p>
-<p>[2].  <a href="https://zhuanlan.zhihu.com/p/26625249" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/26625249</a> </p>
-
+          <p>1、新环境下配置git</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">"你的GitHub注册名"</span></span><br><span class="line"><span class="comment"># 回车，再输入</span></span><br><span class="line">$ git config --global user.email <span class="string">"你的Github注册邮箱"</span></span><br><span class="line"><span class="comment"># 以上两条命令如果报错ubknown option，需要安装Nodejs。</span></span><br><span class="line">$ ssh-keygen -t rsa -C <span class="string">"你的GitHub注册邮箱"</span></span><br><span class="line"><span class="comment"># 什么都不要输入，三个回车就好。</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          
+            <div class="post-button">
+              <a class="btn" href="/2019/10/18/%E9%85%8D%E7%BD%AEgit%E5%92%8Chexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
