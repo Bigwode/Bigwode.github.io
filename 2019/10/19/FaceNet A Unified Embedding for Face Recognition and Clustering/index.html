@@ -63,10 +63,10 @@
 <meta property="og:site_name" content="千佛山彭于晏">
 <meta property="og:description" content="@Author: Florian Schroff, Dmitry Kalenichenko, James Philbin (From Google Inc.)@ Published in CVPR 2015.1. highlight 提出了Triplet Loss 提出了新的 Online Negative Exampler Mining 策略，来保证随着训练的进行，选出的triplets的难度越">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;FaceNet_1.png">
-<meta property="og:updated_time" content="2019-10-19T11:43:38.489Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;blog&#x2F;2FaceNetFaceNet_1.png">
+<meta property="og:updated_time" content="2019-10-19T11:47:25.150Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;FaceNet_1.png">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;blog&#x2F;2FaceNetFaceNet_1.png">
   <link rel="canonical" href="http://yoursite.com/2019/10/19/FaceNet%20A%20Unified%20Embedding%20for%20Face%20Recognition%20and%20Clustering/">
 
 
@@ -283,7 +283,7 @@
                 
               
 
-              <time title="创建时间：2019-10-19 17:22:19 / 修改时间：19:43:38" itemprop="dateCreated datePublished" datetime="2019-10-19T17:22:19+08:00">2019-10-19</time>
+              <time title="创建时间：2019-10-19 17:22:19 / 修改时间：19:47:25" itemprop="dateCreated datePublished" datetime="2019-10-19T17:22:19+08:00">2019-10-19</time>
             </span>
           
             
@@ -335,7 +335,7 @@
 
 
 <h2 id="2-Method"><a href="#2-Method" class="headerlink" title="2. Method"></a>2. Method</h2><h5 id="2-1-Loss-Function"><a href="#2-1-Loss-Function" class="headerlink" title="2.1 Loss Function"></a>2.1 Loss Function</h5><p>我们希望Anchor和Positive之间的距离小于Anchor和Negative之间的距离，即，</p>
-<p><img src="/images/FaceNet_1.png" alt></p>
+<p><img src="/images/blog/2FaceNetFaceNet_1.png" alt></p>
 <script type="math/tex; mode=display">
 \left\|f\left(x_{i}^{a}\right)-f\left(x_{i}^{p}\right)\right\|_{2}^{2}+\alpha<\left\|f\left(x_{i}^{a}\right)-f\left(x_{i}^{n}\right)\right\|_{2}^{2}  \qquad(1)</script><p>则，损失函数为，</p>
 <script type="math/tex; mode=display">
@@ -707,9 +707,7 @@ L = \sum_{i}^{N}\left[\left\|f\left(x_{i}^{a}\right)-f\left(x_{i}^{p}\right)\rig
     j.async = true;
     e.parentNode.insertBefore(j, e);
   })(document, 'script');
-</script>
-
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -726,5 +724,7 @@ L = \sum_{i}^{N}\left[\left\|f\left(x_{i}^{a}\right)-f\left(x_{i}^{p}\right)\rig
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
-<!-- hexo-inject:end --></body>
+<!-- hexo-inject:end -->
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
