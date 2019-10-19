@@ -335,19 +335,14 @@
       
         <p><strong>1、新环境下配置git</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">"GitHub注册名"</span></span><br><span class="line">$ git config --global user.email <span class="string">"Github注册邮箱"</span></span><br><span class="line"><span class="comment"># 以上两条命令如果报错unknown option，需要安装Nodejs。</span></span><br><span class="line">$ ssh-keygen -t rsa -C <span class="string">"你的GitHub注册邮箱"</span></span><br><span class="line"><span class="comment"># 什么都不要输入，三个回车就好。</span></span><br></pre></td></tr></table></figure><a id="more"></a>
 
-
 <p><strong>2、安装Hexo</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo-cil <span class="comment"># 进行全局安装</span></span><br><span class="line">$ hexo init  <span class="comment"># 须在空文件下执行</span></span><br></pre></td></tr></table></figure>
-
 <p><strong>3、Quick Start Hexo</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save  <span class="comment"># 安装git部署插件</span></span><br><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br><span class="line">$ hexo server  <span class="comment"># 用于在deploy之前在http://localhost:4000起一个server来查看效果，如果满意，则可以继续执行接下来的deploy步骤。</span></span><br><span class="line">$ hexo clean</span><br><span class="line">$ hexo generate  <span class="comment"># 可以简写为$ hexo g</span></span><br><span class="line">$ hexo deploy  <span class="comment"># 可以简写为$ hexo d</span></span><br><span class="line"><span class="comment"># 第一次deploy出现404，原因是repository的名称必须是"your github username".github.io，修正之后，效果正常。</span></span><br></pre></td></tr></table></figure>
-
 <p><strong>4、Download Themes and enable it</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/hexojs/hexo-theme-landscape.git themes/landscape</span><br><span class="line"><span class="comment"># Modify theme setting in _config.yml</span></span><br><span class="line">$ <span class="built_in">cd</span> themes/landscape</span><br><span class="line">$ git pull</span><br></pre></td></tr></table></figure>
-
 <p><strong>5、NexT主题使用</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> git@github.com:iissnan/hexo-theme-next.git themes/next</span><br></pre></td></tr></table></figure>
-
 <p>6、NexT使用技巧请参考[3]，包括很多细节的设置。</p>
 <p><strong>参考资料：</strong></p>
 <p>[1]. <a href="https://zhuanlan.zhihu.com/p/56036703" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/56036703</a> </p>
@@ -648,9 +643,7 @@
     j.async = true;
     e.parentNode.insertBefore(j, e);
   })(document, 'script');
-</script>
-
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -667,5 +660,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
-<!-- hexo-inject:end --></body>
+<!-- hexo-inject:end -->
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
