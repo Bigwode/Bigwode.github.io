@@ -332,16 +332,8 @@
 </ul><a id="more"></a>
 
 
-<h2 id="2-Method"><a href="#2-Method" class="headerlink" title="2. Method"></a>2. Method</h2><h5 id="2-1-Loss-Function"><a href="#2-1-Loss-Function" class="headerlink" title="2.1 Loss Function"></a>2.1 Loss Function</h5><p>我们希望Anchor和Positive之间的距离小于Anchor和Negative之间的距离，即，</p>
-<script type="math/tex; mode=display">
-\left\|f\left(x_{i}^{a}\right)-f\left(x_{i}^{p}\right)\right\|_{2}^{2}+\alpha<\left\|f\left(x_{i}^{a}\right)-f\left(x_{i}^{n}\right)\right\|_{2}^{2}  \qquad(1)</script><p>则，损失函数为，</p>
-<script type="math/tex; mode=display">
-L = \sum_{i}^{N}\left[\left\|f\left(x_{i}^{a}\right)-f\left(x_{i}^{p}\right)\right\|_{2}^{2}-\left\|f\left(x_{i}^{a}\right)-f\left(x_{i}^{n}\right)\right\|_{2}^{2}+\alpha\right]_{+} \qquad(2)</script><p>但是，如果将所有可能的triplets都加入训练的话，大部分的triplets很容易满足我们希望的条件，即公式1，但是这些triplets对训练是没有贡献的，这会导致收敛的速度变慢。所以，Triplet Selection十分重要。</p>
-<h5 id="2-2-Triplet-Selection"><a href="#2-2-Triplet-Selection" class="headerlink" title="2.2 Triplet Selection"></a>2.2 Triplet Selection</h5><p>给定一个A，我们希望选择的P是hard positive，即，</p>
-<script type="math/tex; mode=display">
-\operatorname{argmax}_{x_{i}^{p}}\left\|f\left(x_{i}^{a}\right)-f\left(x_{i}^{p}\right)\right\|_{2}^{2} \qquad(3)</script><p>，选择的N是hard negative，即，</p>
-<script type="math/tex; mode=display">
-\operatorname{argmin}_{x_{i}^{n}}\left\|f\left(x_{i}^{a}\right)-f\left(x_{i}^{n}\right)\right\|_{2}^{2} \qquad(4)</script><p>但是，如果这个操作是直接在整个训练集上进行的话不高效，更重要的问题是，这会导致poor training，因为错误标记的数据和质量差的数据会占据大部分的hard triplets。</p>
+<h2 id="2-Method"><a href="#2-Method" class="headerlink" title="2. Method"></a>2. Method</h2><h5 id="2-1-Loss-Function"><a href="#2-1-Loss-Function" class="headerlink" title="2.1 Loss Function"></a>2.1 Loss Function</h5><p>我们希望Anchor和Positive之间的距离小于Anchor和Negative之间的距离，即，<br>$$<br>\left|f\left(x_{i}^{a}\right)-f\left(x_{i}^{p}\right)\right|<em>{2}^{2}+\alpha&lt;\left|f\left(x</em>{i}^{a}\right)-f\left(x_{i}^{n}\right)\right|<em>{2}^{2}  \qquad(1)<br>$$<br>则，损失函数为，<br>$$<br>L = \sum</em>{i}^{N}\left[\left|f\left(x_{i}^{a}\right)-f\left(x_{i}^{p}\right)\right|<em>{2}^{2}-\left|f\left(x</em>{i}^{a}\right)-f\left(x_{i}^{n}\right)\right|<em>{2}^{2}+\alpha\right]</em>{+} \qquad(2)<br>$$<br>但是，如果将所有可能的triplets都加入训练的话，大部分的triplets很容易满足我们希望的条件，即公式1，但是这些triplets对训练是没有贡献的，这会导致收敛的速度变慢。所以，Triplet Selection十分重要。</p>
+<h5 id="2-2-Triplet-Selection"><a href="#2-2-Triplet-Selection" class="headerlink" title="2.2 Triplet Selection"></a>2.2 Triplet Selection</h5><p>给定一个A，我们希望选择的P是hard positive，即，<br>$$<br>\operatorname{argmax}<em>{x</em>{i}^{p}}\left|f\left(x_{i}^{a}\right)-f\left(x_{i}^{p}\right)\right|<em>{2}^{2} \qquad(3)<br>$$<br>，选择的N是hard negative，即，<br>$$<br>\operatorname{argmin}</em>{x_{i}^{n}}\left|f\left(x_{i}^{a}\right)-f\left(x_{i}^{n}\right)\right|_{2}^{2} \qquad(4)<br>$$<br>但是，如果这个操作是直接在整个训练集上进行的话不高效，更重要的问题是，这会导致poor training，因为错误标记的数据和质量差的数据会占据大部分的hard triplets。</p>
 <p>我们可以通过以下两种方案来缓解这个问题：</p>
 <ul>
 <li>每隔N步离线地生成triplets，用最近一个epoch生成的checkpoints在数据集的一个子集上计算argmin和argmax。</li>
@@ -355,9 +347,7 @@ L = \sum_{i}^{N}\left[\left\|f\left(x_{i}^{a}\right)-f\left(x_{i}^{p}\right)\rig
 <li>另外，作者也尝试了offline地生成triplets，虽然这样做可以用小一点的batch size，但是作者并没有得到一个好的结论。)</li>
 </ul>
 <p>作者在实验中发现，选择最困难的negatives会导致在训练的早期陷入局部最小点，也会导致<strong>collapse model</strong> (例如，所有样本的特征f(x)都学成了0，因为这样也可以很好的满足我们设置的条件)。</p>
-<p>为了解决这个问题，作者选的是一些<strong>semi-hard</strong>的negatives样本，去掉了margin的限制，即，</p>
-<script type="math/tex; mode=display">
-\left\|f\left(x_{i}^{a}\right)-f\left(x_{i}^{p}\right)\right\|_{2}^{2}<\left\|f\left(x_{i}^{a}\right)-f\left(x_{i}^{n}\right)\right\|_{2}^{2} \qquad(5)</script><p>另外的，关于Dataset，Evaluation和CNN Model部分都很简单，这里就不再赘述了。</p>
+<p>为了解决这个问题，作者选的是一些<strong>semi-hard</strong>的negatives样本，去掉了margin的限制，即，<br>$$<br>\left|f\left(x_{i}^{a}\right)-f\left(x_{i}^{p}\right)\right|<em>{2}^{2}&lt;\left|f\left(x</em>{i}^{a}\right)-f\left(x_{i}^{n}\right)\right|_{2}^{2} \qquad(5)<br>$$<br>另外的，关于Dataset，Evaluation和CNN Model部分都很简单，这里就不再赘述了。</p>
 <h5 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h5><p>[1]. <a href="https://arxiv.org/abs/1503.03832" target="_blank" rel="noopener">https://arxiv.org/abs/1503.03832</a></p>
 
     </div>
