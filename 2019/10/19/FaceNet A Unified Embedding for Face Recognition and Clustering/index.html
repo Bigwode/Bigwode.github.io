@@ -63,7 +63,7 @@
 <meta property="og:site_name" content="千佛山彭于晏">
 <meta property="og:description" content="@Author: Florian Schroff, Dmitry Kalenichenko, James Philbin (From Google Inc.)@ Published in CVPR 2015.1. highlight 提出了Triplet Loss 提出了新的 Online Negative Exampler Mining 策略，来保证随着训练的进行，选出的triplets的难度越">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-19T10:28:31.335Z">
+<meta property="og:updated_time" content="2019-10-19T10:42:03.336Z">
 <meta name="twitter:card" content="summary">
   <link rel="canonical" href="http://yoursite.com/2019/10/19/FaceNet%20A%20Unified%20Embedding%20for%20Face%20Recognition%20and%20Clustering/">
 
@@ -281,7 +281,7 @@
                 
               
 
-              <time title="创建时间：2019-10-19 17:22:19 / 修改时间：18:28:31" itemprop="dateCreated datePublished" datetime="2019-10-19T17:22:19+08:00">2019-10-19</time>
+              <time title="创建时间：2019-10-19 17:22:19 / 修改时间：18:42:03" itemprop="dateCreated datePublished" datetime="2019-10-19T17:22:19+08:00">2019-10-19</time>
             </span>
           
             
@@ -636,56 +636,6 @@ L = \sum_{i}^{N}\left[\left\|f\left(x_{i}^{a}\right)-f\left(x_{i}^{p}\right)\rig
 
   
 
-  
-    
-      
-<script type="text/x-mathjax-config">
-
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-      equationNumbers: {
-        autoNumber: 'AMS'
-      }
-    }
-  });
-
-  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
-    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
-      if (data.display) {
-        var next = data.script.nextSibling;
-        while (next && next.nodeName.toLowerCase() === '#text') {
-          next = next.nextSibling;
-        }
-        if (next && next.nodeName.toLowerCase() === 'br') {
-          next.parentNode.removeChild(next);
-        }
-      }
-    });
-  });
-
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i = 0; i < all.length; i += 1) {
-      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
-      if (element.nodeName.toLowerCase() == 'li') {
-        element = element.parentNode;
-      }
-      element.classList.add('has-jax');
-    }
-  });
-</script>
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
-    MathJax.Hub.Typeset();
-  }, window.MathJax);
-</script>
-
-    
   
 
   
