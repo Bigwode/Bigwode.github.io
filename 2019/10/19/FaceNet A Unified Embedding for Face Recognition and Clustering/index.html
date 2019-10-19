@@ -333,7 +333,7 @@
 
 
 <h2 id="2-Method"><a href="#2-Method" class="headerlink" title="2. Method"></a>2. Method</h2><h5 id="2-1-Loss-Function"><a href="#2-1-Loss-Function" class="headerlink" title="2.1 Loss Function"></a>2.1 Loss Function</h5><p>我们希望Anchor和Positive之间的距离小于Anchor和Negative之间的距离，即，</p>
-<p>$\left|f\left(x<em>{i}^{a}\right)-f\left(x</em>{i}^{p}\right)\right|<em>{2}^{2}+\alpha&lt;\left|f\left(x</em>{i}^{a}\right)-f\left(x<em>{i}^{n}\right)\right|</em>{2}^{2}  \qquad(1)$</p>
+<p>$\left|f\left(x_{i}^{a}\right)-f\left(x_{i}^{p}\right)\right|_{2}^{2}+\alpha&lt;\left|f\left(x_{i}^{a}\right)-f\left(x_{i}^{n}\right)\right|_{2}^{2}  \qquad(1)$</p>
 <script type="math/tex; mode=display">
 \left\|f\left(x_{i}^{a}\right)-f\left(x_{i}^{p}\right)\right\|_{2}^{2}+\alpha<\left\|f\left(x_{i}^{a}\right)-f\left(x_{i}^{n}\right)\right\|_{2}^{2}  \qquad(1)</script><p>则，损失函数为，</p>
 <script type="math/tex; mode=display">
@@ -705,7 +705,9 @@ L = \sum_{i}^{N}\left[\left\|f\left(x_{i}^{a}\right)-f\left(x_{i}^{p}\right)\rig
     j.async = true;
     e.parentNode.insertBefore(j, e);
   })(document, 'script');
-</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -722,7 +724,5 @@ L = \sum_{i}^{N}\left[\left\|f\left(x_{i}^{a}\right)-f\left(x_{i}^{p}\right)\rig
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<!-- hexo-inject:end --></body>
 </html>
