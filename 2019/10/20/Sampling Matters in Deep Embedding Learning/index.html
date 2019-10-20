@@ -68,11 +68,12 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;bigwode.github.io&#x2F;images&#x2F;4Sampling_2.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;bigwode.github.io&#x2F;images&#x2F;4Sampling_3.0.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;bigwode.github.io&#x2F;images&#x2F;4Sampling_3.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;bigwode.github.io&#x2F;images&#x2F;4Sampling_4.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;bigwode.github.io&#x2F;images&#x2F;4Sampling_4.0.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;bigwode.github.io&#x2F;images&#x2F;4Sampling_5.0.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;bigwode.github.io&#x2F;images&#x2F;4Sampling_5.1.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;bigwode.github.io&#x2F;images&#x2F;4Sampling_5.2.png">
-<meta property="og:updated_time" content="2019-10-20T14:37:46.128Z">
+<meta property="og:updated_time" content="2019-10-20T14:40:18.707Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;bigwode.github.io&#x2F;images&#x2F;4Sampling_1.png">
   <link rel="canonical" href="https://bigwode.github.io/2019/10/20/Sampling%20Matters%20in%20Deep%20Embedding%20Learning/">
@@ -300,7 +301,7 @@
                 
               
 
-              <time title="创建时间：2019-10-20 22:32:02 / 修改时间：22:37:46" itemprop="dateCreated datePublished" datetime="2019-10-20T22:32:02+08:00">2019-10-20</time>
+              <time title="创建时间：2019-10-20 22:32:02 / 修改时间：22:40:18" itemprop="dateCreated datePublished" datetime="2019-10-20T22:32:02+08:00">2019-10-20</time>
             </span>
           
             
@@ -365,7 +366,7 @@
 <p>加入的超参数是为了避免noisy samples。因为我们希望样本的分布概率越小，被采样到的概率越大，以此来达到均衡。但是，采样概率最大不能超过\lambda，因为太少的点我们认为是噪声点。</p>
 <p><img src="/images/4Sampling_3.png" alt></p>
 <p>上图展示得很明显，Uniform Sampling采样到的样本主要集中在低方差的区域，大部分的样本对损失的贡献很小，导致模型收敛很慢。Hard Negative Mining使得采样的样本处于高方差区域，对噪声数据很敏感，极易出现Model Collapse的现象。Semi-hard Negative Mining的采样范围很小，导致模型过早收敛，训练不充分。(这里对semi-hard的描述不是很公平，最起码直觉上Hard能采样到的样本Simi-hard也有机会采到)；而DWS采样到的样本在整个数据集上部分就很均匀。(这部分解释得比较好，有点像metric learning里的long tail ?:)</p>
-<h4 id="3-2-Margin-based-Loss"><a href="#3-2-Margin-based-Loss" class="headerlink" title="3.2 Margin-based Loss"></a>3.2 Margin-based Loss</h4><p>![](E:\Paper\Metric Learning\4Sampling_4.png)</p>
+<h4 id="3-2-Margin-based-Loss"><a href="#3-2-Margin-based-Loss" class="headerlink" title="3.2 Margin-based Loss"></a>3.2 Margin-based Loss</h4><p><img src="/images/4Sampling_4.png" alt></p>
 <ul>
 <li>上图(a)和(b)的对比展示出为什么triplet loss要比contrastive loss效果好的原因。</li>
 <li>(b)展示了为什么hard negative mining为什么会带来model collapse的问题。因为当$D_an$很小的时候，梯度很小。而一个直觉的改进就是将triplet loss的二次项改为一次项。就跟relu函数一样，这样在任何位置上的梯度都是一样大了，有效避免了梯度消失的问题。</li>
@@ -692,7 +693,9 @@
     j.async = true;
     e.parentNode.insertBefore(j, e);
   })(document, 'script');
-</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -709,7 +712,5 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<!-- hexo-inject:end --></body>
 </html>
