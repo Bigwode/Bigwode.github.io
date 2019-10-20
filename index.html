@@ -255,6 +255,106 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://bigwode.github.io/2019/10/20/Sampling%20Matters%20in%20Deep%20Embedding%20Learning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chenzhaowei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/czw.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="千佛山彭于晏">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            
+            <a href="/2019/10/20/Sampling%20Matters%20in%20Deep%20Embedding%20Learning/" class="post-title-link" itemprop="url">《Sampling Matters in Deep Embedding Learning》笔记</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-20 22:32:02 / 修改时间：22:37:46" itemprop="dateCreated datePublished" datetime="2019-10-20T22:32:02+08:00">2019-10-20</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Paper-Reading/" itemprop="url" rel="index">
+                    <span itemprop="name">Paper Reading</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>@Author: Chao-Yuan Wu, R. Manmatha, Alexander J. Smola, Philipp Krähenbühl (From UT Austin &amp; Amazon)</p><p>@Published in ICCV 2017.</p><h2 id="1-Highlight"><a href="#1-Highlight" class="headerlink" title="1. Highlight"></a>1. Highlight</h2><ul>
+<li>作者指出在metric learning里sampling的策略和loss function一样重要。</li>
+<li>提出了distance weighted sampling的采样策略，根据一个样本和其他样本之间的距离来均匀地采样。这样做修正了由embedding space的几何信息带来的偏差，同时保证了所有样本都有机会被选中。同时这个采样策略会带来lower variance of gradients，使得训练过程更加稳定。</li>
+<li>提出了一个margin-based loss作为contrastive loss的拓展。它会使得所有的正样本出现在一定的距离内，而不是越接近越好。另外，通过使用了isotonic regression (保序回归)来使得margin-based loss更加关注在相对顺序上而不是绝对距离上。</li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button">
+              <a class="btn" href="/2019/10/20/Sampling%20Matters%20in%20Deep%20Embedding%20Learning/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+    
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://bigwode.github.io/2019/10/20/The%20Art%20of%20Readable%20Code/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -604,7 +704,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

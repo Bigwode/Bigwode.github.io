@@ -55,17 +55,27 @@
   };
 </script>
 
-  <meta name="description" content="1、命名的规范 在循环迭代器里，索引值不建议用i,j,k，索引的第一个字符应该与数据的第一个字符匹配。如， 12for clubs_i in clubs:  # club_i可以简写为ci    ... 使用具体的名字代替抽象的名字。如， 12def DisAllowEvilConstructors():  # 应改为 -&amp;gt;def DisAllowCopyAndAssign():">
-<meta name="keywords" content="code">
+  <meta name="description" content="@Author: Chao-Yuan Wu, R. Manmatha, Alexander J. Smola, Philipp Krähenbühl (From UT Austin &amp;amp; Amazon)@Published in ICCV 2017.1. Highlight 作者指出在metric learning里sampling的策略和loss function一样重要。 提出了dist">
+<meta name="keywords" content="Metric Learning">
 <meta property="og:type" content="article">
-<meta property="og:title" content="《The Art of Readable Code》读书笔记">
-<meta property="og:url" content="https:&#x2F;&#x2F;bigwode.github.io&#x2F;2019&#x2F;10&#x2F;20&#x2F;The%20Art%20of%20Readable%20Code&#x2F;index.html">
+<meta property="og:title" content="《Sampling Matters in Deep Embedding Learning》笔记">
+<meta property="og:url" content="https:&#x2F;&#x2F;bigwode.github.io&#x2F;2019&#x2F;10&#x2F;20&#x2F;Sampling%20Matters%20in%20Deep%20Embedding%20Learning&#x2F;index.html">
 <meta property="og:site_name" content="千佛山彭于晏">
-<meta property="og:description" content="1、命名的规范 在循环迭代器里，索引值不建议用i,j,k，索引的第一个字符应该与数据的第一个字符匹配。如， 12for clubs_i in clubs:  # club_i可以简写为ci    ... 使用具体的名字代替抽象的名字。如， 12def DisAllowEvilConstructors():  # 应改为 -&amp;gt;def DisAllowCopyAndAssign():">
+<meta property="og:description" content="@Author: Chao-Yuan Wu, R. Manmatha, Alexander J. Smola, Philipp Krähenbühl (From UT Austin &amp;amp; Amazon)@Published in ICCV 2017.1. Highlight 作者指出在metric learning里sampling的策略和loss function一样重要。 提出了dist">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-20T12:22:13.905Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;bigwode.github.io&#x2F;images&#x2F;4Sampling_1.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;bigwode.github.io&#x2F;images&#x2F;4Sampling_2.0.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;bigwode.github.io&#x2F;images&#x2F;4Sampling_2.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;bigwode.github.io&#x2F;images&#x2F;4Sampling_3.0.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;bigwode.github.io&#x2F;images&#x2F;4Sampling_3.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;bigwode.github.io&#x2F;images&#x2F;4Sampling_4.0.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;bigwode.github.io&#x2F;images&#x2F;4Sampling_5.0.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;bigwode.github.io&#x2F;images&#x2F;4Sampling_5.1.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;bigwode.github.io&#x2F;images&#x2F;4Sampling_5.2.png">
+<meta property="og:updated_time" content="2019-10-20T14:37:46.128Z">
 <meta name="twitter:card" content="summary">
-  <link rel="canonical" href="https://bigwode.github.io/2019/10/20/The%20Art%20of%20Readable%20Code/">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;bigwode.github.io&#x2F;images&#x2F;4Sampling_1.png">
+  <link rel="canonical" href="https://bigwode.github.io/2019/10/20/Sampling%20Matters%20in%20Deep%20Embedding%20Learning/">
 
 
 <script id="page-configurations">
@@ -79,7 +89,7 @@
   };
 </script>
 
-  <title>《The Art of Readable Code》读书笔记 | 千佛山彭于晏</title>
+  <title>《Sampling Matters in Deep Embedding Learning》笔记 | 千佛山彭于晏</title>
   
 
 
@@ -259,7 +269,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://bigwode.github.io/2019/10/20/The%20Art%20of%20Readable%20Code/">
+    <link itemprop="mainEntityOfPage" href="https://bigwode.github.io/2019/10/20/Sampling%20Matters%20in%20Deep%20Embedding%20Learning/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chenzhaowei">
@@ -273,7 +283,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            《The Art of Readable Code》读书笔记
+            《Sampling Matters in Deep Embedding Learning》笔记
             
 
           
@@ -290,7 +300,7 @@
                 
               
 
-              <time title="创建时间：2019-10-20 20:20:28 / 修改时间：20:22:13" itemprop="dateCreated datePublished" datetime="2019-10-20T20:20:28+08:00">2019-10-20</time>
+              <time title="创建时间：2019-10-20 22:32:02 / 修改时间：22:37:46" itemprop="dateCreated datePublished" datetime="2019-10-20T22:32:02+08:00">2019-10-20</time>
             </span>
           
             
@@ -304,8 +314,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Book-Reading/" itemprop="url" rel="index">
-                    <span itemprop="name">Book Reading</span>
+                  <a href="/categories/Paper-Reading/" itemprop="url" rel="index">
+                    <span itemprop="name">Paper Reading</span>
                   </a>
                 </span>
 
@@ -334,27 +344,43 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="1、命名的规范"><a href="#1、命名的规范" class="headerlink" title="1、命名的规范"></a><strong>1、命名的规范</strong></h3><ul>
-<li>在循环迭代器里，索引值不建议用i,j,k，索引的第一个字符应该与数据的第一个字符匹配。如，</li>
-</ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> clubs_i <span class="keyword">in</span> clubs:  <span class="comment"># club_i可以简写为ci</span></span><br><span class="line">    ...</span><br></pre></td></tr></table></figure><ul>
-<li>使用具体的名字代替抽象的名字。如，</li>
-</ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">DisAllowEvilConstructors</span><span class="params">()</span>:</span>  <span class="comment"># 应改为 -&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">DisAllowCopyAndAssign</span><span class="params">()</span>:</span></span><br></pre></td></tr></table></figure><a id="more"></a>
+        <p>@Author: Chao-Yuan Wu, R. Manmatha, Alexander J. Smola, Philipp Krähenbühl (From UT Austin &amp; Amazon)</p><p>@Published in ICCV 2017.</p><h2 id="1-Highlight"><a href="#1-Highlight" class="headerlink" title="1. Highlight"></a>1. Highlight</h2><ul>
+<li>作者指出在metric learning里sampling的策略和loss function一样重要。</li>
+<li>提出了distance weighted sampling的采样策略，根据一个样本和其他样本之间的距离来均匀地采样。这样做修正了由embedding space的几何信息带来的偏差，同时保证了所有样本都有机会被选中。同时这个采样策略会带来lower variance of gradients，使得训练过程更加稳定。</li>
+<li>提出了一个margin-based loss作为contrastive loss的拓展。它会使得所有的正样本出现在一定的距离内，而不是越接近越好。另外，通过使用了isotonic regression (保序回归)来使得margin-based loss更加关注在相对顺序上而不是绝对距离上。</li>
+</ul><a id="more"></a>
 
 
-
-
-
-<ul>
-<li>为名字附带更多的信息，如单位或者一些重要的属性。如，</li>
+<h2 id="2-Preliminaries"><a href="#2-Preliminaries" class="headerlink" title="2. Preliminaries"></a>2. Preliminaries</h2><ul>
+<li>作者提出了contrastive loss的一个缺点，即，其将不同类别的negative pairs的距离限制在相同的margin下，造成了embedding space的扭曲。而triplet loss只是将所有的positive pairs之间的距离小于所有negative pairs的距离就可以了，不会出现这个问题，从一定程度上能够抵御噪声的影响。</li>
 </ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwd -&gt; plaintext_passwd</span><br></pre></td></tr></table></figure>
-
+<h2 id="3-Distance-Weighted-Margin-Based-Loss"><a href="#3-Distance-Weighted-Margin-Based-Loss" class="headerlink" title="3. Distance Weighted Margin-Based Loss"></a>3. Distance Weighted Margin-Based Loss</h2><p>如果所有的点是均匀分布在球体表面的话，那么pairwise distance服从的分布是，</p>
+<p><img src="/images/4Sampling_1.png" alt></p>
+<p>事实上，在高维空间下，q(d)接近于服从，</p>
+<p><img src="/images/4Sampling_2.0.png" alt></p>
+<p>如下图所示，</p>
+<p><img src="/images/4Sampling_2.png" alt></p>
+<h4 id="3-1-Distance-Weighed-Sampling"><a href="#3-1-Distance-Weighed-Sampling" class="headerlink" title="3.1 Distance Weighed Sampling"></a>3.1 Distance Weighed Sampling</h4><p>所以，作者提出了根据distance来均匀采样的策略，</p>
+<p><img src="/images/4Sampling_3.0.png" alt></p>
+<p>加入的超参数是为了避免noisy samples。因为我们希望样本的分布概率越小，被采样到的概率越大，以此来达到均衡。但是，采样概率最大不能超过\lambda，因为太少的点我们认为是噪声点。</p>
+<p><img src="/images/4Sampling_3.png" alt></p>
+<p>上图展示得很明显，Uniform Sampling采样到的样本主要集中在低方差的区域，大部分的样本对损失的贡献很小，导致模型收敛很慢。Hard Negative Mining使得采样的样本处于高方差区域，对噪声数据很敏感，极易出现Model Collapse的现象。Semi-hard Negative Mining的采样范围很小，导致模型过早收敛，训练不充分。(这里对semi-hard的描述不是很公平，最起码直觉上Hard能采样到的样本Simi-hard也有机会采到)；而DWS采样到的样本在整个数据集上部分就很均匀。(这部分解释得比较好，有点像metric learning里的long tail ?:)</p>
+<h4 id="3-2-Margin-based-Loss"><a href="#3-2-Margin-based-Loss" class="headerlink" title="3.2 Margin-based Loss"></a>3.2 Margin-based Loss</h4><p>![](E:\Paper\Metric Learning\4Sampling_4.png)</p>
 <ul>
-<li>有目的的大小写和带下划线。如，类成员变量和局部变量后加”_”来进行区分。</li>
-<li>不要用有歧义或者误解的名字。如，</li>
+<li>上图(a)和(b)的对比展示出为什么triplet loss要比contrastive loss效果好的原因。</li>
+<li>(b)展示了为什么hard negative mining为什么会带来model collapse的问题。因为当$D_an$很小的时候，梯度很小。而一个直觉的改进就是将triplet loss的二次项改为一次项。就跟relu函数一样，这样在任何位置上的梯度都是一样大了，有效避免了梯度消失的问题。</li>
+<li>作者通过观察这些现象，提出了(d)中描述的损失函数。既像triplet loss一样灵活，又像contrastive loss一样高效。</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filter  <span class="comment"># 是"挑出"还是“剪掉”?</span></span><br></pre></td></tr></table></figure>
-
+<p>提出的Adaptive Margin-based Loss如下，</p>
+<p><img src="/images/4Sampling_4.0.png" alt></p>
+<p>同时，为了实现像triplet loss一样的灵活，作者设置了一个更加灵活的boundary parameter \beta，包含类别偏置项和样本偏置项。并利用梯度下降来联合学习这些参数。</p>
+<p><img src="/images/4Sampling_5.0.png" alt></p>
+<p>\beta的梯度为，</p>
+<p><img src="/images/4Sampling_5.1.png" alt></p>
+<p>看上去，\beta的值越大越好，因此，为了正则化\beta值，我们的优化目标变为，</p>
+<p><img src="/images/4Sampling_5.2.png" alt></p>
+<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><p>[1].保序回归: <a href="https://www.cnblogs.com/lc1217/p/7015639.html" target="_blank" rel="noopener">https://www.cnblogs.com/lc1217/p/7015639.html</a> </p>
+<p>[2]. <a href="https://arxiv.org/abs/1706.07567" target="_blank" rel="noopener">https://arxiv.org/abs/1706.07567</a> </p>
 
     </div>
 
@@ -372,7 +398,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://bigwode.github.io/2019/10/20/The%20Art%20of%20Readable%20Code/" title="《The Art of Readable Code》读书笔记">https://bigwode.github.io/2019/10/20/The%20Art%20of%20Readable%20Code/</a>
+    <a href="https://bigwode.github.io/2019/10/20/Sampling%20Matters%20in%20Deep%20Embedding%20Learning/" title="《Sampling Matters in Deep Embedding Learning》笔记">https://bigwode.github.io/2019/10/20/Sampling%20Matters%20in%20Deep%20Embedding%20Learning/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -388,7 +414,7 @@
           
           <div class="post-tags">
             
-              <a href="/tags/code/" rel="tag"># code</a>
+              <a href="/tags/Metric-Learning/" rel="tag"># Metric Learning</a>
             
           </div>
         
@@ -398,8 +424,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2019/10/19/FaceNet%20A%20Unified%20Embedding%20for%20Face%20Recognition%20and%20Clustering/" rel="next" title="FaceNet A Unified Embedding for Face Recognition and Clustering 笔记">
-                  <i class="fa fa-chevron-left"></i> FaceNet A Unified Embedding for Face Recognition and Clustering 笔记
+                <a href="/2019/10/20/The%20Art%20of%20Readable%20Code/" rel="next" title="《The Art of Readable Code》读书笔记">
+                  <i class="fa fa-chevron-left"></i> 《The Art of Readable Code》读书笔记
                 </a>
               
             </div>
@@ -407,10 +433,6 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-              
-                <a href="/2019/10/20/Sampling%20Matters%20in%20Deep%20Embedding%20Learning/" rel="prev" title="《Sampling Matters in Deep Embedding Learning》笔记">
-                  《Sampling Matters in Deep Embedding Learning》笔记 <i class="fa fa-chevron-right"></i>
-                </a>
               
             </div>
           </div>
@@ -463,7 +485,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、命名的规范"><span class="nav-number">1.</span> <span class="nav-text">1、命名的规范</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Highlight"><span class="nav-number">1.</span> <span class="nav-text">1. Highlight</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Preliminaries"><span class="nav-number">2.</span> <span class="nav-text">2. Preliminaries</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Distance-Weighted-Margin-Based-Loss"><span class="nav-number">3.</span> <span class="nav-text">3. Distance Weighted Margin-Based Loss</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-Distance-Weighed-Sampling"><span class="nav-number">3.0.1.</span> <span class="nav-text">3.1 Distance Weighed Sampling</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-Margin-based-Loss"><span class="nav-number">3.0.2.</span> <span class="nav-text">3.2 Margin-based Loss</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考资料"><span class="nav-number">3.0.3.</span> <span class="nav-text">参考资料</span></a></li></ol></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->
