@@ -3,11 +3,11 @@
   <title>认养一只猪</title>
   
   <subtitle>Keep Calm and Carry On</subtitle>
-  <link href="https://github.com/bigwode/atom.xml" rel="self"/>
+  <link href="https://bigwode.github.io/atom.xml" rel="self"/>
   
-  <link href="https://github.com/bigwode/"/>
+  <link href="https://bigwode.github.io/"/>
   <updated>2024-01-21T05:46:16.953Z</updated>
-  <id>https://github.com/bigwode/</id>
+  <id>https://bigwode.github.io/</id>
   
   <author>
     <name>David Chan</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="https://github.com/bigwode/2024/01/21/hello-world/"/>
-    <id>https://github.com/bigwode/2024/01/21/hello-world/</id>
+    <link href="https://bigwode.github.io/2024/01/21/hello-world/"/>
+    <id>https://bigwode.github.io/2024/01/21/hello-world/</id>
     <published>2024-01-21T05:46:16.953Z</published>
     <updated>2024-01-21T05:46:16.953Z</updated>
     
