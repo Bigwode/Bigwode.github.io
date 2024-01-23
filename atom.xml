@@ -6,7 +6,7 @@
   <link href="https://bigwode.github.io/atom.xml" rel="self"/>
   
   <link href="https://bigwode.github.io/"/>
-  <updated>2024-01-21T20:33:04.124Z</updated>
+  <updated>2024-01-23T13:44:54.730Z</updated>
   <id>https://bigwode.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python字符串神奇用法</title>
+    <link href="https://bigwode.github.io/2024/01/23/python/zi-fu-chuan/"/>
+    <id>https://bigwode.github.io/2024/01/23/python/zi-fu-chuan/</id>
+    <published>2024-01-23T05:34:00.000Z</published>
+    <updated>2024-01-23T13:44:54.730Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h4 id=&quot;1-将一个字符串中的前两个’-’替换为’-’&quot;&gt;&lt;a href=&quot;#1-将一个字符串中的前两个’-’替换为’-’&quot; class=&quot;headerlink&quot; title=&quot;1. 将一个字符串中的前两个’_’替换为’:’&quot;&gt;&lt;/a&gt;1.</summary>
+        
+      
+    
+    
+    
+    <category term="Python" scheme="https://bigwode.github.io/categories/Python/"/>
+    
+    
+    <category term="Python" scheme="https://bigwode.github.io/tags/Python/"/>
+    
+    <category term="字符串" scheme="https://bigwode.github.io/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    
+  </entry>
   
   <entry>
     <title>欢迎</title>
