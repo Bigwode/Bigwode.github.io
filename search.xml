@@ -8,7 +8,7 @@
       <link href="/2024/01/23/python/zi-fu-chuan/"/>
       <url>/2024/01/23/python/zi-fu-chuan/</url>
       
-        <content type="html"><![CDATA[<h4 id="1-将一个字符串中的前两个’-’替换为’-’"><a href="#1-将一个字符串中的前两个’-’替换为’-’" class="headerlink" title="1. 将一个字符串中的前两个’_’替换为’:’"></a>1. 将一个字符串中的前两个’_’替换为’:’</h4><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">"a_b_c_d_e"</span></span><br><span class="line">s_replaced = s.replace(<span class="string">"_"</span>, <span class="string">":"</span>, <span class="number">2</span>)  <span class="comment"># 指定最大替换次数为2</span></span><br><span class="line"><span class="built_in">print</span>(s_replaced)</span><br></pre></td></tr></tbody></table></figure>]]></content>
+        <content type="html"><![CDATA[<h4 id="1-将一个字符串中的前两个’-’替换为’-’"><a href="#1-将一个字符串中的前两个’-’替换为’-’" class="headerlink" title="1. 将一个字符串中的前两个’_’替换为’:’"></a>1. 将一个字符串中的前两个’_’替换为’:’</h4><figure class="highlight python"><table><tbody><tr><td class="code"><pre><span class="line">s = <span class="string">"a_b_c_d_e"</span></span><br><span class="line">s_replaced = s.replace(<span class="string">"_"</span>, <span class="string">":"</span>, <span class="number">2</span>)  <span class="comment"># 指定最大替换次数为2</span></span><br><span class="line"><span class="built_in">print</span>(s_replaced)</span><br></pre></td></tr></tbody></table></figure>]]></content>
       
       
       <categories>
