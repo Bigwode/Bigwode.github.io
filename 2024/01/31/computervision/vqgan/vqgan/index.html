@@ -4,11 +4,12 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="欢迎, 认养一只猪">
-    <meta name="description" content="欢迎来到一只猪的圈。
-Quick Start强者永不孤独，猛兽永远独行。
+    <meta name="keywords" content="VQGAN源码解析, 认养一只猪">
+    <meta name="description" content="
+这里看的是一个外国小哥复现的简单版本的VQGAN
 
-">
+1. tqdm的一个用法with tqdm(range(len(train_dataset))) as pbar:
+    for i, imgs in zip(pbar, train_">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,8 +21,8 @@ Quick Start强者永不孤独，猛兽永远独行。
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>欢迎 | 认养一只猪</title>
-    <link rel="icon" type="image/png" href="../../../../favicon.png">
+    <title>VQGAN源码解析 | 认养一只猪</title>
+    <link rel="icon" type="image/png" href="../../../../../../favicon.png">
     
 
 
@@ -29,31 +30,31 @@ Quick Start强者永不孤独，猛兽永远独行。
 
 
 
-<link rel="stylesheet" type="text/css" href="../../../../libs/awesome/css/all.min.css">
-<link rel="stylesheet" type="text/css" href="../../../../libs/materialize/materialize.min.css">
-<link rel="stylesheet" type="text/css" href="../../../../libs/aos/aos.css">
-<link rel="stylesheet" type="text/css" href="../../../../libs/animate/animate.min.css">
-<link rel="stylesheet" type="text/css" href="../../../../libs/lightGallery/css/lightgallery.min.css">
-<link rel="stylesheet" type="text/css" href="../../../../css/matery.css">
-<link rel="stylesheet" type="text/css" href="../../../../css/my.css">
-<link rel="stylesheet" type="text/css" href="../../../../css/dark.css" media="none" onload="if(media!='all')media='all'">
+<link rel="stylesheet" type="text/css" href="../../../../../../libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="../../../../../../libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="../../../../../../libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="../../../../../../libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="../../../../../../libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="../../../../../../css/matery.css">
+<link rel="stylesheet" type="text/css" href="../../../../../../css/my.css">
+<link rel="stylesheet" type="text/css" href="../../../../../../css/dark.css" media="none" onload="if(media!='all')media='all'">
 
 
 
 
-    <link rel="stylesheet" href="../../../../libs/tocbot/tocbot.css">
-    <link rel="stylesheet" href="../../../../css/post.css">
+    <link rel="stylesheet" href="../../../../../../libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="../../../../../../css/post.css">
 
 
 
 
     
-        <link rel="stylesheet" type="text/css" href="../../../../css/reward.css">
+        <link rel="stylesheet" type="text/css" href="../../../../../../css/reward.css">
     
 
 
 
-    <script src="../../../../libs/jquery/jquery-3.6.0.min.js"></script>
+    <script src="../../../../../../libs/jquery/jquery-3.6.0.min.js"></script>
 
 <meta name="generator" content="Hexo 7.1.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
@@ -66,9 +67,9 @@ Quick Start强者永不孤独，猛兽永远独行。
     <nav id="headNav" class="bg-color nav-transparent">
         <div id="navContainer" class="nav-wrapper container">
             <div class="brand-logo">
-                <a href="../../../../index.html" class="waves-effect waves-light">
+                <a href="../../../../../../index.html" class="waves-effect waves-light">
                     
-                    <img src="../../../../medias/logo.png" class="logo-img" alt="LOGO">
+                    <img src="../../../../../../medias/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">认养一只猪</span>
                 </a>
@@ -80,7 +81,7 @@ Quick Start强者永不孤独，猛兽永远独行。
   
   <li class="hide-on-med-and-down nav-item">
     
-    <a href="../../../../index.html" class="waves-effect waves-light">
+    <a href="../../../../../../index.html" class="waves-effect waves-light">
       
       <i class="fas fa-home" style="zoom: 0.6;"></i>
       
@@ -91,7 +92,7 @@ Quick Start强者永不孤独，猛兽永远独行。
   
   <li class="hide-on-med-and-down nav-item">
     
-    <a href="../../../../tags" class="waves-effect waves-light">
+    <a href="../../../../../../tags" class="waves-effect waves-light">
       
       <i class="fas fa-tags" style="zoom: 0.6;"></i>
       
@@ -102,7 +103,7 @@ Quick Start强者永不孤独，猛兽永远独行。
   
   <li class="hide-on-med-and-down nav-item">
     
-    <a href="../../../../categories" class="waves-effect waves-light">
+    <a href="../../../../../../categories" class="waves-effect waves-light">
       
       <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
       
@@ -113,7 +114,7 @@ Quick Start强者永不孤独，猛兽永远独行。
   
   <li class="hide-on-med-and-down nav-item">
     
-    <a href="../../../../archives" class="waves-effect waves-light">
+    <a href="../../../../../../archives" class="waves-effect waves-light">
       
       <i class="fas fa-archive" style="zoom: 0.6;"></i>
       
@@ -124,7 +125,7 @@ Quick Start强者永不孤独，猛兽永远独行。
   
   <li class="hide-on-med-and-down nav-item">
     
-    <a href="../../../../about" class="waves-effect waves-light">
+    <a href="../../../../../../about" class="waves-effect waves-light">
       
       <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
       
@@ -135,7 +136,7 @@ Quick Start强者永不孤独，猛兽永远独行。
   
   <li class="hide-on-med-and-down nav-item">
     
-    <a href="../../../../contact" class="waves-effect waves-light">
+    <a href="../../../../../../contact" class="waves-effect waves-light">
       
       <i class="fas fa-comments" style="zoom: 0.6;"></i>
       
@@ -146,7 +147,7 @@ Quick Start强者永不孤独，猛兽永远独行。
   
   <li class="hide-on-med-and-down nav-item">
     
-    <a href="../../../../friends" class="waves-effect waves-light">
+    <a href="../../../../../../friends" class="waves-effect waves-light">
       
       <i class="fas fa-address-book" style="zoom: 0.6;"></i>
       
@@ -172,7 +173,7 @@ Quick Start强者永不孤独，猛兽永远独行。
 
     <div class="mobile-head bg-color">
         
-        <img src="../../../../medias/logo.png" class="logo-img circle responsive-img">
+        <img src="../../../../../../medias/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">认养一只猪</div>
         <div class="logo-desc">
@@ -186,7 +187,7 @@ Quick Start强者永不孤独，猛兽永远独行。
         
         <li class="m-nav-item">
 	  
-		<a href="../../../../index.html" class="waves-effect waves-light">
+		<a href="../../../../../../index.html" class="waves-effect waves-light">
 			
 			    <i class="fa-fw fas fa-home"></i>
 			
@@ -197,7 +198,7 @@ Quick Start强者永不孤独，猛兽永远独行。
         
         <li class="m-nav-item">
 	  
-		<a href="../../../../tags" class="waves-effect waves-light">
+		<a href="../../../../../../tags" class="waves-effect waves-light">
 			
 			    <i class="fa-fw fas fa-tags"></i>
 			
@@ -208,7 +209,7 @@ Quick Start强者永不孤独，猛兽永远独行。
         
         <li class="m-nav-item">
 	  
-		<a href="../../../../categories" class="waves-effect waves-light">
+		<a href="../../../../../../categories" class="waves-effect waves-light">
 			
 			    <i class="fa-fw fas fa-bookmark"></i>
 			
@@ -219,7 +220,7 @@ Quick Start强者永不孤独，猛兽永远独行。
         
         <li class="m-nav-item">
 	  
-		<a href="../../../../archives" class="waves-effect waves-light">
+		<a href="../../../../../../archives" class="waves-effect waves-light">
 			
 			    <i class="fa-fw fas fa-archive"></i>
 			
@@ -230,7 +231,7 @@ Quick Start强者永不孤独，猛兽永远独行。
         
         <li class="m-nav-item">
 	  
-		<a href="../../../../about" class="waves-effect waves-light">
+		<a href="../../../../../../about" class="waves-effect waves-light">
 			
 			    <i class="fa-fw fas fa-user-circle"></i>
 			
@@ -241,7 +242,7 @@ Quick Start强者永不孤独，猛兽永远独行。
         
         <li class="m-nav-item">
 	  
-		<a href="../../../../contact" class="waves-effect waves-light">
+		<a href="../../../../../../contact" class="waves-effect waves-light">
 			
 			    <i class="fa-fw fas fa-comments"></i>
 			
@@ -252,7 +253,7 @@ Quick Start强者永不孤独，猛兽永远独行。
         
         <li class="m-nav-item">
 	  
-		<a href="../../../../friends" class="waves-effect waves-light">
+		<a href="../../../../../../friends" class="waves-effect waves-light">
 			
 			    <i class="fa-fw fas fa-address-book"></i>
 			
@@ -340,12 +341,12 @@ Quick Start强者永不孤独，猛兽永远独行。
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../../../medias/featureimages/15.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">欢迎</h1>
+                    <h1 class="description center-align post-title">VQGAN源码解析</h1>
                 </div>
             </div>
         </div>
@@ -367,12 +368,33 @@ Quick Start强者永不孤独，猛兽永远独行。
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="../../../../../../tags/Computer-Vision/">
+                                <span class="chip bg-color">Computer Vision</span>
+                            </a>
+                        
+                            <a href="../../../../../../tags/Image-Generation/">
+                                <span class="chip bg-color">Image Generation</span>
+                            </a>
+                        
+                            <a href="../../../../../../tags/GAN/">
+                                <span class="chip bg-color">GAN</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="../../../../../../categories/Computer-Vision/" class="post-category">
+                                Computer Vision
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -381,7 +403,7 @@ Quick Start强者永不孤独，猛兽永远独行。
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-01-21
+                    2024-01-31
                 </div>
                 
 
@@ -398,19 +420,60 @@ Quick Start强者永不孤独，猛兽永远独行。
 
         
         <!-- 是否加载使用自带的 prismjs. -->
-        <link rel="stylesheet" href="../../../../libs/prism/prism.min.css">
+        <link rel="stylesheet" href="../../../../../../libs/prism/prism.min.css">
         
 
         
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>欢迎来到一只猪的圈。</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="强者永不孤独，猛兽永远独行。"><a href="#强者永不孤独，猛兽永远独行。" class="headerlink" title="强者永不孤独，猛兽永远独行。"></a>强者永不孤独，猛兽永远独行。</h3><!-- ``` bash
-$ hexo server
+                <ul>
+<li>这里看的是一个外国小哥复现的简单版本的<a target="_blank" rel="noopener" href="https://github.com/dome272/VQGAN-pytorch">VQGAN</a></li>
+</ul>
+<h4 id="1-tqdm的一个用法"><a href="#1-tqdm的一个用法" class="headerlink" title="1. tqdm的一个用法"></a>1. tqdm的一个用法</h4><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">with</span> tqdm<span class="token punctuation">(</span><span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>train_dataset<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">as</span> pbar<span class="token punctuation">:</span>
+    <span class="token keyword">for</span> i<span class="token punctuation">,</span> imgs <span class="token keyword">in</span> <span class="token builtin">zip</span><span class="token punctuation">(</span>pbar<span class="token punctuation">,</span> train_dataset<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment"># do something</span>
+        pbar<span class="token punctuation">.</span>set_postfix<span class="token punctuation">(</span>
+            VQ_Loss<span class="token operator">=</span>np<span class="token punctuation">.</span><span class="token builtin">round</span><span class="token punctuation">(</span>vq_loss<span class="token punctuation">.</span>cpu<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>detach<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>item<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            GAN_Loss<span class="token operator">=</span>np<span class="token punctuation">.</span><span class="token builtin">round</span><span class="token punctuation">(</span>gan_loss<span class="token punctuation">.</span>cpu<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>detach<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>item<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">)</span>
+        pbar<span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="2-使用torchinfo可视化网络结构"><a href="#2-使用torchinfo可视化网络结构" class="headerlink" title="2. 使用torchinfo可视化网络结构"></a>2. 使用torchinfo可视化网络结构</h4><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> torchinfo <span class="token keyword">import</span> summary
+
+encoder <span class="token operator">=</span> Encoder<span class="token punctuation">(</span><span class="token punctuation">)</span>
+summary<span class="token punctuation">(</span>encoder<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">256</span><span class="token punctuation">,</span> <span class="token number">256</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="3-VQGAN的Encoder部分"><a href="#3-VQGAN的Encoder部分" class="headerlink" title="3. VQGAN的Encoder部分"></a>3. VQGAN的Encoder部分</h4><ul>
+<li><p>模型结构为：<br><img src="VQGAN-Encoder.png" alt="VQGAN Encoder结构"></p>
+</li>
+<li><p>其中，</p>
+<ul>
+<li>ResidualBlock是由两个GroupNorm+Swish+Conv组成;</li>
+<li>DownSampleBlock是一个stride=2的Conv;</li>
+<li>NonLocalBlock是一个Attention Block;</li>
+</ul>
+</li>
+<li><p>Encode之后会再接一个1x1的conv，称作是quant_conv. 然后过codebook，对应的还有个1x1的post_quant_conv。</p>
+</li>
+</ul>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 简易Attention实现</span>
+attn <span class="token operator">=</span> torch<span class="token punctuation">.</span>bmm<span class="token punctuation">(</span>q<span class="token punctuation">,</span> k<span class="token punctuation">)</span>
+attn <span class="token operator">=</span> attn <span class="token operator">*</span> <span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span> <span class="token operator">**</span> <span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">0.5</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+attn <span class="token operator">=</span> F<span class="token punctuation">.</span>softmax<span class="token punctuation">(</span>attn<span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span>
+attn <span class="token operator">=</span> attn<span class="token punctuation">.</span>permute<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+A <span class="token operator">=</span> torch<span class="token punctuation">.</span>bmm<span class="token punctuation">(</span>v<span class="token punctuation">,</span> attn<span class="token punctuation">)</span>
+A <span class="token operator">=</span> A<span class="token punctuation">.</span>reshape<span class="token punctuation">(</span>b<span class="token punctuation">,</span> c<span class="token punctuation">,</span> h<span class="token punctuation">,</span> w<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+<h4 id="4-VQGAN的Codebook部分"><a href="#4-VQGAN的Codebook部分" class="headerlink" title="4. VQGAN的Codebook部分"></a>4. VQGAN的Codebook部分</h4><!-- * 模型结构为：
+![VQGAN Codebook结构](VQGAN-Encoder.png)
+
+
+
+```python
+
 ``` -->
-
-
                 
             </div>
             <hr/>
@@ -426,7 +489,7 @@ $ hexo server
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="../../../../about" rel="external nofollow noreferrer">David Chan</a>
+                    <a href="../../../../../../about" rel="external nofollow noreferrer">David Chan</a>
                 </span>
             </div>
             <div class="reprint__type">
@@ -449,7 +512,7 @@ $ hexo server
                     本博客所有文章除特別声明外，均采用
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
                     许可协议。转载请注明来源
-                    <a href="../../../../about" target="_blank">David Chan</a>
+                    <a href="../../../../../../about" target="_blank">David Chan</a>
                     !
                 </span>
             </div>
@@ -473,17 +536,29 @@ $ hexo server
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="../../../../../../tags/Computer-Vision/">
+                                    <span class="chip bg-color">Computer Vision</span>
+                                </a>
+                            
+                                <a href="../../../../../../tags/Image-Generation/">
+                                    <span class="chip bg-color">Image Generation</span>
+                                </a>
+                            
+                                <a href="../../../../../../tags/GAN/">
+                                    <span class="chip bg-color">GAN</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
                 <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
-                    <link rel="stylesheet" type="text/css" href="../../../../libs/share/css/share.min.css">
+                    <link rel="stylesheet" type="text/css" href="../../../../../../libs/share/css/share.min.css">
 <div id="article-share">
 
     
     <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
-    <script src="../../../../libs/share/js/social-share.min.js"></script>
+    <script src="../../../../../../libs/share/js/social-share.min.js"></script>
     
 
     
@@ -508,10 +583,10 @@ $ hexo server
                         <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
                     </ul>
                     <div id="alipay">
-                        <img src="../../../../medias/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
+                        <img src="../../../../../../medias/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
                     </div>
                     <div id="wechat">
-                        <img src="../../../../medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                        <img src="../../../../../../medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
                     </div>
                 </div>
             </div>
@@ -549,7 +624,7 @@ $ hexo server
 
     #vcomments textarea {
         box-sizing: border-box;
-        background: url("../../../../medias/comment_bg.png") 100% 100% no-repeat;
+        background: url("../../../../../../medias/comment_bg.png") 100% 100% no-repeat;
     }
 
     #vcomments p {
@@ -783,8 +858,8 @@ $ hexo server
     </div>
 </div>
 
-<script src="../../../../libs/valine/av-min.js"></script>
-<script src="../../../../libs/valine/Valine.min.js"></script>
+<script src="../../../../../../libs/valine/av-min.js"></script>
+<script src="../../../../../../libs/valine/Valine.min.js"></script>
 <script>
     new Valine({
         el: '#vcomments',
@@ -817,15 +892,74 @@ $ hexo server
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="../../23/python/zi-fu-chuan/">
+                <a href="">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../medias/featureimages/21.jpg" class="responsive-img" alt="Python字符串神奇用法">
+                        <img src="../../../../../../medias/featureimages/15.jpg" class="responsive-img" alt="VQGAN源码解析">
+                        
+                        <span class="card-title">VQGAN源码解析</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-01-31
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="../../../../../../categories/Computer-Vision/" class="post-category">
+                                    Computer Vision
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="../../../../../../tags/Computer-Vision/">
+                        <span class="chip bg-color">Computer Vision</span>
+                    </a>
+                    
+                    <a href="../../../../../../tags/Image-Generation/">
+                        <span class="chip bg-color">Image Generation</span>
+                    </a>
+                    
+                    <a href="../../../../../../tags/GAN/">
+                        <span class="chip bg-color">GAN</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="../../../../23/python/zi-fu-chuan/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="../../../../../../medias/featureimages/21.jpg" class="responsive-img" alt="Python字符串神奇用法">
                         
                         <span class="card-title">Python字符串神奇用法</span>
                     </div>
@@ -837,14 +971,14 @@ $ hexo server
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-01-23
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-01-23
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="../../../../categories/Python/" class="post-category">
+                            <a href="../../../../../../categories/Python/" class="post-category">
                                     Python
                                 </a>
                             
@@ -855,53 +989,15 @@ $ hexo server
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../tags/Python/">
+                    <a href="../../../../../../tags/Python/">
                         <span class="chip bg-color">Python</span>
                     </a>
                     
-                    <a href="../../../../tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/">
+                    <a href="../../../../../../tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/">
                         <span class="chip bg-color">字符串</span>
                     </a>
                     
                 </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
-            </div>
-            <div class="card">
-                <a href="">
-                    <div class="card-image">
-                        
-                        
-                        <img src="../../../../medias/featureimages/4.jpg" class="responsive-img" alt="欢迎">
-                        
-                        <span class="card-title">欢迎</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-01-21
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            David Chan
-                            
-                        </span>
-                    </div>
-                </div>
-
                 
             </div>
         </div>
@@ -951,26 +1047,26 @@ $ hexo server
 
 
 <!-- 代码块功能依赖 -->
-<script type="text/javascript" src="../../../../libs/codeBlock/codeBlockFuction.js"></script>
+<script type="text/javascript" src="../../../../../../libs/codeBlock/codeBlockFuction.js"></script>
 
 
   <!-- 是否加载使用自带的 prismjs. -->
-  <script type="text/javascript" src="../../../../libs/prism/prism.min.js"></script>
+  <script type="text/javascript" src="../../../../../../libs/prism/prism.min.js"></script>
 
 
 <!-- 代码语言 -->
 
-<script type="text/javascript" src="../../../../libs/codeBlock/codeLang.js"></script>
+<script type="text/javascript" src="../../../../../../libs/codeBlock/codeLang.js"></script>
 
 
 <!-- 代码块复制 -->
 
-<script type="text/javascript" src="../../../../libs/codeBlock/codeCopy.js"></script>
+<script type="text/javascript" src="../../../../../../libs/codeBlock/codeCopy.js"></script>
 
 
 <!-- 代码块收缩 -->
 
-<script type="text/javascript" src="../../../../libs/codeBlock/codeShrink.js"></script>
+<script type="text/javascript" src="../../../../../../libs/codeBlock/codeShrink.js"></script>
 
 
 
@@ -992,7 +1088,7 @@ $ hexo server
 </div>
 
 
-<script src="../../../../libs/tocbot/tocbot.min.js"></script>
+<script src="../../../../../../libs/tocbot/tocbot.min.js"></script>
 <script>
     $(function () {
         tocbot.init({
@@ -1064,7 +1160,7 @@ $ hexo server
 
     <footer class="page-footer bg-color">
     
-        <link rel="stylesheet" href="../../../../libs/aplayer/APlayer.min.css">
+        <link rel="stylesheet" href="../../../../../../libs/aplayer/APlayer.min.css">
 <style>
     .aplayer .aplayer-lrc p {
         
@@ -1114,8 +1210,8 @@ $ hexo server
     </div>
 </div>
 
-<script src="../../../../libs/aplayer/APlayer.min.js"></script>
-<script src="../../../../libs/aplayer/Meting.min.js"></script>
+<script src="../../../../../../libs/aplayer/APlayer.min.js"></script>
+<script src="../../../../../../libs/aplayer/Meting.min.js"></script>
 
     
 
@@ -1126,7 +1222,7 @@ $ hexo server
             
                 <span id="year">2024</span>
             
-            <a href="../../../../about" target="_blank">David Chan</a>
+            <a href="../../../../../../about" target="_blank">David Chan</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
             |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
             
@@ -1186,7 +1282,7 @@ $ hexo server
 
 
 
-    <a href="../../../../atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <a href="../../../../../../atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
         <i class="fas fa-rss"></i>
     </a>
 
@@ -1297,7 +1393,7 @@ $(function () {
         });
     };
 
-    searchFunc('../../../../search.xml', 'searchInput', 'searchResult');
+    searchFunc('../../../../../../search.xml', 'searchInput', 'searchResult');
 });
 </script>
 
@@ -1333,12 +1429,12 @@ $(function () {
 </div>
 
 
-    <script src="../../../../libs/materialize/materialize.min.js"></script>
-    <script src="../../../../libs/masonry/masonry.pkgd.min.js"></script>
-    <script src="../../../../libs/aos/aos.js"></script>
-    <script src="../../../../libs/scrollprogress/scrollProgress.min.js"></script>
-    <script src="../../../../libs/lightGallery/js/lightgallery-all.min.js"></script>
-    <script src="../../../../js/matery.js"></script>
+    <script src="../../../../../../libs/materialize/materialize.min.js"></script>
+    <script src="../../../../../../libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="../../../../../../libs/aos/aos.js"></script>
+    <script src="../../../../../../libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="../../../../../../libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="../../../../../../js/matery.js"></script>
 
     
 
@@ -1352,7 +1448,7 @@ $(function () {
             // 只在桌面版网页启用特效
             var windowWidth = $(window).width();
             if (windowWidth > 768) {
-                document.write('<script type="text/javascript" src="../../../../libs/others/snow.js"><\/script>');
+                document.write('<script type="text/javascript" src="../../../../../../libs/others/snow.js"><\/script>');
             }
         </script>
     
@@ -1362,7 +1458,7 @@ $(function () {
 
      
         <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
-        <script src="../../../../libs/others/TencentCaptcha.js"></script>
+        <script src="../../../../../../libs/others/TencentCaptcha.js"></script>
         <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
     
 
@@ -1385,10 +1481,10 @@ $(function () {
 </script>
 
     
-    <script src="../../../../libs/others/clicklove.js" async="async"></script>
+    <script src="../../../../../../libs/others/clicklove.js" async="async"></script>
     
     
-    <script async src="../../../../libs/others/busuanzi.pure.mini.js"></script>
+    <script async src="../../../../../../libs/others/busuanzi.pure.mini.js"></script>
     
 
     
@@ -1404,7 +1500,7 @@ $(function () {
     
 
     
-    <script src="../../../../libs/instantpage/instantpage.js" type="module"></script>
+    <script src="../../../../../../libs/instantpage/instantpage.js" type="module"></script>
     
 
 </body>
