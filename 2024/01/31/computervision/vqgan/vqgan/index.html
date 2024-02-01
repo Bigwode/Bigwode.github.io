@@ -575,6 +575,72 @@ self<span class="token punctuation">.</span>opt_disc<span class="token punctuati
 <hr>
 <p>到这里，我们训练VQGAN的第一步已经结束了，我们可以根据一组VQ来重建出一张图，那么接下就需要transformer来负责先预测出一组VQ然后重建出图来啦～</p>
 <hr>
+<h4 id="8-VQGAN的Transformer部分"><a href="#8-VQGAN的Transformer部分" class="headerlink" title="8. VQGAN的Transformer部分"></a>8. VQGAN的Transformer部分</h4><ul>
+<li>AdamW优化器区分了bias, nn.LayerNorm, nn.Embedding以及pos_emb训练时都不加weight decay，而nn.Linear加了weight decay。</li>
+<li>Transformer部分的网络结构主要是一个<a target="_blank" rel="noopener" href="https://github.com/karpathy/minGPT/">minGPT</a>。</li>
+</ul>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> idx<span class="token punctuation">,</span> embeddings<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># idx是输入图像通过vqgan的Encoder部分得到的indices经过随机mask掉一部分得到的indices.</span>
+    token_embeddings <span class="token operator">=</span> self<span class="token punctuation">.</span>tok_emb<span class="token punctuation">(</span>idx<span class="token punctuation">)</span>  <span class="token comment"># each index maps to a (learnable) vector</span>
+
+    t <span class="token operator">=</span> token_embeddings<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+    position_embeddings <span class="token operator">=</span> self<span class="token punctuation">.</span>pos_emb<span class="token punctuation">[</span>
+        <span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token punctuation">:</span>t<span class="token punctuation">,</span> <span class="token punctuation">:</span>
+    <span class="token punctuation">]</span>  <span class="token comment"># each position maps to a (learnable) vector</span>
+    x <span class="token operator">=</span> self<span class="token punctuation">.</span>drop<span class="token punctuation">(</span>token_embeddings <span class="token operator">+</span> position_embeddings<span class="token punctuation">)</span>
+    x <span class="token operator">=</span> self<span class="token punctuation">.</span>blocks<span class="token punctuation">(</span>x<span class="token punctuation">)</span>  <span class="token comment"># A vanilla multi-head masked self-attention layer</span>
+    x <span class="token operator">=</span> self<span class="token punctuation">.</span>ln_f<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+    logits <span class="token operator">=</span> self<span class="token punctuation">.</span>head<span class="token punctuation">(</span>x<span class="token punctuation">)</span>  <span class="token comment"># [1, 1024]</span>
+
+    <span class="token keyword">return</span> logits<span class="token punctuation">,</span> <span class="token boolean">None</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li><p>这里训GPTTransformer的时候，</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    _<span class="token punctuation">,</span> indices <span class="token operator">=</span> self<span class="token punctuation">.</span>encode_to_z<span class="token punctuation">(</span>x<span class="token punctuation">)</span>  <span class="token comment"># 输入图像经过vqgan的Encoder部分得到的indices</span>
+
+    sos_tokens <span class="token operator">=</span> torch<span class="token punctuation">.</span>ones<span class="token punctuation">(</span>x<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">*</span> self<span class="token punctuation">.</span>sos_token
+    sos_tokens <span class="token operator">=</span> sos_tokens<span class="token punctuation">.</span><span class="token builtin">long</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">(</span><span class="token string">"cuda"</span><span class="token punctuation">)</span>  <span class="token comment"># 起始token的index，默认是0</span>
+
+    mask <span class="token operator">=</span> torch<span class="token punctuation">.</span>bernoulli<span class="token punctuation">(</span>
+        self<span class="token punctuation">.</span>pkeep <span class="token operator">*</span> torch<span class="token punctuation">.</span>ones<span class="token punctuation">(</span>indices<span class="token punctuation">.</span>shape<span class="token punctuation">,</span> device<span class="token operator">=</span>indices<span class="token punctuation">.</span>device<span class="token punctuation">)</span>
+    <span class="token punctuation">)</span>
+    mask <span class="token operator">=</span> mask<span class="token punctuation">.</span><span class="token builtin">round</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">(</span>dtype<span class="token operator">=</span>torch<span class="token punctuation">.</span>int64<span class="token punctuation">)</span>
+    random_indices <span class="token operator">=</span> torch<span class="token punctuation">.</span>randint_like<span class="token punctuation">(</span>indices<span class="token punctuation">,</span> self<span class="token punctuation">.</span>transformer<span class="token punctuation">.</span>config<span class="token punctuation">.</span>vocab_size<span class="token punctuation">)</span>
+    <span class="token comment"># 随机mask掉一半的indices，用随机的indices代替</span>
+    new_indices <span class="token operator">=</span> mask <span class="token operator">*</span> indices <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">-</span> mask<span class="token punctuation">)</span> <span class="token operator">*</span> random_indices  
+
+    new_indices <span class="token operator">=</span> torch<span class="token punctuation">.</span>cat<span class="token punctuation">(</span><span class="token punctuation">(</span>sos_tokens<span class="token punctuation">,</span> new_indices<span class="token punctuation">)</span><span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+    target <span class="token operator">=</span> indices
+    logits<span class="token punctuation">,</span> _ <span class="token operator">=</span> self<span class="token punctuation">.</span>transformer<span class="token punctuation">(</span>new_indices<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">return</span> logits<span class="token punctuation">,</span> target  <span class="token comment"># 直接用cross entropy训练</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>这样训完之后，GPT Transformer就可以根据前序的token来预测后续的token了</p>
+</li>
+</ul>
+<h4 id="9-训好了怎么sample生成样本呢？"><a href="#9-训好了怎么sample生成样本呢？" class="headerlink" title="9. 训好了怎么sample生成样本呢？"></a>9. 训好了怎么sample生成样本呢？</h4><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token decorator annotation punctuation">@torch<span class="token punctuation">.</span>no_grad</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">sample</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">,</span> c<span class="token punctuation">,</span> steps<span class="token punctuation">,</span> temperature<span class="token operator">=</span><span class="token number">1.0</span><span class="token punctuation">,</span> top_k<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    self<span class="token punctuation">.</span>transformer<span class="token punctuation">.</span><span class="token builtin">eval</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    x <span class="token operator">=</span> torch<span class="token punctuation">.</span>cat<span class="token punctuation">(</span><span class="token punctuation">(</span>c<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> k <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>steps<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        logits<span class="token punctuation">,</span> _ <span class="token operator">=</span> self<span class="token punctuation">.</span>transformer<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        logits <span class="token operator">=</span> logits<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">:</span><span class="token punctuation">]</span> <span class="token operator">/</span> temperature
+
+        <span class="token keyword">if</span> top_k <span class="token keyword">is</span> <span class="token keyword">not</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+            logits <span class="token operator">=</span> self<span class="token punctuation">.</span>top_k_logits<span class="token punctuation">(</span>logits<span class="token punctuation">,</span> top_k<span class="token punctuation">)</span>
+
+        probs <span class="token operator">=</span> F<span class="token punctuation">.</span>softmax<span class="token punctuation">(</span>logits<span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+        ix <span class="token operator">=</span> torch<span class="token punctuation">.</span>multinomial<span class="token punctuation">(</span>probs<span class="token punctuation">,</span> num_samples<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>  <span class="token comment"># 按照概率随机取一个值</span>
+        x <span class="token operator">=</span> torch<span class="token punctuation">.</span>cat<span class="token punctuation">(</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> ix<span class="token punctuation">)</span><span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+
+    x <span class="token operator">=</span> x<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> c<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">:</span><span class="token punctuation">]</span>
+    self<span class="token punctuation">.</span>transformer<span class="token punctuation">.</span>train<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> x<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>获得一个序列的indices送入到VQGAN的Decoder就可以生成图像了。</li>
+</ul>
 
                 
             </div>

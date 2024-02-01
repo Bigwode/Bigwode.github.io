@@ -445,6 +445,15 @@ s_replaced <span class="token operator">=</span> s<span class="token punctuation
 result <span class="token operator">=</span> MathUtils<span class="token punctuation">.</span>add<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">)</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span>  <span class="token comment"># 输出: 12</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<h4 id="4-python的-运算符"><a href="#4-python的-运算符" class="headerlink" title="4. python的**运算符"></a>4. python的**运算符</h4><ul>
+<li>可以使用**来将字典中的项作为关键字参数传递给函数。<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">greet</span><span class="token punctuation">(</span>first_name<span class="token punctuation">,</span> last_name<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Hello </span><span class="token interpolation"><span class="token punctuation">{</span>first_name<span class="token punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token punctuation">{</span>last_name<span class="token punctuation">}</span></span><span class="token string">!"</span></span><span class="token punctuation">)</span>
+
+person <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'first_name'</span><span class="token punctuation">:</span> <span class="token string">'John'</span><span class="token punctuation">,</span> <span class="token string">'last_name'</span><span class="token punctuation">:</span> <span class="token string">'Doe'</span><span class="token punctuation">}</span>
+
+greet<span class="token punctuation">(</span><span class="token operator">**</span>person<span class="token punctuation">)</span>  <span class="token comment"># 等同于 greet(first_name='John', last_name='Doe')</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+
                 
             </div>
             <hr/>
