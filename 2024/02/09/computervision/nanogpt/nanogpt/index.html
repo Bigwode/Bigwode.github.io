@@ -4,12 +4,13 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Python字符串神奇用法, 认养一只猪">
-    <meta name="description" content="1. 将一个字符串中的前两个’_’替换为’:’s = &#34;a_b_c_d_e&#34;
-s_replaced = s.replace(&#34;_&#34;, &#34;:&#34;, 2)  # 指定最大替换次数为2
-print(s_replaced)
+    <meta name="keywords" content="VQGAN源码解析, 认养一只猪">
+    <meta name="description" content="
+这里看的是AK写的nanoGPT
 
-2. argparse命">
+1. wandb用法import wandb
+wandb.init(project=wandb_project, name=wandb_run_name, config=config)
+wandb.lo">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,8 +22,8 @@ print(s_replaced)
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Python字符串神奇用法 | 认养一只猪</title>
-    <link rel="icon" type="image/png" href="../../../../../favicon.png">
+    <title>VQGAN源码解析 | 认养一只猪</title>
+    <link rel="icon" type="image/png" href="../../../../../../favicon.png">
     
 
 
@@ -30,31 +31,31 @@ print(s_replaced)
 
 
 
-<link rel="stylesheet" type="text/css" href="../../../../../libs/awesome/css/all.min.css">
-<link rel="stylesheet" type="text/css" href="../../../../../libs/materialize/materialize.min.css">
-<link rel="stylesheet" type="text/css" href="../../../../../libs/aos/aos.css">
-<link rel="stylesheet" type="text/css" href="../../../../../libs/animate/animate.min.css">
-<link rel="stylesheet" type="text/css" href="../../../../../libs/lightGallery/css/lightgallery.min.css">
-<link rel="stylesheet" type="text/css" href="../../../../../css/matery.css">
-<link rel="stylesheet" type="text/css" href="../../../../../css/my.css">
-<link rel="stylesheet" type="text/css" href="../../../../../css/dark.css" media="none" onload="if(media!='all')media='all'">
+<link rel="stylesheet" type="text/css" href="../../../../../../libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="../../../../../../libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="../../../../../../libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="../../../../../../libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="../../../../../../libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="../../../../../../css/matery.css">
+<link rel="stylesheet" type="text/css" href="../../../../../../css/my.css">
+<link rel="stylesheet" type="text/css" href="../../../../../../css/dark.css" media="none" onload="if(media!='all')media='all'">
 
 
 
 
-    <link rel="stylesheet" href="../../../../../libs/tocbot/tocbot.css">
-    <link rel="stylesheet" href="../../../../../css/post.css">
+    <link rel="stylesheet" href="../../../../../../libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="../../../../../../css/post.css">
 
 
 
 
     
-        <link rel="stylesheet" type="text/css" href="../../../../../css/reward.css">
+        <link rel="stylesheet" type="text/css" href="../../../../../../css/reward.css">
     
 
 
 
-    <script src="../../../../../libs/jquery/jquery-3.6.0.min.js"></script>
+    <script src="../../../../../../libs/jquery/jquery-3.6.0.min.js"></script>
 
 <meta name="generator" content="Hexo 7.1.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
@@ -67,9 +68,9 @@ print(s_replaced)
     <nav id="headNav" class="bg-color nav-transparent">
         <div id="navContainer" class="nav-wrapper container">
             <div class="brand-logo">
-                <a href="../../../../../index.html" class="waves-effect waves-light">
+                <a href="../../../../../../index.html" class="waves-effect waves-light">
                     
-                    <img src="../../../../../medias/logo.png" class="logo-img" alt="LOGO">
+                    <img src="../../../../../../medias/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">认养一只猪</span>
                 </a>
@@ -81,7 +82,7 @@ print(s_replaced)
   
   <li class="hide-on-med-and-down nav-item">
     
-    <a href="../../../../../index.html" class="waves-effect waves-light">
+    <a href="../../../../../../index.html" class="waves-effect waves-light">
       
       <i class="fas fa-home" style="zoom: 0.6;"></i>
       
@@ -92,7 +93,7 @@ print(s_replaced)
   
   <li class="hide-on-med-and-down nav-item">
     
-    <a href="../../../../../tags" class="waves-effect waves-light">
+    <a href="../../../../../../tags" class="waves-effect waves-light">
       
       <i class="fas fa-tags" style="zoom: 0.6;"></i>
       
@@ -103,7 +104,7 @@ print(s_replaced)
   
   <li class="hide-on-med-and-down nav-item">
     
-    <a href="../../../../../categories" class="waves-effect waves-light">
+    <a href="../../../../../../categories" class="waves-effect waves-light">
       
       <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
       
@@ -114,7 +115,7 @@ print(s_replaced)
   
   <li class="hide-on-med-and-down nav-item">
     
-    <a href="../../../../../archives" class="waves-effect waves-light">
+    <a href="../../../../../../archives" class="waves-effect waves-light">
       
       <i class="fas fa-archive" style="zoom: 0.6;"></i>
       
@@ -125,7 +126,7 @@ print(s_replaced)
   
   <li class="hide-on-med-and-down nav-item">
     
-    <a href="../../../../../about" class="waves-effect waves-light">
+    <a href="../../../../../../about" class="waves-effect waves-light">
       
       <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
       
@@ -136,7 +137,7 @@ print(s_replaced)
   
   <li class="hide-on-med-and-down nav-item">
     
-    <a href="../../../../../contact" class="waves-effect waves-light">
+    <a href="../../../../../../contact" class="waves-effect waves-light">
       
       <i class="fas fa-comments" style="zoom: 0.6;"></i>
       
@@ -147,7 +148,7 @@ print(s_replaced)
   
   <li class="hide-on-med-and-down nav-item">
     
-    <a href="../../../../../friends" class="waves-effect waves-light">
+    <a href="../../../../../../friends" class="waves-effect waves-light">
       
       <i class="fas fa-address-book" style="zoom: 0.6;"></i>
       
@@ -173,7 +174,7 @@ print(s_replaced)
 
     <div class="mobile-head bg-color">
         
-        <img src="../../../../../medias/logo.png" class="logo-img circle responsive-img">
+        <img src="../../../../../../medias/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">认养一只猪</div>
         <div class="logo-desc">
@@ -187,7 +188,7 @@ print(s_replaced)
         
         <li class="m-nav-item">
 	  
-		<a href="../../../../../index.html" class="waves-effect waves-light">
+		<a href="../../../../../../index.html" class="waves-effect waves-light">
 			
 			    <i class="fa-fw fas fa-home"></i>
 			
@@ -198,7 +199,7 @@ print(s_replaced)
         
         <li class="m-nav-item">
 	  
-		<a href="../../../../../tags" class="waves-effect waves-light">
+		<a href="../../../../../../tags" class="waves-effect waves-light">
 			
 			    <i class="fa-fw fas fa-tags"></i>
 			
@@ -209,7 +210,7 @@ print(s_replaced)
         
         <li class="m-nav-item">
 	  
-		<a href="../../../../../categories" class="waves-effect waves-light">
+		<a href="../../../../../../categories" class="waves-effect waves-light">
 			
 			    <i class="fa-fw fas fa-bookmark"></i>
 			
@@ -220,7 +221,7 @@ print(s_replaced)
         
         <li class="m-nav-item">
 	  
-		<a href="../../../../../archives" class="waves-effect waves-light">
+		<a href="../../../../../../archives" class="waves-effect waves-light">
 			
 			    <i class="fa-fw fas fa-archive"></i>
 			
@@ -231,7 +232,7 @@ print(s_replaced)
         
         <li class="m-nav-item">
 	  
-		<a href="../../../../../about" class="waves-effect waves-light">
+		<a href="../../../../../../about" class="waves-effect waves-light">
 			
 			    <i class="fa-fw fas fa-user-circle"></i>
 			
@@ -242,7 +243,7 @@ print(s_replaced)
         
         <li class="m-nav-item">
 	  
-		<a href="../../../../../contact" class="waves-effect waves-light">
+		<a href="../../../../../../contact" class="waves-effect waves-light">
 			
 			    <i class="fa-fw fas fa-comments"></i>
 			
@@ -253,7 +254,7 @@ print(s_replaced)
         
         <li class="m-nav-item">
 	  
-		<a href="../../../../../friends" class="waves-effect waves-light">
+		<a href="../../../../../../friends" class="waves-effect waves-light">
 			
 			    <i class="fa-fw fas fa-address-book"></i>
 			
@@ -341,12 +342,12 @@ print(s_replaced)
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../../medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../../../medias/featureimages/15.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Python字符串神奇用法</h1>
+                    <h1 class="description center-align post-title">VQGAN源码解析</h1>
                 </div>
             </div>
         </div>
@@ -370,12 +371,12 @@ print(s_replaced)
                     
                     <div class="article-tag">
                         
-                            <a href="../../../../../tags/Python/">
-                                <span class="chip bg-color">Python</span>
+                            <a href="../../../../../../tags/GPTs/">
+                                <span class="chip bg-color">GPTs</span>
                             </a>
                         
-                            <a href="../../../../../tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/">
-                                <span class="chip bg-color">字符串</span>
+                            <a href="../../../../../../tags/nanoGPT/">
+                                <span class="chip bg-color">nanoGPT</span>
                             </a>
                         
                     </div>
@@ -386,8 +387,8 @@ print(s_replaced)
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="../../../../../categories/Python/" class="post-category">
-                                Python
+                            <a href="../../../../../../categories/GPTs/" class="post-category">
+                                GPTs
                             </a>
                         
                     </div>
@@ -399,7 +400,7 @@ print(s_replaced)
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-01-23
+                    2024-02-09
                 </div>
                 
 
@@ -416,52 +417,23 @@ print(s_replaced)
 
         
         <!-- 是否加载使用自带的 prismjs. -->
-        <link rel="stylesheet" href="../../../../../libs/prism/prism.min.css">
+        <link rel="stylesheet" href="../../../../../../libs/prism/prism.min.css">
         
 
         
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="1-将一个字符串中的前两个’-’替换为’-’"><a href="#1-将一个字符串中的前两个’-’替换为’-’" class="headerlink" title="1. 将一个字符串中的前两个’_’替换为’:’"></a>1. 将一个字符串中的前两个’_’替换为’:’</h4><pre class="line-numbers language-python" data-language="python"><code class="language-python">s <span class="token operator">=</span> <span class="token string">"a_b_c_d_e"</span>
-s_replaced <span class="token operator">=</span> s<span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">"_"</span><span class="token punctuation">,</span> <span class="token string">":"</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>  <span class="token comment"># 指定最大替换次数为2</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>s_replaced<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="2-argparse命令行参数中的-会自动转换为"><a href="#2-argparse命令行参数中的-会自动转换为" class="headerlink" title="2. argparse命令行参数中的-会自动转换为_"></a>2. argparse命令行参数中的-会自动转换为_</h4><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 在使用Python的argparse库时，如果你定义了一个带有连字符（-）的命令行参数，argparse模块会自动将这些连字符转换为下划线（_）。这样做是因为在Python中，变量名不能包含连字符；它们可以包含下划线。</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h4 id="3-python的-staticmethod经常用在什么情况下？"><a href="#3-python的-staticmethod经常用在什么情况下？" class="headerlink" title="3. python的@staticmethod经常用在什么情况下？"></a>3. python的@staticmethod经常用在什么情况下？</h4><ul>
-<li>staticmethod用于修饰类中的方法,使其可以在不创建类实例的情况下调用方法</li>
-<li>函数逻辑与类有关联但不需要类或实例的任何信息：当你需要定义一些功能，这些功能虽然跟类相关，但执行时它们不需要类的任何信息（即不需要访问任何类变量或实例变量）。</li>
-<li>组织工具函数：如果有一些与类操作相关的工具函数，你可能希望将它们组织在一个类里面，以保持代码的组织和清晰。</li>
-<li>替代命名空间：当你想要使用类作为一个命名空间来避免函数名冲突时，可以定义静态方法。这样，你可以将相关的函数放在一个类下面，但这些函数并不需要访问类或实例的状态。</li>
-<li>继承管理：在子类中，你可能想要重用某个静态方法而不是实例方法。因为静态方法不与特定的实例或类状态关联，它们更容易在继承中被复用。</li>
+                <ul>
+<li>这里看的是AK写的<a target="_blank" rel="noopener" href="https://github.com/karpathy/nanoGPT">nanoGPT</a></li>
 </ul>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">MathUtils</span><span class="token punctuation">:</span>
-    <span class="token decorator annotation punctuation">@staticmethod</span>
-    <span class="token keyword">def</span> <span class="token function">add</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">return</span> x <span class="token operator">+</span> y
-    
-<span class="token comment"># 静态方法可以通过类名直接调用，无需创建类的实例</span>
-result <span class="token operator">=</span> MathUtils<span class="token punctuation">.</span>add<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span>  <span class="token comment"># 输出: 12</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="4-python的-运算符"><a href="#4-python的-运算符" class="headerlink" title="4. python的**运算符"></a>4. python的**运算符</h4><ul>
-<li>可以使用**来将字典中的项作为关键字参数传递给函数。<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">greet</span><span class="token punctuation">(</span>first_name<span class="token punctuation">,</span> last_name<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Hello </span><span class="token interpolation"><span class="token punctuation">{</span>first_name<span class="token punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token punctuation">{</span>last_name<span class="token punctuation">}</span></span><span class="token string">!"</span></span><span class="token punctuation">)</span>
-
-person <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'first_name'</span><span class="token punctuation">:</span> <span class="token string">'John'</span><span class="token punctuation">,</span> <span class="token string">'last_name'</span><span class="token punctuation">:</span> <span class="token string">'Doe'</span><span class="token punctuation">}</span>
-
-greet<span class="token punctuation">(</span><span class="token operator">**</span>person<span class="token punctuation">)</span>  <span class="token comment"># 等同于 greet(first_name='John', last_name='Doe')</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
-</ul>
-<h4 id="5-python自带的globals函数"><a href="#5-python自带的globals函数" class="headerlink" title="5. python自带的globals函数"></a>5. python自带的globals函数</h4><ul>
-<li>全局符号表，其中包含有关程序的所有信息，包含变量名，方法，类名等等。<pre class="line-numbers language-python" data-language="python"><code class="language-python">a <span class="token operator">=</span> <span class="token number">5</span>
-<span class="token keyword">def</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    c <span class="token operator">=</span> <span class="token number">10</span>
-    d <span class="token operator">=</span> c <span class="token operator">+</span> a 
-    <span class="token builtin">globals</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">]</span> <span class="token operator">=</span> d 
-    <span class="token keyword">print</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span>  
-func<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
-</ul>
+<h4 id="1-wandb用法"><a href="#1-wandb用法" class="headerlink" title="1. wandb用法"></a>1. wandb用法</h4><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> wandb
+wandb<span class="token punctuation">.</span>init<span class="token punctuation">(</span>project<span class="token operator">=</span>wandb_project<span class="token punctuation">,</span> name<span class="token operator">=</span>wandb_run_name<span class="token punctuation">,</span> config<span class="token operator">=</span>config<span class="token punctuation">)</span>
+wandb<span class="token punctuation">.</span>log<span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token string">"iter"</span><span class="token punctuation">:</span> iter_num<span class="token punctuation">,</span>
+    <span class="token string">"train/loss"</span><span class="token punctuation">:</span> losses<span class="token punctuation">[</span><span class="token string">'train'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token string">"val/loss"</span><span class="token punctuation">:</span> losses<span class="token punctuation">[</span><span class="token string">'val'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
@@ -478,7 +450,7 @@ func<span class="token punctuation">(</span><span class="token punctuation">)</s
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="../../../../../about" rel="external nofollow noreferrer">David Chan</a>
+                    <a href="../../../../../../about" rel="external nofollow noreferrer">David Chan</a>
                 </span>
             </div>
             <div class="reprint__type">
@@ -501,7 +473,7 @@ func<span class="token punctuation">(</span><span class="token punctuation">)</s
                     本博客所有文章除特別声明外，均采用
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
                     许可协议。转载请注明来源
-                    <a href="../../../../../about" target="_blank">David Chan</a>
+                    <a href="../../../../../../about" target="_blank">David Chan</a>
                     !
                 </span>
             </div>
@@ -526,24 +498,24 @@ func<span class="token punctuation">(</span><span class="token punctuation">)</s
                     
                         <div class="article-tag">
                             
-                                <a href="../../../../../tags/Python/">
-                                    <span class="chip bg-color">Python</span>
+                                <a href="../../../../../../tags/GPTs/">
+                                    <span class="chip bg-color">GPTs</span>
                                 </a>
                             
-                                <a href="../../../../../tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/">
-                                    <span class="chip bg-color">字符串</span>
+                                <a href="../../../../../../tags/nanoGPT/">
+                                    <span class="chip bg-color">nanoGPT</span>
                                 </a>
                             
                         </div>
                     
                 </div>
                 <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
-                    <link rel="stylesheet" type="text/css" href="../../../../../libs/share/css/share.min.css">
+                    <link rel="stylesheet" type="text/css" href="../../../../../../libs/share/css/share.min.css">
 <div id="article-share">
 
     
     <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
-    <script src="../../../../../libs/share/js/social-share.min.js"></script>
+    <script src="../../../../../../libs/share/js/social-share.min.js"></script>
     
 
     
@@ -568,10 +540,10 @@ func<span class="token punctuation">(</span><span class="token punctuation">)</s
                         <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
                     </ul>
                     <div id="alipay">
-                        <img src="../../../../../medias/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
+                        <img src="../../../../../../medias/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
                     </div>
                     <div id="wechat">
-                        <img src="../../../../../medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                        <img src="../../../../../../medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
                     </div>
                 </div>
             </div>
@@ -609,7 +581,7 @@ func<span class="token punctuation">(</span><span class="token punctuation">)</s
 
     #vcomments textarea {
         box-sizing: border-box;
-        background: url("../../../../../medias/comment_bg.png") 100% 100% no-repeat;
+        background: url("../../../../../../medias/comment_bg.png") 100% 100% no-repeat;
     }
 
     #vcomments p {
@@ -843,8 +815,8 @@ func<span class="token punctuation">(</span><span class="token punctuation">)</s
     </div>
 </div>
 
-<script src="../../../../../libs/valine/av-min.js"></script>
-<script src="../../../../../libs/valine/Valine.min.js"></script>
+<script src="../../../../../../libs/valine/av-min.js"></script>
+<script src="../../../../../../libs/valine/Valine.min.js"></script>
 <script>
     new Valine({
         el: '#vcomments',
@@ -877,15 +849,16 @@ func<span class="token punctuation">(</span><span class="token punctuation">)</s
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="../../../31/computervision/vqgan/vqgan/">
+                <a href="">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../../medias/featureimages/15.jpg" class="responsive-img" alt="VQGAN源码解析">
+                        <img src="../../../../../../medias/featureimages/15.jpg" class="responsive-img" alt="VQGAN源码解析">
                         
                         <span class="card-title">VQGAN源码解析</span>
                     </div>
@@ -897,34 +870,31 @@ func<span class="token punctuation">(</span><span class="token punctuation">)</s
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-01-31
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-02-09
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="../../../../../categories/Computer-Vision/" class="post-category">
-                                    Computer Vision
+                            <a href="../../../../../../categories/GPTs/" class="post-category">
+                                    GPTs
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../../tags/Computer-Vision/">
-                        <span class="chip bg-color">Computer Vision</span>
+                    <a href="../../../../../../tags/GPTs/">
+                        <span class="chip bg-color">GPTs</span>
                     </a>
                     
-                    <a href="../../../../../tags/Image-Generation/">
-                        <span class="chip bg-color">Image Generation</span>
-                    </a>
-                    
-                    <a href="../../../../../tags/GAN/">
-                        <span class="chip bg-color">GAN</span>
+                    <a href="../../../../../../tags/nanoGPT/">
+                        <span class="chip bg-color">nanoGPT</span>
                     </a>
                     
                 </div>
@@ -938,13 +908,13 @@ func<span class="token punctuation">(</span><span class="token punctuation">)</s
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="../../../21/hello-world/">
+                <a href="../../../../../01/31/computervision/vqgan/vqgan/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../../medias/featureimages/4.jpg" class="responsive-img" alt="欢迎">
+                        <img src="../../../../../../medias/featureimages/15.jpg" class="responsive-img" alt="VQGAN源码解析">
                         
-                        <span class="card-title">欢迎</span>
+                        <span class="card-title">VQGAN源码解析</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -955,15 +925,35 @@ func<span class="token punctuation">(</span><span class="token punctuation">)</s
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-01-21
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-01-31
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            David Chan
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="../../../../../../categories/Computer-Vision/" class="post-category">
+                                    Computer Vision
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="../../../../../../tags/Computer-Vision/">
+                        <span class="chip bg-color">Computer Vision</span>
+                    </a>
+                    
+                    <a href="../../../../../../tags/Image-Generation/">
+                        <span class="chip bg-color">Image Generation</span>
+                    </a>
+                    
+                    <a href="../../../../../../tags/GAN/">
+                        <span class="chip bg-color">GAN</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -1014,26 +1004,26 @@ func<span class="token punctuation">(</span><span class="token punctuation">)</s
 
 
 <!-- 代码块功能依赖 -->
-<script type="text/javascript" src="../../../../../libs/codeBlock/codeBlockFuction.js"></script>
+<script type="text/javascript" src="../../../../../../libs/codeBlock/codeBlockFuction.js"></script>
 
 
   <!-- 是否加载使用自带的 prismjs. -->
-  <script type="text/javascript" src="../../../../../libs/prism/prism.min.js"></script>
+  <script type="text/javascript" src="../../../../../../libs/prism/prism.min.js"></script>
 
 
 <!-- 代码语言 -->
 
-<script type="text/javascript" src="../../../../../libs/codeBlock/codeLang.js"></script>
+<script type="text/javascript" src="../../../../../../libs/codeBlock/codeLang.js"></script>
 
 
 <!-- 代码块复制 -->
 
-<script type="text/javascript" src="../../../../../libs/codeBlock/codeCopy.js"></script>
+<script type="text/javascript" src="../../../../../../libs/codeBlock/codeCopy.js"></script>
 
 
 <!-- 代码块收缩 -->
 
-<script type="text/javascript" src="../../../../../libs/codeBlock/codeShrink.js"></script>
+<script type="text/javascript" src="../../../../../../libs/codeBlock/codeShrink.js"></script>
 
 
 
@@ -1055,7 +1045,7 @@ func<span class="token punctuation">(</span><span class="token punctuation">)</s
 </div>
 
 
-<script src="../../../../../libs/tocbot/tocbot.min.js"></script>
+<script src="../../../../../../libs/tocbot/tocbot.min.js"></script>
 <script>
     $(function () {
         tocbot.init({
@@ -1127,7 +1117,7 @@ func<span class="token punctuation">(</span><span class="token punctuation">)</s
 
     <footer class="page-footer bg-color">
     
-        <link rel="stylesheet" href="../../../../../libs/aplayer/APlayer.min.css">
+        <link rel="stylesheet" href="../../../../../../libs/aplayer/APlayer.min.css">
 <style>
     .aplayer .aplayer-lrc p {
         
@@ -1177,8 +1167,8 @@ func<span class="token punctuation">(</span><span class="token punctuation">)</s
     </div>
 </div>
 
-<script src="../../../../../libs/aplayer/APlayer.min.js"></script>
-<script src="../../../../../libs/aplayer/Meting.min.js"></script>
+<script src="../../../../../../libs/aplayer/APlayer.min.js"></script>
+<script src="../../../../../../libs/aplayer/Meting.min.js"></script>
 
     
 
@@ -1189,7 +1179,7 @@ func<span class="token punctuation">(</span><span class="token punctuation">)</s
             
                 <span id="year">2024</span>
             
-            <a href="../../../../../about" target="_blank">David Chan</a>
+            <a href="../../../../../../about" target="_blank">David Chan</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
             |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
             
@@ -1249,7 +1239,7 @@ func<span class="token punctuation">(</span><span class="token punctuation">)</s
 
 
 
-    <a href="../../../../../atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+    <a href="../../../../../../atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
         <i class="fas fa-rss"></i>
     </a>
 
@@ -1360,7 +1350,7 @@ $(function () {
         });
     };
 
-    searchFunc('../../../../../search.xml', 'searchInput', 'searchResult');
+    searchFunc('../../../../../../search.xml', 'searchInput', 'searchResult');
 });
 </script>
 
@@ -1396,12 +1386,12 @@ $(function () {
 </div>
 
 
-    <script src="../../../../../libs/materialize/materialize.min.js"></script>
-    <script src="../../../../../libs/masonry/masonry.pkgd.min.js"></script>
-    <script src="../../../../../libs/aos/aos.js"></script>
-    <script src="../../../../../libs/scrollprogress/scrollProgress.min.js"></script>
-    <script src="../../../../../libs/lightGallery/js/lightgallery-all.min.js"></script>
-    <script src="../../../../../js/matery.js"></script>
+    <script src="../../../../../../libs/materialize/materialize.min.js"></script>
+    <script src="../../../../../../libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="../../../../../../libs/aos/aos.js"></script>
+    <script src="../../../../../../libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="../../../../../../libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="../../../../../../js/matery.js"></script>
 
     
 
@@ -1415,7 +1405,7 @@ $(function () {
             // 只在桌面版网页启用特效
             var windowWidth = $(window).width();
             if (windowWidth > 768) {
-                document.write('<script type="text/javascript" src="../../../../../libs/others/snow.js"><\/script>');
+                document.write('<script type="text/javascript" src="../../../../../../libs/others/snow.js"><\/script>');
             }
         </script>
     
@@ -1425,7 +1415,7 @@ $(function () {
 
      
         <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
-        <script src="../../../../../libs/others/TencentCaptcha.js"></script>
+        <script src="../../../../../../libs/others/TencentCaptcha.js"></script>
         <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
     
 
@@ -1448,10 +1438,10 @@ $(function () {
 </script>
 
     
-    <script src="../../../../../libs/others/clicklove.js" async="async"></script>
+    <script src="../../../../../../libs/others/clicklove.js" async="async"></script>
     
     
-    <script async src="../../../../../libs/others/busuanzi.pure.mini.js"></script>
+    <script async src="../../../../../../libs/others/busuanzi.pure.mini.js"></script>
     
 
     
@@ -1467,7 +1457,7 @@ $(function () {
     
 
     
-    <script src="../../../../../libs/instantpage/instantpage.js" type="module"></script>
+    <script src="../../../../../../libs/instantpage/instantpage.js" type="module"></script>
     
 
 </body>
