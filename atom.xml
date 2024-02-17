@@ -6,7 +6,7 @@
   <link href="https://bigwode.github.io/atom.xml" rel="self"/>
   
   <link href="https://bigwode.github.io/"/>
-  <updated>2024-02-10T12:45:06.091Z</updated>
+  <updated>2024-02-17T14:59:16.769Z</updated>
   <id>https://bigwode.github.io/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Sora技术报告</title>
+    <link href="https://bigwode.github.io/2024/02/17/computervision/sora/sora/"/>
+    <id>https://bigwode.github.io/2024/02/17/computervision/sora/sora/</id>
+    <published>2024-02-17T13:06:28.000Z</published>
+    <updated>2024-02-17T14:59:16.769Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;这里看的是OpenAI写的&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Video Generation" scheme="https://bigwode.github.io/categories/Video-Generation/"/>
+    
+    
+    <category term="Diffusion" scheme="https://bigwode.github.io/tags/Diffusion/"/>
+    
+    <category term="Transformer" scheme="https://bigwode.github.io/tags/Transformer/"/>
+    
+    <category term="Video Generation" scheme="https://bigwode.github.io/tags/Video-Generation/"/>
+    
+    <category term="Sora" scheme="https://bigwode.github.io/tags/Sora/"/>
+    
+  </entry>
   
   <entry>
     <title>nanoGPT源码解析</title>
@@ -110,7 +142,7 @@
     <link href="https://bigwode.github.io/2024/01/21/hello-world/"/>
     <id>https://bigwode.github.io/2024/01/21/hello-world/</id>
     <published>2024-01-21T05:46:16.953Z</published>
-    <updated>2024-01-31T15:24:07.613Z</updated>
+    <updated>2024-02-17T13:02:43.880Z</updated>
     
     
       
@@ -118,7 +150,7 @@
         
         
     <summary type="html">&lt;p&gt;欢迎来到一只猪的圈。&lt;/p&gt;
-&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3</summary>
+&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;持续学习&quot;&gt;&lt;a</summary>
         
       
     
