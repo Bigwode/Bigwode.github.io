@@ -6,7 +6,7 @@
   <link href="https://bigwode.github.io/atom.xml" rel="self"/>
   
   <link href="https://bigwode.github.io/"/>
-  <updated>2024-02-17T15:13:50.810Z</updated>
+  <updated>2024-02-19T01:43:10.707Z</updated>
   <id>https://bigwode.github.io/</id>
   
   <author>
@@ -17,11 +17,39 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Lumiere论文笔记</title>
+    <link href="https://bigwode.github.io/2024/02/19/computervision/lumiere/lumiere/"/>
+    <id>https://bigwode.github.io/2024/02/19/computervision/lumiere/lumiere/</id>
+    <published>2024-02-19T00:59:28.000Z</published>
+    <updated>2024-02-19T01:43:10.707Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Title: &lt;a href=&quot;https://arxiv.org/abs/2401.12945&quot;&gt;Lumiere: A Space-Time Diffusion Model for Video Generation&lt;/a&gt; &lt;br&gt;From</summary>
+        
+      
+    
+    
+    
+    <category term="Video Generation" scheme="https://bigwode.github.io/categories/Video-Generation/"/>
+    
+    
+    <category term="Diffusion" scheme="https://bigwode.github.io/tags/Diffusion/"/>
+    
+    <category term="Video Generation" scheme="https://bigwode.github.io/tags/Video-Generation/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Sora技术报告解读</title>
     <link href="https://bigwode.github.io/2024/02/17/computervision/sora/sora/"/>
     <id>https://bigwode.github.io/2024/02/17/computervision/sora/sora/</id>
     <published>2024-02-17T13:06:28.000Z</published>
-    <updated>2024-02-17T15:13:50.810Z</updated>
+    <updated>2024-02-17T15:27:30.182Z</updated>
     
     
       
@@ -40,9 +68,9 @@
     
     <category term="Diffusion" scheme="https://bigwode.github.io/tags/Diffusion/"/>
     
-    <category term="Transformer" scheme="https://bigwode.github.io/tags/Transformer/"/>
-    
     <category term="Video Generation" scheme="https://bigwode.github.io/tags/Video-Generation/"/>
+    
+    <category term="Transformer" scheme="https://bigwode.github.io/tags/Transformer/"/>
     
     <category term="Sora" scheme="https://bigwode.github.io/tags/Sora/"/>
     
