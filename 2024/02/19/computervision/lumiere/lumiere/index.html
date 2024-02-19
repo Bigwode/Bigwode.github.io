@@ -431,7 +431,7 @@ Highlight
 <h2 id="Highlight"><a href="#Highlight" class="headerlink" title="Highlight"></a>Highlight</h2><ul>
 <li>背景：训练一个large-scale text-to-video(T2V) Foundation model是非常challenge的，因为引入了motion这个复杂度，同时时间维度增加也带来了更大的内存和计算量的消耗，需要的训练数据量也非常大。如下图(a)所示，已有的T2V的方法需要先使用一个base model生成一些关键帧，然后使用级联时间超分模型(cascade of temporal super-resolution (TSR) models)来扩充中间帧，然后在一些没有重叠的window上使用空间超分模型(spatial super-resolution (SSR) model)来获得高分辨率的结果。</li>
 <li>如图b所示，本文提出的Lumiere模型提出STUNet来直接一步到位生成所有的帧，然后在一些重叠的windows上使用SSR来获得分辨率更高的视频(MultiDiffusion)。<br><img src="Lumiere_Pipeline.png" alt="Lumiere Pipeline"></li>
-<li>Luminere可以比较好地迁移到各种视频生成任务上，比如，视频风格生成，有条件生成，Image2Video，Inpainting，Cinemagraphs（在一副静态图像上画一个框，只生成框内的视频）</li>
+<li>Lumiere可以比较好地迁移到各种视频生成任务上，比如，视频风格生成，有条件生成，Image2Video，Inpainting，Cinemagraphs（在一副静态图像上画一个框，只生成框内的视频）</li>
 </ul>
 <h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><p><img src="STUNet.png" alt="STUNet architecture"></p>
 <ul>
@@ -441,22 +441,18 @@ Highlight
 <li>Multidiffusion for Spatial-Super Resolution. 在时间维度重叠的windows上应用了MultiDiffusion进行线性融合获得最终的结果。</li>
 <li>只有新加的这些时间层是要训练的，原始的T2I权重是固定住的。</li>
 </ul>
-<h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><ol>
-<li>Stylized Generation</li>
-</ol>
+<h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><p><strong>1. Stylized Generation</strong></p>
 <ul>
 <li>通过将fine-tuned T2I weights和原始的T2I weights进行线性插值可以获得较好的风格迁移视频。</li>
 </ul>
 <p><img src="Style_Generation.jpg" alt="Style Generation"></p>
-<ol start="2">
-<li>Conditional Generation</li>
-</ol>
+<p><strong>2. Conditional Generation</strong></p>
 <ul>
-<li>拓展了输入的形式来兼容多个任务，将Noisy video(THW3)，masked conditioning(THW3)，binary mask（THW1）concat成7通道的输入，然后根据任务，比如Image-to-Video，Inpainting等来调整mask condition和binary mask的输入。</li>
+<li>拓展了输入的形式来兼容多个任务，将Noisy video(TxHxWx3)，masked conditioning(TxHxWx3)，binary mask（TxHxWx1）concat成7通道的输入，然后根据任务，比如Image-to-Video，Inpainting等来调整mask condition和binary mask的输入。</li>
 <li>有微调阶段。</li>
 </ul>
 <h2 id="Thoughts"><a href="#Thoughts" class="headerlink" title="Thoughts"></a>Thoughts</h2><ul>
-<li>Video生成直接生成多帧是合理的，但是最大的问题是资源消耗大的问题，因此SpaceTime卷积和SpaceTime Attention要做得足够好才能将feature降维到一个计算量能接受的程度。</li>
+<li>Video生成直接一步到位生成多帧是合理的，但是最大的问题是资源消耗大的问题，因此SpaceTime卷积和SpaceTime Attention要做得足够好才能将feature降维到一个计算量能接受的程度。</li>
 </ul>
 
                 
