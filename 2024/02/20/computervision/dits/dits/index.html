@@ -4,13 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Lumiere论文笔记, 认养一只猪">
+    <meta name="keywords" content="DiTs论文笔记, 认养一只猪">
     <meta name="description" content="
-Title: Lumiere: A Space-Time Diffusion Model for Video Generation From Google ArXiv 2024.02.05
-
-
-Highlight
-背景：训练一个large">
+Title: Scalable Diffusion Models with Transformers From UC Berkeley and New York University ICCV 2023 (Oral Presentatio">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +18,7 @@ Highlight
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Lumiere论文笔记 | 认养一只猪</title>
+    <title>DiTs论文笔记 | 认养一只猪</title>
     <link rel="icon" type="image/png" href="../../../../../../favicon.png">
     
 
@@ -342,12 +338,12 @@ Highlight
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../../../medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../../../medias/featureimages/21.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Lumiere论文笔记</h1>
+                    <h1 class="description center-align post-title">DiTs论文笔记</h1>
                 </div>
             </div>
         </div>
@@ -375,8 +371,8 @@ Highlight
                                 <span class="chip bg-color">Diffusion</span>
                             </a>
                         
-                            <a href="../../../../../../tags/Video-Generation/">
-                                <span class="chip bg-color">Video Generation</span>
+                            <a href="../../../../../../tags/Transformers/">
+                                <span class="chip bg-color">Transformers</span>
                             </a>
                         
                     </div>
@@ -387,8 +383,8 @@ Highlight
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="../../../../../../categories/Video-Generation/" class="post-category">
-                                Video Generation
+                            <a href="../../../../../../categories/Image-Generation/" class="post-category">
+                                Image Generation
                             </a>
                         
                     </div>
@@ -400,7 +396,7 @@ Highlight
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-02-19
+                    2024-02-20
                 </div>
                 
 
@@ -425,34 +421,36 @@ Highlight
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <blockquote>
-<p>Title: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2401.12945">Lumiere: A Space-Time Diffusion Model for Video Generation</a> <br>From Google <br>ArXiv 2024.02.05</p>
+<p>Title: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2212.09748">Scalable Diffusion Models with Transformers</a> <br>From UC Berkeley and New York University <br>ICCV 2023 (Oral Presentation)</p>
 </blockquote>
-<p><img src="Lumiere.jpg" alt="Lumiere 电影时光"></p>
+<p><img src="DiT.jpg" alt="DiTs"></p>
 <h2 id="Highlight"><a href="#Highlight" class="headerlink" title="Highlight"></a>Highlight</h2><ul>
-<li>背景：训练一个large-scale text-to-video(T2V) Foundation model是非常challenge的，因为引入了motion这个复杂度，同时时间维度增加也带来了更大的内存和计算量的消耗，需要的训练数据量也非常大。如下图(a)所示，已有的T2V的方法需要先使用一个base model生成一些关键帧，然后使用级联时间超分模型(cascade of temporal super-resolution (TSR) models)来扩充中间帧，然后在一些没有重叠的window上使用空间超分模型(spatial super-resolution (SSR) model)来获得高分辨率的结果。</li>
-<li>如图b所示，本文提出的Lumiere模型提出STUNet来直接一步到位生成所有的帧，然后在一些重叠的windows上使用SSR来获得分辨率更高的视频(MultiDiffusion)。<br><img src="Lumiere_Pipeline.png" alt="Lumiere Pipeline"></li>
-<li>Lumiere可以比较好地迁移到各种视频生成任务上，比如，视频风格生成，有条件生成，Image2Video，Inpainting，Cinemagraphs（在一副静态图像上画一个框，只生成框内的视频）</li>
+<li>作者说UNet的inductive bias对diffusion模型的性能并不重要，因此可以使用transformer结构来代替。</li>
+<li>DiTs是在结合VAE的LDM框架下设计的。另外作者发现模型的复杂度和生成样本的质量有很大关系，简单的scaling up DiT并且用一个高容量的backbone训一个LDM可以取得SOTA的生成效果。</li>
 </ul>
-<h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><p><img src="STUNet.png" alt="STUNet architecture"></p>
+<h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><p><img src="DiT_Block.jpg" alt="The Diffusion Transformer (DiT) architecture."></p>
 <ul>
-<li>StuNet(SpaceTime UNet)是在一个预训练好的T2I U-Net结构上在video的space和time上都进行下采样和上采样。</li>
-<li>Convolution-based blocks是一个pre-trained T2I layers紧跟着一个space-time convolution。</li>
-<li>Attention-based blocks是在原始的UNet层的pre-trained T2I layers跟上多个时间attention层。</li>
-<li>Multidiffusion for Spatial-Super Resolution. 在时间维度重叠的windows上应用了MultiDiffusion进行线性融合获得最终的结果。</li>
-<li>只有新加的这些时间层是要训练的，原始的T2I权重是固定住的。</li>
+<li>上图展示的是一个conditional latent DiT模型。</li>
+<li>作者在这里实验了几种不同的结合conditioning的方法并发现使用adaLN-Zero效果最好，同时增加的资源消耗也少。</li>
 </ul>
-<h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><p><strong>1. Stylized Generation</strong></p>
+<p><img src="Different_conditioning_strategies.jpg" alt="Different conditioning strategies."></p>
 <ul>
-<li>通过将fine-tuned T2I weights和原始的T2I weights进行线性插值可以获得较好的风格迁移视频。</li>
+<li>In-context conditioning.<ul>
+<li>将t和c的vector embedding作为input sequence之外的两个额外的tokens，和其他的image tokens同样处理。</li>
 </ul>
-<p><img src="Style_Generation.jpg" alt="Style Generation"></p>
-<p><strong>2. Conditional Generation</strong></p>
-<ul>
-<li>拓展了输入的形式来兼容多个任务，将Noisy video(TxHxWx3)，masked conditioning(TxHxWx3)，binary mask（TxHxWx1）concat成7通道的输入，然后根据任务，比如Image-to-Video，Inpainting等来调整mask condition和binary mask的输入。</li>
-<li>有微调阶段。</li>
+</li>
+<li>Cross-attentionblock<ul>
+<li>将t和c的embeddings concat成一个长度为2的序列，和image token sequence分开。将transformer block 修改为在multi-head self-attn之后加一个multi-head cross-attn</li>
 </ul>
-<h2 id="Thoughts"><a href="#Thoughts" class="headerlink" title="Thoughts"></a>Thoughts</h2><ul>
-<li>Video生成直接一步到位生成多帧是合理的，但是最大的问题是资源消耗大的问题，因此SpaceTime卷积和SpaceTime Attention要做得足够好才能将feature降维到一个计算量能接受的程度。</li>
+</li>
+<li>Adaptive layer norm (adaLN) block.<ul>
+<li>使用adaptive LN替换LN。不再像LN那样直接学习一个dimension-wise的scale和shift权重gamma, beta，而是根据t和c的embedding的sum直接回归出这两个参数。</li>
+</ul>
+</li>
+<li>adaLN-Zero block.<ul>
+<li>受之前工作（在有监督学习任务中，零初始化每一个block的最后一个BN的scale权重可以加速large scale training）的启发，除了回归gamma和beta参数之外，也回归一个dimension-wise scaling 参数aplha作用在每个残差连接之前，然后初始化MLP输出一个全零的alpha，相当于将整个DiT block初始化为identity function。</li>
+</ul>
+</li>
 </ul>
 
                 
@@ -522,8 +520,8 @@ Highlight
                                     <span class="chip bg-color">Diffusion</span>
                                 </a>
                             
-                                <a href="../../../../../../tags/Video-Generation/">
-                                    <span class="chip bg-color">Video Generation</span>
+                                <a href="../../../../../../tags/Transformers/">
+                                    <span class="chip bg-color">Transformers</span>
                                 </a>
                             
                         </div>
@@ -869,11 +867,12 @@ Highlight
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="../../../../20/computervision/dits/dits/">
+                <a href="">
                     <div class="card-image">
                         
                         
@@ -889,9 +888,9 @@ Highlight
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-02-20
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-02-20
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -904,6 +903,7 @@ Highlight
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -926,13 +926,13 @@ Highlight
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="../../../../17/computervision/sora/sora/">
+                <a href="../../../../19/computervision/lumiere/lumiere/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../../../medias/featureimages/1.jpg" class="responsive-img" alt="Sora技术报告解读">
+                        <img src="../../../../../../medias/featureimages/12.jpg" class="responsive-img" alt="Lumiere论文笔记">
                         
-                        <span class="card-title">Sora技术报告解读</span>
+                        <span class="card-title">Lumiere论文笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -943,7 +943,7 @@ Highlight
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-02-17
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-02-19
                             </span>
                         <span class="publish-author">
                             
@@ -966,14 +966,6 @@ Highlight
                     
                     <a href="../../../../../../tags/Video-Generation/">
                         <span class="chip bg-color">Video Generation</span>
-                    </a>
-                    
-                    <a href="../../../../../../tags/Transformer/">
-                        <span class="chip bg-color">Transformer</span>
-                    </a>
-                    
-                    <a href="../../../../../../tags/Sora/">
-                        <span class="chip bg-color">Sora</span>
                     </a>
                     
                 </div>

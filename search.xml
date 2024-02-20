@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>DiTs论文笔记</title>
+      <link href="/2024/02/20/computervision/dits/dits/"/>
+      <url>/2024/02/20/computervision/dits/dits/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>Title: <a href="https://arxiv.org/abs/2212.09748">Scalable Diffusion Models with Transformers</a> <br>From UC Berkeley and New York University <br>ICCV 2023 (Oral Presentation)</p></blockquote><p><img src="DiT.jpg" alt="DiTs"></p><h2 id="Highlight"><a href="#Highlight" class="headerlink" title="Highlight"></a>Highlight</h2><ul><li>作者说UNet的inductive bias对diffusion模型的性能并不重要，因此可以使用transformer结构来代替。</li><li>DiTs是在结合VAE的LDM框架下设计的。另外作者发现模型的复杂度和生成样本的质量有很大关系，简单的scaling up DiT并且用一个高容量的backbone训一个LDM可以取得SOTA的生成效果。</li></ul><h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><p><img src="DiT_Block.jpg" alt="The Diffusion Transformer (DiT) architecture."></p><ul><li>上图展示的是一个conditional latent DiT模型。</li><li>作者在这里实验了几种不同的结合conditioning的方法并发现使用adaLN-Zero效果最好，同时增加的资源消耗也少。</li></ul><p><img src="Different_conditioning_strategies.jpg" alt="Different conditioning strategies."></p><ul><li>In-context conditioning.<ul><li>将t和c的vector embedding作为input sequence之外的两个额外的tokens，和其他的image tokens同样处理。</li></ul></li><li>Cross-attentionblock<ul><li>将t和c的embeddings concat成一个长度为2的序列，和image token sequence分开。将transformer block 修改为在multi-head self-attn之后加一个multi-head cross-attn</li></ul></li><li>Adaptive layer norm (adaLN) block.<ul><li>使用adaptive LN替换LN。不再像LN那样直接学习一个dimension-wise的scale和shift权重gamma, beta，而是根据t和c的embedding的sum直接回归出这两个参数。</li></ul></li><li>adaLN-Zero block.<ul><li>受之前工作（在有监督学习任务中，零初始化每一个block的最后一个BN的scale权重可以加速large scale training）的启发，除了回归gamma和beta参数之外，也回归一个dimension-wise scaling 参数aplha作用在每个残差连接之前，然后初始化MLP输出一个全零的alpha，相当于将整个DiT block初始化为identity function。</li></ul></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Image Generation </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Diffusion </tag>
+            
+            <tag> Transformers </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Lumiere论文笔记</title>
       <link href="/2024/02/19/computervision/lumiere/lumiere/"/>
       <url>/2024/02/19/computervision/lumiere/lumiere/</url>
