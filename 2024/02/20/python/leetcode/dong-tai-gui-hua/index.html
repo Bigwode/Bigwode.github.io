@@ -4,13 +4,15 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Lumiere论文笔记, 认养一只猪">
+    <meta name="keywords" content="动态规划专题, 认养一只猪">
     <meta name="description" content="
-Title: Lumiere: A Space-Time Diffusion Model for Video Generation From Google ArXiv 2024.02.05
+02/20/2024 - 01
 
+300. 最长递增子序列
+给定一个列表，求出最长递增子序列的长度。
 
-Highlight
-背景：训练一个large">
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -&amp;gt; in">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +24,7 @@ Highlight
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Lumiere论文笔记 | 认养一只猪</title>
+    <title>动态规划专题 | 认养一只猪</title>
     <link rel="icon" type="image/png" href="../../../../../../favicon.png">
     
 
@@ -342,12 +344,12 @@ Highlight
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../../../medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../../../medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Lumiere论文笔记</h1>
+                    <h1 class="description center-align post-title">动态规划专题</h1>
                 </div>
             </div>
         </div>
@@ -371,12 +373,12 @@ Highlight
                     
                     <div class="article-tag">
                         
-                            <a href="../../../../../../tags/Diffusion/">
-                                <span class="chip bg-color">Diffusion</span>
+                            <a href="../../../../../../tags/Leetcode/">
+                                <span class="chip bg-color">Leetcode</span>
                             </a>
                         
-                            <a href="../../../../../../tags/Video-Generation/">
-                                <span class="chip bg-color">Video Generation</span>
+                            <a href="../../../../../../tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
+                                <span class="chip bg-color">动态规划</span>
                             </a>
                         
                     </div>
@@ -387,8 +389,8 @@ Highlight
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="../../../../../../categories/Video-Generation/" class="post-category">
-                                Video Generation
+                            <a href="../../../../../../categories/Leetcode/" class="post-category">
+                                Leetcode
                             </a>
                         
                     </div>
@@ -400,7 +402,7 @@ Highlight
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-02-19
+                    2024-02-20
                 </div>
                 
 
@@ -425,35 +427,47 @@ Highlight
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <blockquote>
-<p>Title: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2401.12945">Lumiere: A Space-Time Diffusion Model for Video Generation</a> <br>From Google <br>ArXiv 2024.02.05</p>
+<p>02/20/2024 - 01</p>
 </blockquote>
-<p><img src="Lumiere.jpg" alt="Lumiere 电影时光"></p>
-<h2 id="Highlight"><a href="#Highlight" class="headerlink" title="Highlight"></a>Highlight</h2><ul>
-<li>背景：训练一个large-scale text-to-video(T2V) Foundation model是非常challenge的，因为引入了motion这个复杂度，同时时间维度增加也带来了更大的内存和计算量的消耗，需要的训练数据量也非常大。如下图(a)所示，已有的T2V的方法需要先使用一个base model生成一些关键帧，然后使用级联时间超分模型(cascade of temporal super-resolution (TSR) models)来扩充中间帧，然后在一些没有重叠的window上使用空间超分模型(spatial super-resolution (SSR) model)来获得高分辨率的结果。</li>
-<li>如图b所示，本文提出的Lumiere模型提出STUNet来直接一步到位生成所有的帧，然后在一些重叠的windows上使用SSR来获得分辨率更高的视频(MultiDiffusion)。<br><img src="Lumiere_Pipeline.png" alt="Lumiere Pipeline"></li>
-<li>Lumiere可以比较好地迁移到各种视频生成任务上，比如，视频风格生成，有条件生成，Image2Video，Inpainting，Cinemagraphs（在一副静态图像上画一个框，只生成框内的视频）</li>
+<h1 id="300-最长递增子序列"><a href="#300-最长递增子序列" class="headerlink" title="300. 最长递增子序列"></a>300. 最长递增子序列</h1><ul>
+<li>给定一个列表，求出最长递增子序列的长度。</li>
 </ul>
-<h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><p><img src="STUNet.png" alt="STUNet architecture"></p>
-<ul>
-<li>StuNet(SpaceTime UNet)是在一个预训练好的T2I U-Net结构上在video的space和time上都进行下采样和上采样。</li>
-<li>Convolution-based blocks是一个pre-trained T2I layers紧跟着一个space-time convolution。</li>
-<li>Attention-based blocks是在原始的UNet层的pre-trained T2I layers跟上多个时间attention层。</li>
-<li>Multidiffusion for Spatial-Super Resolution. 在时间维度重叠的windows上应用了MultiDiffusion进行线性融合获得最终的结果。</li>
-<li>只有新加的这些时间层是要训练的，原始的T2I权重是固定住的。</li>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">lengthOfLIS</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> nums<span class="token punctuation">:</span> List<span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span><span class="token punctuation">:</span>
+        lens <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span>
+        <span class="token comment"># 定义dp[i]为以index=i结尾的最长子序列的长度</span>
+        dp <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">*</span> lens
+
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>lens<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">for</span> j <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token keyword">if</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&gt;</span> nums<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">:</span>
+                    <span class="token comment"># 状态转移方程</span>
+                    dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> dp<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span>
+        
+        <span class="token keyword">return</span> <span class="token builtin">max</span><span class="token punctuation">(</span>dp<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+<blockquote>
+<p>02/20/2024 - 02</p>
+</blockquote>
+<h1 id="152-乘积最大子数组"><a href="#152-乘积最大子数组" class="headerlink" title="152. 乘积最大子数组"></a>152. 乘积最大子数组</h1><ul>
+<li>给定一个列表，求乘积最大的连续子数组的乘积。</li>
 </ul>
-<h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><p><strong>1. Stylized Generation</strong></p>
-<ul>
-<li>通过将fine-tuned T2I weights和原始的T2I weights进行线性插值可以获得较好的风格迁移视频。</li>
-</ul>
-<p><img src="Style_Generation.jpg" alt="Style Generation"></p>
-<p><strong>2. Conditional Generation</strong></p>
-<ul>
-<li>拓展了输入的形式来兼容多个任务，将Noisy video(TxHxWx3)，masked conditioning(TxHxWx3)，binary mask（TxHxWx1）concat成7通道的输入，然后根据任务，比如Image-to-Video，Inpainting等来调整mask condition和binary mask的输入。</li>
-<li>有微调阶段。</li>
-</ul>
-<h2 id="Thoughts"><a href="#Thoughts" class="headerlink" title="Thoughts"></a>Thoughts</h2><ul>
-<li>Video生成直接一步到位生成多帧是合理的，但是最大的问题是资源消耗大的问题，因此SpaceTime卷积和SpaceTime Attention要做得足够好才能将feature降维到一个计算量能接受的程度。</li>
-</ul>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">maxProduct</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> nums<span class="token punctuation">:</span> List<span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token builtin">int</span><span class="token punctuation">:</span>
+        maxF<span class="token punctuation">,</span> minF<span class="token punctuation">,</span> res <span class="token operator">=</span> nums<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> nums<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> nums<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+        lens <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> lens<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            mx <span class="token operator">=</span> maxF
+            mn <span class="token operator">=</span> minF
+
+            <span class="token comment"># 因为涉及到数值正负号的问题，所以需要同时记录i-1位置为结尾的子数组的乘积的最大值和最小值</span>
+            maxF <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>mx <span class="token operator">*</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token builtin">max</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> mn <span class="token operator">*</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            minF <span class="token operator">=</span> <span class="token builtin">min</span><span class="token punctuation">(</span>mx <span class="token operator">*</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token builtin">min</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> mn <span class="token operator">*</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+            res <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>maxF<span class="token punctuation">,</span> res<span class="token punctuation">)</span>
+        
+        <span class="token keyword">return</span> res<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
@@ -518,12 +532,12 @@ Highlight
                     
                         <div class="article-tag">
                             
-                                <a href="../../../../../../tags/Diffusion/">
-                                    <span class="chip bg-color">Diffusion</span>
+                                <a href="../../../../../../tags/Leetcode/">
+                                    <span class="chip bg-color">Leetcode</span>
                                 </a>
                             
-                                <a href="../../../../../../tags/Video-Generation/">
-                                    <span class="chip bg-color">Video Generation</span>
+                                <a href="../../../../../../tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
+                                    <span class="chip bg-color">动态规划</span>
                                 </a>
                             
                         </div>
@@ -873,13 +887,13 @@ Highlight
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="../../../../20/python/leetcode/dong-tai-gui-hua/">
+                <a href="../../../computervision/dits/dits/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../../../medias/featureimages/4.jpg" class="responsive-img" alt="动态规划专题">
+                        <img src="../../../../../../medias/featureimages/21.jpg" class="responsive-img" alt="DiTs论文笔记">
                         
-                        <span class="card-title">动态规划专题</span>
+                        <span class="card-title">DiTs论文笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -896,8 +910,8 @@ Highlight
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="../../../../../../categories/Leetcode/" class="post-category">
-                                    Leetcode
+                            <a href="../../../../../../categories/Image-Generation/" class="post-category">
+                                    Image Generation
                                 </a>
                             
                             
@@ -907,12 +921,12 @@ Highlight
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../../../tags/Leetcode/">
-                        <span class="chip bg-color">Leetcode</span>
+                    <a href="../../../../../../tags/Diffusion/">
+                        <span class="chip bg-color">Diffusion</span>
                     </a>
                     
-                    <a href="../../../../../../tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
-                        <span class="chip bg-color">动态规划</span>
+                    <a href="../../../../../../tags/Transformers/">
+                        <span class="chip bg-color">Transformers</span>
                     </a>
                     
                 </div>
@@ -926,13 +940,13 @@ Highlight
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="../../../../17/computervision/sora/sora/">
+                <a href="../../../../19/computervision/lumiere/lumiere/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../../../medias/featureimages/1.jpg" class="responsive-img" alt="Sora技术报告解读">
+                        <img src="../../../../../../medias/featureimages/12.jpg" class="responsive-img" alt="Lumiere论文笔记">
                         
-                        <span class="card-title">Sora技术报告解读</span>
+                        <span class="card-title">Lumiere论文笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -943,7 +957,7 @@ Highlight
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-02-17
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-02-19
                             </span>
                         <span class="publish-author">
                             
@@ -966,14 +980,6 @@ Highlight
                     
                     <a href="../../../../../../tags/Video-Generation/">
                         <span class="chip bg-color">Video Generation</span>
-                    </a>
-                    
-                    <a href="../../../../../../tags/Transformer/">
-                        <span class="chip bg-color">Transformer</span>
-                    </a>
-                    
-                    <a href="../../../../../../tags/Sora/">
-                        <span class="chip bg-color">Sora</span>
                     </a>
                     
                 </div>
