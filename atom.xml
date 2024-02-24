@@ -6,7 +6,7 @@
   <link href="https://bigwode.github.io/atom.xml" rel="self"/>
   
   <link href="https://bigwode.github.io/"/>
-  <updated>2024-02-20T13:47:32.439Z</updated>
+  <updated>2024-02-24T15:44:52.236Z</updated>
   <id>https://bigwode.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>TimeSformer论文笔记</title>
+    <link href="https://bigwode.github.io/2024/02/24/computervision/timesformer/timesformer/"/>
+    <id>https://bigwode.github.io/2024/02/24/computervision/timesformer/timesformer/</id>
+    <published>2024-02-24T10:06:28.000Z</published>
+    <updated>2024-02-24T15:44:52.236Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Title:&lt;/strong&gt; &lt;a href=&quot;https://arxiv.org/abs/2102.05095&quot;&gt;《Is Space-Time Attention All You Need for Video</summary>
+        
+      
+    
+    
+    
+    <category term="Video Recognition" scheme="https://bigwode.github.io/categories/Video-Recognition/"/>
+    
+    
+    <category term="Video Recognition" scheme="https://bigwode.github.io/tags/Video-Recognition/"/>
+    
+    <category term="Transformer" scheme="https://bigwode.github.io/tags/Transformer/"/>
+    
+  </entry>
   
   <entry>
     <title>DiTs论文笔记</title>
@@ -124,11 +152,11 @@
     <category term="Video Generation" scheme="https://bigwode.github.io/categories/Video-Generation/"/>
     
     
+    <category term="Transformer" scheme="https://bigwode.github.io/tags/Transformer/"/>
+    
     <category term="Diffusion" scheme="https://bigwode.github.io/tags/Diffusion/"/>
     
     <category term="Video Generation" scheme="https://bigwode.github.io/tags/Video-Generation/"/>
-    
-    <category term="Transformer" scheme="https://bigwode.github.io/tags/Transformer/"/>
     
     <category term="Sora" scheme="https://bigwode.github.io/tags/Sora/"/>
     

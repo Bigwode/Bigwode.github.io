@@ -4,13 +4,12 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Lumiere论文笔记, 认养一只猪">
+    <meta name="keywords" content="TimeSformer论文笔记, 认养一只猪">
     <meta name="description" content="
-Title: Lumiere: A Space-Time Diffusion Model for Video Generation From Google ArXiv 2024.02.05
-
+Title: 《Is Space-Time Attention All You Need for Video Understanding?》 From Facebook ICML 2021 paper
 
 Highlight
-背景：训练一个large">
+背景：第一篇用">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +21,7 @@ Highlight
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Lumiere论文笔记 | 认养一只猪</title>
+    <title>TimeSformer论文笔记 | 认养一只猪</title>
     <link rel="icon" type="image/png" href="../../../../../../favicon.png">
     
 
@@ -342,12 +341,12 @@ Highlight
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../../../medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../../../medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Lumiere论文笔记</h1>
+                    <h1 class="description center-align post-title">TimeSformer论文笔记</h1>
                 </div>
             </div>
         </div>
@@ -371,12 +370,12 @@ Highlight
                     
                     <div class="article-tag">
                         
-                            <a href="../../../../../../tags/Diffusion/">
-                                <span class="chip bg-color">Diffusion</span>
+                            <a href="../../../../../../tags/Video-Recognition/">
+                                <span class="chip bg-color">Video Recognition</span>
                             </a>
                         
-                            <a href="../../../../../../tags/Video-Generation/">
-                                <span class="chip bg-color">Video Generation</span>
+                            <a href="../../../../../../tags/Transformer/">
+                                <span class="chip bg-color">Transformer</span>
                             </a>
                         
                     </div>
@@ -387,8 +386,8 @@ Highlight
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="../../../../../../categories/Video-Generation/" class="post-category">
-                                Video Generation
+                            <a href="../../../../../../categories/Video-Recognition/" class="post-category">
+                                Video Recognition
                             </a>
                         
                     </div>
@@ -400,7 +399,7 @@ Highlight
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-02-19
+                    2024-02-24
                 </div>
                 
 
@@ -425,34 +424,113 @@ Highlight
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <blockquote>
-<p>Title: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2401.12945">Lumiere: A Space-Time Diffusion Model for Video Generation</a> <br>From Google <br>ArXiv 2024.02.05</p>
+<p><strong>Title:</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2102.05095">《Is Space-Time Attention All You Need for Video Understanding?》</a> <br>From Facebook <br>ICML 2021 paper</p>
 </blockquote>
-<p><img src="Lumiere.jpg" alt="Lumiere 电影时光"></p>
 <h2 id="Highlight"><a href="#Highlight" class="headerlink" title="Highlight"></a>Highlight</h2><ul>
-<li>背景：训练一个large-scale text-to-video(T2V) Foundation model是非常challenge的，因为引入了motion这个复杂度，同时时间维度增加也带来了更大的内存和计算量的消耗，需要的训练数据量也非常大。如下图(a)所示，已有的T2V的方法需要先使用一个base model生成一些关键帧，然后使用级联时间超分模型(cascade of temporal super-resolution (TSR) models)来扩充中间帧，然后在一些没有重叠的window上使用空间超分模型(spatial super-resolution (SSR) model)来获得高分辨率的结果。</li>
-<li>如图b所示，本文提出的Lumiere模型提出STUNet来直接一步到位生成所有的帧，然后在一些重叠的windows上使用SSR来获得分辨率更高的视频(MultiDiffusion)。<br><img src="Lumiere_Pipeline.png" alt="Lumiere Pipeline"></li>
-<li>Lumiere可以比较好地迁移到各种视频生成任务上，比如，视频风格生成，有条件生成，Image2Video，Inpainting，Cinemagraphs（在一副静态图像上画一个框，只生成框内的视频）</li>
+<li>背景：第一篇用纯self-attn结构来做视频分类任务的工作。</li>
+<li>文中设计了几种在spatial和temperal上做attn的方法，实验发现将temporal attention和 spatial attention 分开一个接一个交替用可以减少计算量并且获得更好的效果。</li>
 </ul>
-<h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><p><img src="STUNet.png" alt="STUNet architecture"></p>
+<h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><p><img src="video_self-attention_blocks.jpg" alt="Different Video Self-Attn Blocks"></p>
 <ul>
-<li>StuNet(SpaceTime UNet)是在一个预训练好的T2I U-Net结构上在video的space和time上都进行下采样和上采样。</li>
-<li>Convolution-based blocks是一个pre-trained T2I layers紧跟着一个space-time convolution。</li>
-<li>Attention-based blocks是在原始的UNet层的pre-trained T2I layers跟上多个时间attention层。</li>
-<li>Multidiffusion for Spatial-Super Resolution. 在时间维度重叠的windows上应用了MultiDiffusion进行线性融合获得最终的结果。</li>
-<li>只有新加的这些时间层是要训练的，原始的T2I权重是固定住的。</li>
+<li>将每一帧（HxWx3）划分成PxP个不重叠的patches，然后把每个patch flatten成3P^2的vector.</li>
+<li>过一个linear embedding变成D维的，然后加上一个learnable positional embedding。在序列的最开始加上一个token作为[CLS] token。</li>
+<li>为了减少计算量，将temporal attention和 spatial attention 分开一个接一个交替用可以减少计算量并且获得更好的效果。</li>
 </ul>
-<h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><p><strong>1. Stylized Generation</strong></p>
+<h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><p><img src="Video-level-accuracy.jpg" alt="Video Level Accuracy"></p>
+<h2 id="Pytorch-Code"><a href="#Pytorch-Code" class="headerlink" title="Pytorch Code"></a>Pytorch Code</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">TimeSFormer</span><span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Module<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># ...</span>
+    <span class="token keyword">def</span> <span class="token function">forward_features</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        B <span class="token operator">=</span> x<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>  <span class="token comment"># [2, 3, 8, 224, 224]  # BS, image channel, frame（这里以输入8帧图为例）, H, W</span>
+        <span class="token comment"># 先过一个kernel_size=16，stride=16的conv得到embedding</span>
+        x<span class="token punctuation">,</span> T<span class="token punctuation">,</span> W <span class="token operator">=</span> self<span class="token punctuation">.</span>patch_embed<span class="token punctuation">(</span>x<span class="token punctuation">)</span>  <span class="token comment"># [16, 196, 768], 8, 14</span>
+        cls_tokens <span class="token operator">=</span> self<span class="token punctuation">.</span>cls_token<span class="token punctuation">.</span>expand<span class="token punctuation">(</span>x<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+        x <span class="token operator">=</span> torch<span class="token punctuation">.</span>cat<span class="token punctuation">(</span><span class="token punctuation">(</span>cls_tokens<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>  <span class="token comment"># [16, 197, 768]</span>
+
+        x <span class="token operator">=</span> x <span class="token operator">+</span> self<span class="token punctuation">.</span>pos_embed
+        x <span class="token operator">=</span> self<span class="token punctuation">.</span>pos_drop<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+
+        <span class="token comment">##  Time Embeddings</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>attention_type <span class="token operator">!=</span> <span class="token string">"space_only"</span><span class="token punctuation">:</span>
+            cls_tokens <span class="token operator">=</span> x<span class="token punctuation">[</span><span class="token punctuation">:</span>B<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">.</span>unsqueeze<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>  <span class="token comment"># [2, 1, 768]</span>
+            x <span class="token operator">=</span> x<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span>
+            x <span class="token operator">=</span> rearrange<span class="token punctuation">(</span>x<span class="token punctuation">,</span> <span class="token string">"(b t) n m -&gt; (b n) t m"</span><span class="token punctuation">,</span> b<span class="token operator">=</span>B<span class="token punctuation">,</span> t<span class="token operator">=</span>T<span class="token punctuation">)</span>  <span class="token comment"># 2,8,196,768, # [392, 8, 768]</span>
+            x <span class="token operator">=</span> x <span class="token operator">+</span> self<span class="token punctuation">.</span>time_embed  <span class="token comment"># 在每一个patch上都加上同样的time embedding.</span>
+            x <span class="token operator">=</span> self<span class="token punctuation">.</span>time_drop<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+            x <span class="token operator">=</span> rearrange<span class="token punctuation">(</span>x<span class="token punctuation">,</span> <span class="token string">"(b n) t m -&gt; b (n t) m"</span><span class="token punctuation">,</span> b<span class="token operator">=</span>B<span class="token punctuation">,</span> t<span class="token operator">=</span>T<span class="token punctuation">)</span>
+            x <span class="token operator">=</span> torch<span class="token punctuation">.</span>cat<span class="token punctuation">(</span><span class="token punctuation">(</span>cls_tokens<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>  <span class="token comment"># [2, 1+8*196, 768]</span>
+
+        <span class="token comment">## Attention blocks</span>
+        <span class="token keyword">for</span> blk <span class="token keyword">in</span> self<span class="token punctuation">.</span>blocks<span class="token punctuation">:</span>
+            x <span class="token operator">=</span> blk<span class="token punctuation">(</span>x<span class="token punctuation">,</span> B<span class="token punctuation">,</span> T<span class="token punctuation">,</span> W<span class="token punctuation">)</span>  <span class="token comment"># 12层attention</span>
+
+        x <span class="token operator">=</span> self<span class="token punctuation">.</span>norm<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> x<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span>
+
+    <span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        x <span class="token operator">=</span> self<span class="token punctuation">.</span>forward_features<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        x <span class="token operator">=</span> self<span class="token punctuation">.</span>head<span class="token punctuation">(</span>x<span class="token punctuation">)</span>  <span class="token comment"># 映射成分类分数</span>
+        <span class="token keyword">return</span> x<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <ul>
-<li>通过将fine-tuned T2I weights和原始的T2I weights进行线性插值可以获得较好的风格迁移视频。</li>
+<li>每一层blk的结构如下所示</li>
 </ul>
-<p><img src="Style_Generation.jpg" alt="Style Generation"></p>
-<p><strong>2. Conditional Generation</strong></p>
-<ul>
-<li>拓展了输入的形式来兼容多个任务，将Noisy video(TxHxWx3)，masked conditioning(TxHxWx3)，binary mask（TxHxWx1）concat成7通道的输入，然后根据任务，比如Image-to-Video，Inpainting等来调整mask condition和binary mask的输入。</li>
-<li>有微调阶段。</li>
-</ul>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Block</span><span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Module<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># ...</span>
+    <span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">,</span> B<span class="token punctuation">,</span> T<span class="token punctuation">,</span> W<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># x: [2, 1 + 8 * 196, 768]</span>
+        num_spatial_tokens <span class="token operator">=</span> <span class="token punctuation">(</span>x<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">//</span> T
+        H <span class="token operator">=</span> num_spatial_tokens <span class="token operator">//</span> W
+
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>attention_type <span class="token keyword">in</span> <span class="token punctuation">[</span><span class="token string">"space_only"</span><span class="token punctuation">,</span> <span class="token string">"joint_space_time"</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+            x <span class="token operator">=</span> x <span class="token operator">+</span> self<span class="token punctuation">.</span>drop_path<span class="token punctuation">(</span>self<span class="token punctuation">.</span>attn<span class="token punctuation">(</span>self<span class="token punctuation">.</span>norm1<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            x <span class="token operator">=</span> x <span class="token operator">+</span> self<span class="token punctuation">.</span>drop_path<span class="token punctuation">(</span>self<span class="token punctuation">.</span>mlp<span class="token punctuation">(</span>self<span class="token punctuation">.</span>norm2<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> x
+        <span class="token keyword">elif</span> self<span class="token punctuation">.</span>attention_type <span class="token operator">==</span> <span class="token string">"divided_space_time"</span><span class="token punctuation">:</span>
+            <span class="token comment">## Temporal</span>
+            <span class="token comment"># Note: temporal没有和cls token做attn，而spatial做了。</span>
+            xt <span class="token operator">=</span> x<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token punctuation">:</span><span class="token punctuation">]</span>
+            xt <span class="token operator">=</span> rearrange<span class="token punctuation">(</span>xt<span class="token punctuation">,</span> <span class="token string">"b (h w t) m -&gt; (b h w) t m"</span><span class="token punctuation">,</span> b<span class="token operator">=</span>B<span class="token punctuation">,</span> h<span class="token operator">=</span>H<span class="token punctuation">,</span> w<span class="token operator">=</span>W<span class="token punctuation">,</span> t<span class="token operator">=</span>T<span class="token punctuation">)</span>  <span class="token comment"># [392, 8, 768]</span>
+            <span class="token comment"># 不同帧之间做attn, attn map的尺寸为: [392, 12, 8, 8]</span>
+            res_temporal <span class="token operator">=</span> self<span class="token punctuation">.</span>drop_path<span class="token punctuation">(</span>self<span class="token punctuation">.</span>temporal_attn<span class="token punctuation">(</span>self<span class="token punctuation">.</span>temporal_norm1<span class="token punctuation">(</span>xt<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            res_temporal <span class="token operator">=</span> rearrange<span class="token punctuation">(</span>
+                res_temporal<span class="token punctuation">,</span> <span class="token string">"(b h w) t m -&gt; b (h w t) m"</span><span class="token punctuation">,</span> b<span class="token operator">=</span>B<span class="token punctuation">,</span> h<span class="token operator">=</span>H<span class="token punctuation">,</span> w<span class="token operator">=</span>W<span class="token punctuation">,</span> t<span class="token operator">=</span>T
+            <span class="token punctuation">)</span>
+            res_temporal <span class="token operator">=</span> self<span class="token punctuation">.</span>temporal_fc<span class="token punctuation">(</span>res_temporal<span class="token punctuation">)</span>
+            xt <span class="token operator">=</span> x<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token punctuation">:</span><span class="token punctuation">]</span> <span class="token operator">+</span> res_temporal  <span class="token comment"># [2, 8 * 196, 768]</span>
+
+            <span class="token comment">## Spatial</span>
+            init_cls_token <span class="token operator">=</span> x<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">.</span>unsqueeze<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>  <span class="token comment"># [2, 1, 768]</span>
+            cls_token <span class="token operator">=</span> init_cls_token<span class="token punctuation">.</span>repeat<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> T<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>  <span class="token comment"># [2, 8, 768]</span>
+            cls_token <span class="token operator">=</span> rearrange<span class="token punctuation">(</span>cls_token<span class="token punctuation">,</span> <span class="token string">"b t m -&gt; (b t) m"</span><span class="token punctuation">,</span> b<span class="token operator">=</span>B<span class="token punctuation">,</span> t<span class="token operator">=</span>T<span class="token punctuation">)</span><span class="token punctuation">.</span>unsqueeze<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>  <span class="token comment"># [16, 1, 768]</span>
+            xs <span class="token operator">=</span> xt
+            xs <span class="token operator">=</span> rearrange<span class="token punctuation">(</span>xs<span class="token punctuation">,</span> <span class="token string">"b (h w t) m -&gt; (b t) (h w) m"</span><span class="token punctuation">,</span> b<span class="token operator">=</span>B<span class="token punctuation">,</span> h<span class="token operator">=</span>H<span class="token punctuation">,</span> w<span class="token operator">=</span>W<span class="token punctuation">,</span> t<span class="token operator">=</span>T<span class="token punctuation">)</span>  <span class="token comment"># [16, 196, 768]</span>
+            xs <span class="token operator">=</span> torch<span class="token punctuation">.</span>cat<span class="token punctuation">(</span><span class="token punctuation">(</span>cls_token<span class="token punctuation">,</span> xs<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>  <span class="token comment"># [16, 197, 768]</span>
+            <span class="token comment"># 不同spatial token 之间做attn</span>
+            res_spatial <span class="token operator">=</span> self<span class="token punctuation">.</span>drop_path<span class="token punctuation">(</span>self<span class="token punctuation">.</span>attn<span class="token punctuation">(</span>self<span class="token punctuation">.</span>norm1<span class="token punctuation">(</span>xs<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># [16, 197, 768]</span>
+
+            <span class="token comment">### Taking care of CLS token</span>
+            cls_token <span class="token operator">=</span> res_spatial<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">:</span><span class="token punctuation">]</span>
+            cls_token <span class="token operator">=</span> rearrange<span class="token punctuation">(</span>cls_token<span class="token punctuation">,</span> <span class="token string">"(b t) m -&gt; b t m"</span><span class="token punctuation">,</span> b<span class="token operator">=</span>B<span class="token punctuation">,</span> t<span class="token operator">=</span>T<span class="token punctuation">)</span>  <span class="token comment"># [2, 8, 768]</span>
+            cls_token <span class="token operator">=</span> torch<span class="token punctuation">.</span>mean<span class="token punctuation">(</span>cls_token<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token boolean">True</span><span class="token punctuation">)</span>  <span class="token comment">## averaging for every frame  # [2, 1, 768]</span>
+
+            res_spatial <span class="token operator">=</span> res_spatial<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token punctuation">:</span><span class="token punctuation">]</span>  <span class="token comment"># [16, 196, 768]</span>
+
+            res_spatial <span class="token operator">=</span> rearrange<span class="token punctuation">(</span>
+                res_spatial<span class="token punctuation">,</span> <span class="token string">"(b t) (h w) m -&gt; b (h w t) m"</span><span class="token punctuation">,</span> b<span class="token operator">=</span>B<span class="token punctuation">,</span> h<span class="token operator">=</span>H<span class="token punctuation">,</span> w<span class="token operator">=</span>W<span class="token punctuation">,</span> t<span class="token operator">=</span>T
+            <span class="token punctuation">)</span>  <span class="token comment"># [2, 8*196, 768]</span>
+
+            res <span class="token operator">=</span> res_spatial
+            x <span class="token operator">=</span> xt  <span class="token comment"># [2, 1568, 768]</span>
+
+            <span class="token comment">## Mlp</span>
+            <span class="token comment"># 相当于temp和spatial的结果ensemble</span>
+            x <span class="token operator">=</span> torch<span class="token punctuation">.</span>cat<span class="token punctuation">(</span><span class="token punctuation">(</span>init_cls_token<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> torch<span class="token punctuation">.</span>cat<span class="token punctuation">(</span><span class="token punctuation">(</span>cls_token<span class="token punctuation">,</span> res<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+            x <span class="token operator">=</span> x <span class="token operator">+</span> self<span class="token punctuation">.</span>drop_path<span class="token punctuation">(</span>self<span class="token punctuation">.</span>mlp<span class="token punctuation">(</span>self<span class="token punctuation">.</span>norm2<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> x
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
 <h2 id="Thoughts"><a href="#Thoughts" class="headerlink" title="Thoughts"></a>Thoughts</h2><ul>
-<li>Video生成直接一步到位生成多帧是合理的，但是最大的问题是资源消耗大的问题，因此SpaceTime卷积和SpaceTime Attention要做得足够好才能将feature降维到一个计算量能接受的程度。</li>
+<li>有个spacetime attention for diffusion distillation的想法，即让student学习teacher重建的过程，不过有个问题是teacher要一次denoising多步速度可能比较慢。</li>
 </ul>
 
                 
@@ -518,12 +596,12 @@ Highlight
                     
                         <div class="article-tag">
                             
-                                <a href="../../../../../../tags/Diffusion/">
-                                    <span class="chip bg-color">Diffusion</span>
+                                <a href="../../../../../../tags/Video-Recognition/">
+                                    <span class="chip bg-color">Video Recognition</span>
                                 </a>
                             
-                                <a href="../../../../../../tags/Video-Generation/">
-                                    <span class="chip bg-color">Video Generation</span>
+                                <a href="../../../../../../tags/Transformer/">
+                                    <span class="chip bg-color">Transformer</span>
                                 </a>
                             
                         </div>
@@ -869,17 +947,18 @@ Highlight
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="../../../../20/python/leetcode/dong-tai-gui-hua/">
+                <a href="">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../../../medias/featureimages/4.jpg" class="responsive-img" alt="动态规划专题">
+                        <img src="../../../../../../medias/featureimages/0.jpg" class="responsive-img" alt="TimeSformer论文笔记">
                         
-                        <span class="card-title">动态规划专题</span>
+                        <span class="card-title">TimeSformer论文笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -889,30 +968,31 @@ Highlight
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-02-20
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-02-24
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="../../../../../../categories/Leetcode/" class="post-category">
-                                    Leetcode
+                            <a href="../../../../../../categories/Video-Recognition/" class="post-category">
+                                    Video Recognition
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../../../tags/Leetcode/">
-                        <span class="chip bg-color">Leetcode</span>
+                    <a href="../../../../../../tags/Video-Recognition/">
+                        <span class="chip bg-color">Video Recognition</span>
                     </a>
                     
-                    <a href="../../../../../../tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
-                        <span class="chip bg-color">动态规划</span>
+                    <a href="../../../../../../tags/Transformer/">
+                        <span class="chip bg-color">Transformer</span>
                     </a>
                     
                 </div>
@@ -926,13 +1006,13 @@ Highlight
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="../../../../17/computervision/sora/sora/">
+                <a href="../../../../20/computervision/dits/dits/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../../../medias/featureimages/1.jpg" class="responsive-img" alt="Sora技术报告解读">
+                        <img src="../../../../../../medias/featureimages/21.jpg" class="responsive-img" alt="DiTs论文笔记">
                         
-                        <span class="card-title">Sora技术报告解读</span>
+                        <span class="card-title">DiTs论文笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -943,14 +1023,14 @@ Highlight
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-02-17
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-02-20
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="../../../../../../categories/Video-Generation/" class="post-category">
-                                    Video Generation
+                            <a href="../../../../../../categories/Image-Generation/" class="post-category">
+                                    Image Generation
                                 </a>
                             
                             
@@ -960,20 +1040,12 @@ Highlight
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../../../tags/Transformer/">
-                        <span class="chip bg-color">Transformer</span>
-                    </a>
-                    
                     <a href="../../../../../../tags/Diffusion/">
                         <span class="chip bg-color">Diffusion</span>
                     </a>
                     
-                    <a href="../../../../../../tags/Video-Generation/">
-                        <span class="chip bg-color">Video Generation</span>
-                    </a>
-                    
-                    <a href="../../../../../../tags/Sora/">
-                        <span class="chip bg-color">Sora</span>
+                    <a href="../../../../../../tags/Transformers/">
+                        <span class="chip bg-color">Transformers</span>
                     </a>
                     
                 </div>
