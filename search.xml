@@ -8,7 +8,7 @@
       <link href="/2024/02/29/computervision/deepcache/deepcache/"/>
       <url>/2024/02/29/computervision/deepcache/deepcache/</url>
       
-        <content type="html"><![CDATA[<blockquote><p>Title: <a href="https://arxiv.org/abs/2312.00858">DeepCache: Accelerating Diffusion Models for Free</a> <br>From NUS <br>ArXiv 2023.12.07</p></blockquote><p><img src="Feature_similarity.jpg" alt="Examples of Feature Maps and Similarity."></p><h2 id="Highlight"><a href="#Highlight" class="headerlink" title="Highlight"></a>Highlight</h2><ul><li>作者发现在diffusion生成过程中，相邻步的UNet的high-level特征存在非常高的相似性。</li><li>因此可以把上一步的UNet深层特征存下来，当前步只需要计算浅层特征并和上一步缓存的深层特征Concat。</li></ul><h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><p><img src="DeepCache.jpg" alt="Illustration of DeepCache."></p><h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><p><img src="Results.jpg" alt="Class-conditional generation quality on ImageNet."></p>]]></content>
+        <content type="html"><![CDATA[<blockquote><p>Title: <a href="https://arxiv.org/abs/2312.00858">DeepCache: Accelerating Diffusion Models for Free</a> <br>From NUS <br>ArXiv 2023.12.07</p></blockquote><p><img src="Feature_similarity.jpg" alt="Examples of Feature Maps and Similarity."></p><h2 id="Highlight"><a href="#Highlight" class="headerlink" title="Highlight"></a>Highlight</h2><ul><li>作者发现在diffusion生成过程中，相邻步的UNet的high-level特征存在非常高的相似性。</li><li>因此可以把上一步的UNet深层特征存下来，当前步只需要计算浅层特征并和上一步缓存的深层特征Concat。</li></ul><h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><p><img src="DeepCache.jpg" alt="Illustration of DeepCache."></p><h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><p><img src="Results.jpg" alt="Class-conditional generation quality on ImageNet."></p><h2 id="Thoughts"><a href="#Thoughts" class="headerlink" title="Thoughts"></a>Thoughts</h2><ul><li>对于Progressive Diffusion Distillation来说的话，两步蒸馏一步，那说明实际起作用的是在蒸馏浅层feature？但是随着误差累积，深层feature的重要性才逐渐显现出来。</li></ul>]]></content>
       
       
       <categories>
@@ -47,9 +47,9 @@
       
         <tags>
             
-            <tag> Transformer </tag>
-            
             <tag> Video Recognition </tag>
+            
+            <tag> Transformer </tag>
             
         </tags>
       
@@ -157,9 +157,9 @@
             
             <tag> Diffusion </tag>
             
-            <tag> Video Generation </tag>
-            
             <tag> Transformer </tag>
+            
+            <tag> Video Generation </tag>
             
             <tag> Sora </tag>
             

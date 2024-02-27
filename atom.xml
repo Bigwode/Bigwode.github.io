@@ -6,7 +6,7 @@
   <link href="https://bigwode.github.io/atom.xml" rel="self"/>
   
   <link href="https://bigwode.github.io/"/>
-  <updated>2024-02-27T16:11:01.098Z</updated>
+  <updated>2024-02-27T16:19:59.676Z</updated>
   <id>https://bigwode.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://bigwode.github.io/2024/02/29/computervision/deepcache/deepcache/"/>
     <id>https://bigwode.github.io/2024/02/29/computervision/deepcache/deepcache/</id>
     <published>2024-02-28T16:02:28.000Z</published>
-    <updated>2024-02-27T16:11:01.098Z</updated>
+    <updated>2024-02-27T16:19:59.676Z</updated>
     
     
       
@@ -66,9 +66,9 @@
     <category term="Video Recognition" scheme="https://bigwode.github.io/categories/Video-Recognition/"/>
     
     
-    <category term="Transformer" scheme="https://bigwode.github.io/tags/Transformer/"/>
-    
     <category term="Video Recognition" scheme="https://bigwode.github.io/tags/Video-Recognition/"/>
+    
+    <category term="Transformer" scheme="https://bigwode.github.io/tags/Transformer/"/>
     
   </entry>
   
@@ -182,9 +182,9 @@
     
     <category term="Diffusion" scheme="https://bigwode.github.io/tags/Diffusion/"/>
     
-    <category term="Video Generation" scheme="https://bigwode.github.io/tags/Video-Generation/"/>
-    
     <category term="Transformer" scheme="https://bigwode.github.io/tags/Transformer/"/>
+    
+    <category term="Video Generation" scheme="https://bigwode.github.io/tags/Video-Generation/"/>
     
     <category term="Sora" scheme="https://bigwode.github.io/tags/Sora/"/>
     
