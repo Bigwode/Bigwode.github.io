@@ -45,6 +45,32 @@
   </entry>
   
   <entry>
+    <title>Preserving Fairness Generalization in Deepfake Detection 论文笔记</title>
+    <link href="https://bigwode.github.io/2024/02/28/computervision/preserving-fairness-generalization-in-deepfake-detection/preserving-fairness-generalization-in-deepfake-detection/"/>
+    <id>https://bigwode.github.io/2024/02/28/computervision/preserving-fairness-generalization-in-deepfake-detection/preserving-fairness-generalization-in-deepfake-detection/</id>
+    <published>2024-02-28T15:38:28.000Z</published>
+    <updated>2024-02-28T16:53:15.846Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Title:&lt;/strong&gt; &lt;a href=&quot;https://arxiv.org/abs/2402.17229&quot;&gt;《Preserving Fairness Generalization in Deepfake</summary>
+        
+      
+    
+    
+    
+    <category term="Deepfake Detection" scheme="https://bigwode.github.io/categories/Deepfake-Detection/"/>
+    
+    
+    <category term="Deepfake Detection" scheme="https://bigwode.github.io/tags/Deepfake-Detection/"/>
+    
+  </entry>
+  
+  <entry>
     <title>TimeSformer论文笔记</title>
     <link href="https://bigwode.github.io/2024/02/24/computervision/timesformer/timesformer/"/>
     <id>https://bigwode.github.io/2024/02/24/computervision/timesformer/timesformer/</id>
@@ -66,9 +92,9 @@
     <category term="Video Recognition" scheme="https://bigwode.github.io/categories/Video-Recognition/"/>
     
     
-    <category term="Video Recognition" scheme="https://bigwode.github.io/tags/Video-Recognition/"/>
-    
     <category term="Transformer" scheme="https://bigwode.github.io/tags/Transformer/"/>
+    
+    <category term="Video Recognition" scheme="https://bigwode.github.io/tags/Video-Recognition/"/>
     
   </entry>
   
