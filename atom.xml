@@ -6,7 +6,7 @@
   <link href="https://bigwode.github.io/atom.xml" rel="self"/>
   
   <link href="https://bigwode.github.io/"/>
-  <updated>2024-02-27T16:19:59.676Z</updated>
+  <updated>2024-03-12T15:38:53.875Z</updated>
   <id>https://bigwode.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Consistency Models论文笔记</title>
+    <link href="https://bigwode.github.io/2024/03/12/computervision/consistency-models/consistency-models/"/>
+    <id>https://bigwode.github.io/2024/03/12/computervision/consistency-models/consistency-models/</id>
+    <published>2024-03-12T14:09:28.000Z</published>
+    <updated>2024-03-12T15:38:53.875Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Title: &lt;a href=&quot;https://arxiv.org/abs/2303.01469&quot;&gt;Consistency Models&lt;/a&gt; &lt;br&gt;From OpenAI, Yang Song. &lt;br&gt;ICML</summary>
+        
+      
+    
+    
+    
+    <category term="Image Generation" scheme="https://bigwode.github.io/categories/Image-Generation/"/>
+    
+    
+    <category term="Diffusion" scheme="https://bigwode.github.io/tags/Diffusion/"/>
+    
+    <category term="Score-based model" scheme="https://bigwode.github.io/tags/Score-based-model/"/>
+    
+    <category term="Consistency Models" scheme="https://bigwode.github.io/tags/Consistency-Models/"/>
+    
+  </entry>
   
   <entry>
     <title>DeepCache论文笔记</title>
@@ -92,9 +122,9 @@
     <category term="Video Recognition" scheme="https://bigwode.github.io/categories/Video-Recognition/"/>
     
     
-    <category term="Transformer" scheme="https://bigwode.github.io/tags/Transformer/"/>
-    
     <category term="Video Recognition" scheme="https://bigwode.github.io/tags/Video-Recognition/"/>
+    
+    <category term="Transformer" scheme="https://bigwode.github.io/tags/Transformer/"/>
     
   </entry>
   
@@ -208,9 +238,9 @@
     
     <category term="Diffusion" scheme="https://bigwode.github.io/tags/Diffusion/"/>
     
-    <category term="Transformer" scheme="https://bigwode.github.io/tags/Transformer/"/>
-    
     <category term="Video Generation" scheme="https://bigwode.github.io/tags/Video-Generation/"/>
+    
+    <category term="Transformer" scheme="https://bigwode.github.io/tags/Transformer/"/>
     
     <category term="Sora" scheme="https://bigwode.github.io/tags/Sora/"/>
     

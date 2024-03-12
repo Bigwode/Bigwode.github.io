@@ -4,13 +4,13 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Sora技术报告解读, 认养一只猪">
+    <meta name="keywords" content="Consistency Models论文笔记, 认养一只猪">
     <meta name="description" content="
-这里看的是OpenAI写的Sora技术报告
+Title: Consistency Models From OpenAI, Yang Song. ICML 2023.
 
-Sora是一个Video Generation生成器，可以生成不同时长、宽高比和分辨率的视频和图像，最多可达一分钟的高清视频。
 
-Sora是使用不同长度的videos和images训练的tex">
+Highlight
+所谓的Consistency Models一致性模型，是约束在同一条PF ODE轨迹上的任意">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +22,7 @@ Sora是使用不同长度的videos和images训练的tex">
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Sora技术报告解读 | 认养一只猪</title>
+    <title>Consistency Models论文笔记 | 认养一只猪</title>
     <link rel="icon" type="image/png" href="../../../../../../favicon.png">
     
 
@@ -342,12 +342,12 @@ Sora是使用不同长度的videos和images训练的tex">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../../../medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../../../medias/featureimages/5.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Sora技术报告解读</h1>
+                    <h1 class="description center-align post-title">Consistency Models论文笔记</h1>
                 </div>
             </div>
         </div>
@@ -375,16 +375,12 @@ Sora是使用不同长度的videos和images训练的tex">
                                 <span class="chip bg-color">Diffusion</span>
                             </a>
                         
-                            <a href="../../../../../../tags/Video-Generation/">
-                                <span class="chip bg-color">Video Generation</span>
+                            <a href="../../../../../../tags/Score-based-model/">
+                                <span class="chip bg-color">Score-based model</span>
                             </a>
                         
-                            <a href="../../../../../../tags/Transformer/">
-                                <span class="chip bg-color">Transformer</span>
-                            </a>
-                        
-                            <a href="../../../../../../tags/Sora/">
-                                <span class="chip bg-color">Sora</span>
+                            <a href="../../../../../../tags/Consistency-Models/">
+                                <span class="chip bg-color">Consistency Models</span>
                             </a>
                         
                     </div>
@@ -395,8 +391,8 @@ Sora是使用不同长度的videos和images训练的tex">
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="../../../../../../categories/Video-Generation/" class="post-category">
-                                Video Generation
+                            <a href="../../../../../../categories/Image-Generation/" class="post-category">
+                                Image Generation
                             </a>
                         
                     </div>
@@ -408,7 +404,7 @@ Sora是使用不同长度的videos和images训练的tex">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-02-17
+                    2024-03-12
                 </div>
                 
 
@@ -432,68 +428,68 @@ Sora是使用不同长度的videos和images训练的tex">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <ul>
-<li><p>这里看的是OpenAI写的<a target="_blank" rel="noopener" href="https://openai.com/research/video-generation-models-as-world-simulators">Sora技术报告</a></p>
-</li>
-<li><p>Sora是一个Video Generation生成器，可以生成不同时长、宽高比和分辨率的视频和图像，最多可达一分钟的高清视频。</p>
-</li>
-<li><p>Sora是使用不同长度的videos和images训练的text-conditional diffusion models。</p>
-</li>
-<li><p>Sora是在video和image的latent code的时空patches上的运行的transformer结构。</p>
-</li>
-<li><p>这份技术报告只包含了两部分内容, 对于模型和实现细节在这份报告中并没有包含。</p>
-<p>  (1) 将所有类型的视觉数据转化为统一的表示形式，从而实现生成模型的大规模训练</p>
-<p>  (2) 对 Sora 的能力和局限性进行定性评估。</p>
-</li>
+                <blockquote>
+<p>Title: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2303.01469">Consistency Models</a> <br>From OpenAI, Yang Song. <br>ICML 2023.</p>
+</blockquote>
+<p><img src="Consistency_Models.jpg" alt="图1.Consistency Models."></p>
+<h2 id="Highlight"><a href="#Highlight" class="headerlink" title="Highlight"></a>Highlight</h2><ul>
+<li>所谓的Consistency Models一致性模型，是约束在同一条PF ODE轨迹上的任意点都对应相同的输出。满足这样的性质的生成模型则可获得不错的一步生成效果。</li>
 </ul>
-<h2 id="Turning-visual-data-into-patches"><a href="#Turning-visual-data-into-patches" class="headerlink" title="Turning visual data into patches"></a>Turning visual data into patches</h2><ul>
-<li>LLM成功的一部分原因来自于token的使用，可以优雅地将不同模态的text进行统一的编码，本文考虑的是在视觉数据中如何从中获益。Sora的patches类似于tokens, patches对于在不同形式的videos和images上训练生成模型是高效并拓展性高的。</li>
-<li>总结下来，首先将视频压缩到较低维的latent space，然后将这个表征分解为时空（spacetime）patches。</li>
+<h2 id="Background-for-Score-based-Models"><a href="#Background-for-Score-based-Models" class="headerlink" title="Background for Score-based Models"></a>Background for Score-based Models</h2><ul>
+<li>先来介绍一下关于score based model的一些基础知识。</li>
 </ul>
-<p><img src="Sora-1-patches.png" alt="Sora Patches"></p>
-<h2 id="Video-compression-network"><a href="#Video-compression-network" class="headerlink" title="Video compression network"></a>Video compression network</h2><ul>
-<li>训练一个网络[Auto-encoding variational bayes.]来降低视觉数据的维度。该网络将原始视频作为输入，并输出压缩了时间（服务于长视频生成）和空间的latent representation。Sora在这个压缩的latent space中训练并随后生成视频。我们还训练了一个相应的decoder模型，该模型将生成的latents映射回pixel space。</li>
-</ul>
-<h2 id="Spacetime-latent-patches"><a href="#Spacetime-latent-patches" class="headerlink" title="Spacetime latent patches"></a>Spacetime latent patches</h2><ul>
-<li>给定一个压缩的输入视频，我们提取一系列spacetime patches作为transformer tokens。这个方案也适用于图像，因为图像只是单帧的视频。我们基于patch的表示使Sora能够在不同分辨率、持续时间和宽高比的视频和图像上进行训练。在推理时，我们可以通过在适当大小的网格中安排随机初始化的patches来控制生成视频的大小。</li>
-</ul>
-<h2 id="Scaling-transformers-for-video-generation"><a href="#Scaling-transformers-for-video-generation" class="headerlink" title="Scaling transformers for video generation"></a>Scaling transformers for video generation</h2><ul>
-<li>Sora是一个diffusion model[Scalable diffusion models with transformers]，通过noisy patches预测原始的clean patches。Sora是一个diffusion transformer, 因为transformer的scaling特性。</li>
-<li>Sample quality improves markedly as training compute increases.</li>
-</ul>
-<h2 id="Variable-durations-resolutions-aspect-ratios"><a href="#Variable-durations-resolutions-aspect-ratios" class="headerlink" title="Variable durations, resolutions, aspect ratios"></a>Variable durations, resolutions, aspect ratios</h2><ul>
-<li>采样的灵活性 Sampling flexibility</li>
-<li>提升构图和框架 Improved framing and composition，不会生成主体的部分出现在图像之外。</li>
-</ul>
-<h2 id="Language-understanding"><a href="#Language-understanding" class="headerlink" title="Language understanding"></a>Language understanding</h2><ul>
-<li>使用了DALL·E3中的re-captioning技术。我们首先训练一个高度描述性的captioner model，然后使用它为训练集中的所有视频生成文本描述。作者发现，对高质量描述性的视频字幕进行训练可以提高文本保真度以及视频的整体质量。</li>
-<li>与 DALL·E3 类似，我们还利用GPT将简短的用户提示转换为较长的详细captions，然后送到视频模型中，这使得Sora能够生成准确遵循用户提示的高质量视频。</li>
-</ul>
-<h2 id="Prompting-with-images-and-videos"><a href="#Prompting-with-images-and-videos" class="headerlink" title="Prompting with images and videos"></a>Prompting with images and videos</h2><ul>
-<li>Sora还可以使用图像和视频作为prompts</li>
-<li>Sora可以向前向后拓展视频</li>
-<li>结合SDEdit，可以变换videos的风格和环境</li>
-<li>还可以在两段不同的视频中做插入（这个估计就是对latect space做插值操作了？）</li>
-</ul>
-<h2 id="Image-generation-capabilities"><a href="#Image-generation-capabilities" class="headerlink" title="Image generation capabilities"></a>Image generation capabilities</h2><h2 id="Emerging-simulation-capabilities"><a href="#Emerging-simulation-capabilities" class="headerlink" title="Emerging simulation capabilities"></a>Emerging simulation capabilities</h2><ul>
-<li><p>大规模训练后获得的突发能力，没有任何归纳偏置的情况下，完全来自于scale</p>
+<p><img src="SDE.jpg" alt="图2.SDE."></p>
 <ul>
-<li>3D consistency. Sora can generate videos with dynamic camera motion.</li>
-<li>Long-range coherence and object permanence.</li>
-<li>Interacting with the world.</li>
+<li>如图2所示，Diffusion model对原始的数据的扩散过程（加噪过程）是一个随机过程，我们可以用一个随机微分方程SDE来建模它。</li>
+<li>这个SDE有个非常好的性质是存在一个常微分方程ODE，作者叫Probability Flow(PF) ODE，这个ODE的解轨迹在t采样时刻的分布和p_t(x)的score function有关。这个也叫做逆随机过程 Reverse SDE，也就是由噪声到生成图像的过程。如图3所示，</li>
 </ul>
-  <video width="480" height="320" controls="">
-  <source src="simulation_4.mp4" type="video/mp4">
-  Sora Interaction.
-  </video>
-
+<p><img src="Reverse_SDE.jpg" alt="图3.Reverse SDE."></p>
 <ul>
-<li>Simulating digital worlds.</li>
+<li><p>把一个SDE转换为ODE的表示的好处是什么呢？首先ODE的轨迹定义了data和noise之间的一对一的映射关系。然后我们就可以用一些ODE的求解器，比如DDIM，DPM-Solver等等去求解这个随机过程。这个发现非常重要，因为它意味着我们可以使用ODE求解器来连续地模拟逆向过程，而不是使用基于MCMC的迭代方法。这种方法可以显著提高采样效率，并且通常能够生成更高质量的样本。【我们熟知的DDIM对应了diffusion ODE的1阶ODE solver，它的加速效果好是因为它考虑了ODE的半线性结构，而DPM-Solver给出了对应的更高阶的solver，可以让10步左右的采样达到与DDPM的1000步的采样相当。】</p>
+</li>
+<li><p>和现有的Denoisers不一样的是，现有的Denoisers往往预测的是后验概率，所以对加噪图像进行去噪的话，更倾向于得到的是一个对不同噪声去噪结果的平均，所以图像会更加blur，而一致性模型预测的是ODE轨迹上的唯一的对应的image，所以其生成效果会sharp一些。</p>
+</li>
+</ul>
+<h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><p><img src="Condition.jpg" alt="图4.Consistency model properties."></p>
+<ul>
+<li>如图4所示，一个生成模型f_{\theta}要想具有上面所说的一步生成的能力，那它得满足两条基本的性质。<ul>
+<li>边界条件。当t非常小的时候，输入原图x_0得到的是x_0。这里用一个非常小的t而不是0是为了避免0带来的数值不稳定。这个条件可以通过网络参数化来约束，如图5所示，用skip connection改变一下UNet可以满足。</li>
+<li>Self-Consistency条件。而一致性要求两个不同时刻的采样点的预测结果一致。至于我们怎么找到在同一条ODE解轨迹上的两个点下面再讨论。</li>
 </ul>
 </li>
 </ul>
-<h2 id="Limitations"><a href="#Limitations" class="headerlink" title="Limitations"></a>Limitations</h2><ul>
-<li>For example, it does not accurately model the physics of many basic interactions.</li>
+<p><img src="boundary_conditions.jpg" alt="图5.Enforce the boundary conditions."></p>
+<ul>
+<li>我们通过一致性模型一步或者多步采样如图6和6-2所示，</li>
+</ul>
+<p><img src="sampling.jpg" alt="图6.Sampling."></p>
+<p><img src="Sampling_Algorithm.jpg" alt="图6-2.Sampling Algorithm."></p>
+<ul>
+<li>到这里，我们要说我们该怎么找到一条ODE轨迹上的两个点来训练一致性模型了。有两种训练方式，一种是通过蒸馏的方式，即我已经有一个训好的diffusion模型了，那我必然知道它每一条ODE解轨迹。另一种是模型通过近似的方式找到两个点自己学。</li>
+</ul>
+<ol>
+<li>通过Distillation训练</li>
+</ol>
+<ul>
+<li>如图7所示，先随机采样一个timestep T_{n+}，然后运行一步ODE到t_{n}，得到的两个点送入模型来使用一致性loss约束。这里的EMA作者在Improved CM论文中说不带EMA效果更好～</li>
+</ul>
+<p><img src="distillation.jpg" alt="图7.Training CM via distillation."></p>
+<ol start="2">
+<li>通过单独训练</li>
+</ol>
+<ul>
+<li>如图8所示，作者在论文中也证明了当t_{n+1}和t_{n}间隔足够小的话，目标函数等价于distillation。</li>
+</ul>
+<p><img src="isolation.jpg" alt="图8.Training CM via isolation."></p>
+<ul>
+<li>训练一致性模型的算法流程图如图9所示。<br><img src="Training_Algorithm.jpg" alt="图9.Training Algorithm."></li>
+</ul>
+<h2 id="Thoughts"><a href="#Thoughts" class="headerlink" title="Thoughts"></a>Thoughts</h2><ul>
+<li>这种一致性约束的思想加在常规的Progressize Diffusion Distillation里不知道效果咋样。</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://neurips.cc/virtual/2023/75013">Yang Song‘s presentation about Consistency Models at NeuraIPS 2023.</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/openai/consistency_models">https://github.com/openai/consistency_models</a></li>
 </ul>
 
                 
@@ -563,16 +559,12 @@ Sora是使用不同长度的videos和images训练的tex">
                                     <span class="chip bg-color">Diffusion</span>
                                 </a>
                             
-                                <a href="../../../../../../tags/Video-Generation/">
-                                    <span class="chip bg-color">Video Generation</span>
+                                <a href="../../../../../../tags/Score-based-model/">
+                                    <span class="chip bg-color">Score-based model</span>
                                 </a>
                             
-                                <a href="../../../../../../tags/Transformer/">
-                                    <span class="chip bg-color">Transformer</span>
-                                </a>
-                            
-                                <a href="../../../../../../tags/Sora/">
-                                    <span class="chip bg-color">Sora</span>
+                                <a href="../../../../../../tags/Consistency-Models/">
+                                    <span class="chip bg-color">Consistency Models</span>
                                 </a>
                             
                         </div>
@@ -918,17 +910,18 @@ Sora是使用不同长度的videos和images训练的tex">
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="../../../../19/computervision/lumiere/lumiere/">
+                <a href="">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../../../medias/featureimages/12.jpg" class="responsive-img" alt="Lumiere论文笔记">
+                        <img src="../../../../../../medias/featureimages/5.jpg" class="responsive-img" alt="Consistency Models论文笔记">
                         
-                        <span class="card-title">Lumiere论文笔记</span>
+                        <span class="card-title">Consistency Models论文笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -938,21 +931,22 @@ Sora是使用不同长度的videos和images训练的tex">
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-02-19
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-03-12
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="../../../../../../categories/Video-Generation/" class="post-category">
-                                    Video Generation
+                            <a href="../../../../../../categories/Image-Generation/" class="post-category">
+                                    Image Generation
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -960,8 +954,12 @@ Sora是使用不同长度的videos和images训练的tex">
                         <span class="chip bg-color">Diffusion</span>
                     </a>
                     
-                    <a href="../../../../../../tags/Video-Generation/">
-                        <span class="chip bg-color">Video Generation</span>
+                    <a href="../../../../../../tags/Score-based-model/">
+                        <span class="chip bg-color">Score-based model</span>
+                    </a>
+                    
+                    <a href="../../../../../../tags/Consistency-Models/">
+                        <span class="chip bg-color">Consistency Models</span>
                     </a>
                     
                 </div>
@@ -975,13 +973,13 @@ Sora是使用不同长度的videos和images训练的tex">
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="../../../../09/computervision/nanogpt/nanogpt/">
+                <a href="../../../../../02/29/computervision/deepcache/deepcache/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../../../medias/featureimages/19.jpg" class="responsive-img" alt="nanoGPT源码解析">
+                        <img src="../../../../../../medias/featureimages/1.jpg" class="responsive-img" alt="DeepCache论文笔记">
                         
-                        <span class="card-title">nanoGPT源码解析</span>
+                        <span class="card-title">DeepCache论文笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -992,14 +990,14 @@ Sora是使用不同长度的videos和images训练的tex">
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-02-09
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-02-29
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="../../../../../../categories/GPTs/" class="post-category">
-                                    GPTs
+                            <a href="../../../../../../categories/Image-Generation/" class="post-category">
+                                    Image Generation
                                 </a>
                             
                             
@@ -1009,12 +1007,12 @@ Sora是使用不同长度的videos和images训练的tex">
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../../../tags/GPTs/">
-                        <span class="chip bg-color">GPTs</span>
+                    <a href="../../../../../../tags/Diffusion/">
+                        <span class="chip bg-color">Diffusion</span>
                     </a>
                     
-                    <a href="../../../../../../tags/nanoGPT/">
-                        <span class="chip bg-color">nanoGPT</span>
+                    <a href="../../../../../../tags/UNet/">
+                        <span class="chip bg-color">UNet</span>
                     </a>
                     
                 </div>
