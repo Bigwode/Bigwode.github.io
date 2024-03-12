@@ -429,7 +429,7 @@ Highlight
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <blockquote>
-<p>Title: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2303.01469">Consistency Models</a> <br>From OpenAI, Yang Song. <br>ICML 2023.</p>
+<p><strong>Title: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2303.01469">Consistency Models</a></strong> <br><strong>From OpenAI, Yang Song.</strong> <br><strong>ICML 2023.</strong></p>
 </blockquote>
 <p><img src="Consistency_Models.jpg" alt="图1.Consistency Models."></p>
 <h2 id="Highlight"><a href="#Highlight" class="headerlink" title="Highlight"></a>Highlight</h2><ul>
@@ -467,16 +467,12 @@ Highlight
 <ul>
 <li>到这里，我们要说我们该怎么找到一条ODE轨迹上的两个点来训练一致性模型了。有两种训练方式，一种是通过蒸馏的方式，即我已经有一个训好的diffusion模型了，那我必然知道它每一条ODE解轨迹。另一种是模型通过近似的方式找到两个点自己学。</li>
 </ul>
-<ol>
-<li>通过Distillation训练</li>
-</ol>
+<p><strong>1. 通过Distillation训练</strong></p>
 <ul>
 <li>如图7所示，先随机采样一个timestep T_{n+}，然后运行一步ODE到t_{n}，得到的两个点送入模型来使用一致性loss约束。这里的EMA作者在Improved CM论文中说不带EMA效果更好～</li>
 </ul>
 <p><img src="distillation.jpg" alt="图7.Training CM via distillation."></p>
-<ol start="2">
-<li>通过单独训练</li>
-</ol>
+<p><strong>2. 通过单独训练</strong></p>
 <ul>
 <li>如图8所示，作者在论文中也证明了当t_{n+1}和t_{n}间隔足够小的话，目标函数等价于distillation。</li>
 </ul>
