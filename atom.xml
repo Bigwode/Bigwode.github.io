@@ -6,7 +6,7 @@
   <link href="https://bigwode.github.io/atom.xml" rel="self"/>
   
   <link href="https://bigwode.github.io/"/>
-  <updated>2024-03-12T15:42:13.139Z</updated>
+  <updated>2024-03-17T13:32:40.339Z</updated>
   <id>https://bigwode.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CoDi论文笔记</title>
+    <link href="https://bigwode.github.io/2024/03/17/computervision/codi/codi/"/>
+    <id>https://bigwode.github.io/2024/03/17/computervision/codi/codi/</id>
+    <published>2024-03-17T12:41:28.000Z</published>
+    <updated>2024-03-17T13:32:40.339Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Title: &lt;a href=&quot;https://arxiv.org/abs/2310.01407&quot;&gt;CoDi: Conditional Diffusion Distillation for Higher-Fidelity and</summary>
+        
+      
+    
+    
+    
+    <category term="Image Generation" scheme="https://bigwode.github.io/categories/Image-Generation/"/>
+    
+    
+    <category term="Diffusion Distillation" scheme="https://bigwode.github.io/tags/Diffusion-Distillation/"/>
+    
+    <category term="Consistency Models" scheme="https://bigwode.github.io/tags/Consistency-Models/"/>
+    
+  </entry>
   
   <entry>
     <title>Consistency Models论文笔记</title>
@@ -38,11 +66,11 @@
     <category term="Image Generation" scheme="https://bigwode.github.io/categories/Image-Generation/"/>
     
     
+    <category term="Consistency Models" scheme="https://bigwode.github.io/tags/Consistency-Models/"/>
+    
     <category term="Diffusion" scheme="https://bigwode.github.io/tags/Diffusion/"/>
     
     <category term="Score-based model" scheme="https://bigwode.github.io/tags/Score-based-model/"/>
-    
-    <category term="Consistency Models" scheme="https://bigwode.github.io/tags/Consistency-Models/"/>
     
   </entry>
   
@@ -238,9 +266,9 @@
     
     <category term="Diffusion" scheme="https://bigwode.github.io/tags/Diffusion/"/>
     
-    <category term="Video Generation" scheme="https://bigwode.github.io/tags/Video-Generation/"/>
-    
     <category term="Transformer" scheme="https://bigwode.github.io/tags/Transformer/"/>
+    
+    <category term="Video Generation" scheme="https://bigwode.github.io/tags/Video-Generation/"/>
     
     <category term="Sora" scheme="https://bigwode.github.io/tags/Sora/"/>
     

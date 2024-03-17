@@ -4,13 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="nanoGPT源码解析, 认养一只猪">
+    <meta name="keywords" content="CoDi论文笔记, 认养一只猪">
     <meta name="description" content="
-这里看的是AK写的nanoGPT
-
-1. wandb用法import wandb
-wandb.init(project=wandb_project, name=wandb_run_name, config=config)
-wandb.lo">
+Title: CoDi: Conditional Diffusion Distillation for Higher-Fidelity and Faster Image Generation From Google Research. C">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +18,7 @@ wandb.lo">
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>nanoGPT源码解析 | 认养一只猪</title>
+    <title>CoDi论文笔记 | 认养一只猪</title>
     <link rel="icon" type="image/png" href="../../../../../../favicon.png">
     
 
@@ -342,12 +338,12 @@ wandb.lo">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../../../medias/featureimages/19.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../../../medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">nanoGPT源码解析</h1>
+                    <h1 class="description center-align post-title">CoDi论文笔记</h1>
                 </div>
             </div>
         </div>
@@ -371,12 +367,12 @@ wandb.lo">
                     
                     <div class="article-tag">
                         
-                            <a href="../../../../../../tags/GPTs/">
-                                <span class="chip bg-color">GPTs</span>
+                            <a href="../../../../../../tags/Diffusion-Distillation/">
+                                <span class="chip bg-color">Diffusion Distillation</span>
                             </a>
                         
-                            <a href="../../../../../../tags/nanoGPT/">
-                                <span class="chip bg-color">nanoGPT</span>
+                            <a href="../../../../../../tags/Consistency-Models/">
+                                <span class="chip bg-color">Consistency Models</span>
                             </a>
                         
                     </div>
@@ -387,8 +383,8 @@ wandb.lo">
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="../../../../../../categories/GPTs/" class="post-category">
-                                GPTs
+                            <a href="../../../../../../categories/Image-Generation/" class="post-category">
+                                Image Generation
                             </a>
                         
                     </div>
@@ -400,7 +396,7 @@ wandb.lo">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-02-09
+                    2024-03-17
                 </div>
                 
 
@@ -424,16 +420,34 @@ wandb.lo">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <ul>
-<li>这里看的是AK写的<a target="_blank" rel="noopener" href="https://github.com/karpathy/nanoGPT">nanoGPT</a></li>
+                <blockquote>
+<p><strong>Title: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2310.01407">CoDi: Conditional Diffusion Distillation for Higher-Fidelity and Faster Image Generation</a></strong> <br><strong>From Google Research.</strong> <br><strong>CVPR 2024.</strong></p>
+</blockquote>
+<p><img src="CoDi_Network.jpg" alt="图1.Network architecture illustration of CoDi."></p>
+<h2 id="Highlight"><a href="#Highlight" class="headerlink" title="Highlight"></a>Highlight</h2><ul>
+<li>本文在Consistency Models一致性模型的基础上，拓展到了带条件的生成模型的蒸馏上。</li>
+<li>其他的还有几个点是作者声称可以original training-data free的和parameters efficient的蒸馏。</li>
 </ul>
-<h4 id="1-wandb用法"><a href="#1-wandb用法" class="headerlink" title="1. wandb用法"></a>1. wandb用法</h4><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> wandb
-wandb<span class="token punctuation">.</span>init<span class="token punctuation">(</span>project<span class="token operator">=</span>wandb_project<span class="token punctuation">,</span> name<span class="token operator">=</span>wandb_run_name<span class="token punctuation">,</span> config<span class="token operator">=</span>config<span class="token punctuation">)</span>
-wandb<span class="token punctuation">.</span>log<span class="token punctuation">(</span><span class="token punctuation">{</span>
-    <span class="token string">"iter"</span><span class="token punctuation">:</span> iter_num<span class="token punctuation">,</span>
-    <span class="token string">"train/loss"</span><span class="token punctuation">:</span> losses<span class="token punctuation">[</span><span class="token string">'train'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-    <span class="token string">"val/loss"</span><span class="token punctuation">:</span> losses<span class="token punctuation">[</span><span class="token string">'val'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><h3 id="Adapt-the-unconditional-diffusion-model-into-a-conditional-version"><a href="#Adapt-the-unconditional-diffusion-model-into-a-conditional-version" class="headerlink" title="Adapt the unconditional diffusion model into a conditional version"></a>Adapt the unconditional diffusion model into a conditional version</h3><ul>
+<li>通过直接复制pretrained network的encoder层来引入conditional-module，其中 $h_{\theta}(.)$ 是pretrain模型的encoder feature，$h_{\eta}(.)$ 是新增的条件encoder，$\mu$ 是一个可学习的参数，初始化为0.<br><img src="conditional_encoder_params.jpg" alt="图2.new encoder features of the adapted model."></li>
+</ul>
+<h3 id="A-New-Conditional-Diffusion-Consistency"><a href="#A-New-Conditional-Diffusion-Consistency" class="headerlink" title="A New Conditional Diffusion Consistency"></a>A New Conditional Diffusion Consistency</h3><ul>
+<li>Remark 1. 作者这里说在noise prediction上满足self-coinsistency性质的diffusion model，在signal prediction上也同样满足。</li>
+<li>这是因为原始的Consistency model是约束的PF ODE轨迹上两个点的去噪图像的一致性，而这里作者用了预测噪声一致性来代替。这里的边界条件也是通过喝consistency model一样的skip connection来约束的。另外还有一个是学习在去噪图像基础上，学习新的条件生成。作者说这样两者的优化方向就不会冲突。。</li>
+</ul>
+<p><img src="conditional_distillation.jpg" alt="图3.training loss for conditional distillation."></p>
+<ul>
+<li>其中，$ Z^{hat}_{s}s $ 是通过adapted条件生成模型预测得到的。和consistency model一样也使用了EMA target模型来稳定训练。</li>
+</ul>
+<p><img src="Z%5E%7Bhat%7D_%7Bs%7Ds.jpg" alt="图4.training loss for conditional distillation."></p>
+<h3 id="Parameter-Efficient-Conditional-Distillation"><a href="#Parameter-Efficient-Conditional-Distillation" class="headerlink" title="Parameter-Efficient Conditional Distillation"></a>Parameter-Efficient Conditional Distillation</h3><ul>
+<li>作者生成自己是Parameter-Efficient Conditional Distillation，因为只更新了复制出来的encoder。</li>
+<li>这里应该只用了new conditional data来训的蒸馏，所以作者论文里声称不需要原始的text-to-image data。</li>
+<li>其实这里的条件控制是图像，有点类似于超分的任务。</li>
+</ul>
+<h2 id="Thoughts"><a href="#Thoughts" class="headerlink" title="Thoughts"></a>Thoughts</h2><ul>
+<li>通过蒸馏来缩减步数看上去只蒸结构的一部分也行，蒸哪一部分最重要呢？</li>
+</ul>
 
                 
             </div>
@@ -498,12 +512,12 @@ wandb<span class="token punctuation">.</span>log<span class="token punctuation">
                     
                         <div class="article-tag">
                             
-                                <a href="../../../../../../tags/GPTs/">
-                                    <span class="chip bg-color">GPTs</span>
+                                <a href="../../../../../../tags/Diffusion-Distillation/">
+                                    <span class="chip bg-color">Diffusion Distillation</span>
                                 </a>
                             
-                                <a href="../../../../../../tags/nanoGPT/">
-                                    <span class="chip bg-color">nanoGPT</span>
+                                <a href="../../../../../../tags/Consistency-Models/">
+                                    <span class="chip bg-color">Consistency Models</span>
                                 </a>
                             
                         </div>
@@ -849,17 +863,18 @@ wandb<span class="token punctuation">.</span>log<span class="token punctuation">
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="../../../../17/computervision/sora/sora/">
+                <a href="">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../../../medias/featureimages/1.jpg" class="responsive-img" alt="Sora技术报告解读">
+                        <img src="../../../../../../medias/featureimages/22.jpg" class="responsive-img" alt="CoDi论文笔记">
                         
-                        <span class="card-title">Sora技术报告解读</span>
+                        <span class="card-title">CoDi论文笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -869,38 +884,31 @@ wandb<span class="token punctuation">.</span>log<span class="token punctuation">
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-02-17
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-03-17
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="../../../../../../categories/Video-Generation/" class="post-category">
-                                    Video Generation
+                            <a href="../../../../../../categories/Image-Generation/" class="post-category">
+                                    Image Generation
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../../../tags/Diffusion/">
-                        <span class="chip bg-color">Diffusion</span>
+                    <a href="../../../../../../tags/Diffusion-Distillation/">
+                        <span class="chip bg-color">Diffusion Distillation</span>
                     </a>
                     
-                    <a href="../../../../../../tags/Transformer/">
-                        <span class="chip bg-color">Transformer</span>
-                    </a>
-                    
-                    <a href="../../../../../../tags/Video-Generation/">
-                        <span class="chip bg-color">Video Generation</span>
-                    </a>
-                    
-                    <a href="../../../../../../tags/Sora/">
-                        <span class="chip bg-color">Sora</span>
+                    <a href="../../../../../../tags/Consistency-Models/">
+                        <span class="chip bg-color">Consistency Models</span>
                     </a>
                     
                 </div>
@@ -914,13 +922,13 @@ wandb<span class="token punctuation">.</span>log<span class="token punctuation">
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="../../../../../01/31/computervision/vqgan/vqgan/">
+                <a href="../../../../12/computervision/consistency-models/consistency-models/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../../../medias/featureimages/15.jpg" class="responsive-img" alt="VQGAN源码解析">
+                        <img src="../../../../../../medias/featureimages/5.jpg" class="responsive-img" alt="Consistency Models论文笔记">
                         
-                        <span class="card-title">VQGAN源码解析</span>
+                        <span class="card-title">Consistency Models论文笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -931,14 +939,14 @@ wandb<span class="token punctuation">.</span>log<span class="token punctuation">
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-01-31
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-03-12
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="../../../../../../categories/Computer-Vision/" class="post-category">
-                                    Computer Vision
+                            <a href="../../../../../../categories/Image-Generation/" class="post-category">
+                                    Image Generation
                                 </a>
                             
                             
@@ -948,16 +956,16 @@ wandb<span class="token punctuation">.</span>log<span class="token punctuation">
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../../../tags/Computer-Vision/">
-                        <span class="chip bg-color">Computer Vision</span>
+                    <a href="../../../../../../tags/Consistency-Models/">
+                        <span class="chip bg-color">Consistency Models</span>
                     </a>
                     
-                    <a href="../../../../../../tags/Image-Generation/">
-                        <span class="chip bg-color">Image Generation</span>
+                    <a href="../../../../../../tags/Diffusion/">
+                        <span class="chip bg-color">Diffusion</span>
                     </a>
                     
-                    <a href="../../../../../../tags/GAN/">
-                        <span class="chip bg-color">GAN</span>
+                    <a href="../../../../../../tags/Score-based-model/">
+                        <span class="chip bg-color">Score-based model</span>
                     </a>
                     
                 </div>

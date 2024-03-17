@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>CoDi论文笔记</title>
+      <link href="/2024/03/17/computervision/codi/codi/"/>
+      <url>/2024/03/17/computervision/codi/codi/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p><strong>Title: <a href="https://arxiv.org/abs/2310.01407">CoDi: Conditional Diffusion Distillation for Higher-Fidelity and Faster Image Generation</a></strong> <br><strong>From Google Research.</strong> <br><strong>CVPR 2024.</strong></p></blockquote><p><img src="CoDi_Network.jpg" alt="图1.Network architecture illustration of CoDi."></p><h2 id="Highlight"><a href="#Highlight" class="headerlink" title="Highlight"></a>Highlight</h2><ul><li>本文在Consistency Models一致性模型的基础上，拓展到了带条件的生成模型的蒸馏上。</li><li>其他的还有几个点是作者声称可以original training-data free的和parameters efficient的蒸馏。</li></ul><h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><h3 id="Adapt-the-unconditional-diffusion-model-into-a-conditional-version"><a href="#Adapt-the-unconditional-diffusion-model-into-a-conditional-version" class="headerlink" title="Adapt the unconditional diffusion model into a conditional version"></a>Adapt the unconditional diffusion model into a conditional version</h3><ul><li>通过直接复制pretrained network的encoder层来引入conditional-module，其中 $h_{\theta}(.)$ 是pretrain模型的encoder feature，$h_{\eta}(.)$ 是新增的条件encoder，$\mu$ 是一个可学习的参数，初始化为0.<br><img src="conditional_encoder_params.jpg" alt="图2.new encoder features of the adapted model."></li></ul><h3 id="A-New-Conditional-Diffusion-Consistency"><a href="#A-New-Conditional-Diffusion-Consistency" class="headerlink" title="A New Conditional Diffusion Consistency"></a>A New Conditional Diffusion Consistency</h3><ul><li>Remark 1. 作者这里说在noise prediction上满足self-coinsistency性质的diffusion model，在signal prediction上也同样满足。</li><li>这是因为原始的Consistency model是约束的PF ODE轨迹上两个点的去噪图像的一致性，而这里作者用了预测噪声一致性来代替。这里的边界条件也是通过喝consistency model一样的skip connection来约束的。另外还有一个是学习在去噪图像基础上，学习新的条件生成。作者说这样两者的优化方向就不会冲突。。</li></ul><p><img src="conditional_distillation.jpg" alt="图3.training loss for conditional distillation."></p><ul><li>其中，$ Z^{hat}_{s}s $ 是通过adapted条件生成模型预测得到的。和consistency model一样也使用了EMA target模型来稳定训练。</li></ul><p><img src="Z%5E%7Bhat%7D_%7Bs%7Ds.jpg" alt="图4.training loss for conditional distillation."></p><h3 id="Parameter-Efficient-Conditional-Distillation"><a href="#Parameter-Efficient-Conditional-Distillation" class="headerlink" title="Parameter-Efficient Conditional Distillation"></a>Parameter-Efficient Conditional Distillation</h3><ul><li>作者生成自己是Parameter-Efficient Conditional Distillation，因为只更新了复制出来的encoder。</li><li>这里应该只用了new conditional data来训的蒸馏，所以作者论文里声称不需要原始的text-to-image data。</li><li>其实这里的条件控制是图像，有点类似于超分的任务。</li></ul><h2 id="Thoughts"><a href="#Thoughts" class="headerlink" title="Thoughts"></a>Thoughts</h2><ul><li>通过蒸馏来缩减步数看上去只蒸结构的一部分也行，蒸哪一部分最重要呢？</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Image Generation </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Diffusion Distillation </tag>
+            
+            <tag> Consistency Models </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Consistency Models论文笔记</title>
       <link href="/2024/03/12/computervision/consistency-models/consistency-models/"/>
       <url>/2024/03/12/computervision/consistency-models/consistency-models/</url>
@@ -20,11 +47,11 @@
       
         <tags>
             
+            <tag> Consistency Models </tag>
+            
             <tag> Diffusion </tag>
             
             <tag> Score-based model </tag>
-            
-            <tag> Consistency Models </tag>
             
         </tags>
       
@@ -211,9 +238,9 @@
             
             <tag> Diffusion </tag>
             
-            <tag> Video Generation </tag>
-            
             <tag> Transformer </tag>
+            
+            <tag> Video Generation </tag>
             
             <tag> Sora </tag>
             
