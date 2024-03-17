@@ -6,7 +6,7 @@
   <link href="https://bigwode.github.io/atom.xml" rel="self"/>
   
   <link href="https://bigwode.github.io/"/>
-  <updated>2024-03-17T13:32:40.339Z</updated>
+  <updated>2024-03-17T13:56:21.411Z</updated>
   <id>https://bigwode.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://bigwode.github.io/2024/03/17/computervision/codi/codi/"/>
     <id>https://bigwode.github.io/2024/03/17/computervision/codi/codi/</id>
     <published>2024-03-17T12:41:28.000Z</published>
-    <updated>2024-03-17T13:32:40.339Z</updated>
+    <updated>2024-03-17T13:56:21.411Z</updated>
     
     
       
@@ -266,9 +266,9 @@
     
     <category term="Diffusion" scheme="https://bigwode.github.io/tags/Diffusion/"/>
     
-    <category term="Transformer" scheme="https://bigwode.github.io/tags/Transformer/"/>
-    
     <category term="Video Generation" scheme="https://bigwode.github.io/tags/Video-Generation/"/>
+    
+    <category term="Transformer" scheme="https://bigwode.github.io/tags/Transformer/"/>
     
     <category term="Sora" scheme="https://bigwode.github.io/tags/Sora/"/>
     

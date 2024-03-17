@@ -439,12 +439,13 @@ Title: CoDi: Conditional Diffusion Distillation for Higher-Fidelity and Faster I
 <ul>
 <li>其中，$ Z^{hat}_{s}s $ 是通过adapted条件生成模型预测得到的。和consistency model一样也使用了EMA target模型来稳定训练。</li>
 </ul>
-<p><img src="Z%5E%7Bhat%7D_%7Bs%7Ds.jpg" alt="图4.training loss for conditional distillation."></p>
+<p><img src="Z_hat_s.jpg" alt="图4.training loss for conditional distillation."></p>
 <h3 id="Parameter-Efficient-Conditional-Distillation"><a href="#Parameter-Efficient-Conditional-Distillation" class="headerlink" title="Parameter-Efficient Conditional Distillation"></a>Parameter-Efficient Conditional Distillation</h3><ul>
 <li>作者生成自己是Parameter-Efficient Conditional Distillation，因为只更新了复制出来的encoder。</li>
 <li>这里应该只用了new conditional data来训的蒸馏，所以作者论文里声称不需要原始的text-to-image data。</li>
 <li>其实这里的条件控制是图像，有点类似于超分的任务。</li>
 </ul>
+<p><img src="CDD.jpg" alt="图5.Algorithm 1 Conditional Diffusion Distillation (CDD)."></p>
 <h2 id="Thoughts"><a href="#Thoughts" class="headerlink" title="Thoughts"></a>Thoughts</h2><ul>
 <li>通过蒸馏来缩减步数看上去只蒸结构的一部分也行，蒸哪一部分最重要呢？</li>
 </ul>
