@@ -6,7 +6,7 @@
   <link href="https://bigwode.github.io/atom.xml" rel="self"/>
   
   <link href="https://bigwode.github.io/"/>
-  <updated>2024-03-17T13:56:21.411Z</updated>
+  <updated>2024-03-17T13:56:38.054Z</updated>
   <id>https://bigwode.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://bigwode.github.io/2024/03/17/computervision/codi/codi/"/>
     <id>https://bigwode.github.io/2024/03/17/computervision/codi/codi/</id>
     <published>2024-03-17T12:41:28.000Z</published>
-    <updated>2024-03-17T13:56:21.411Z</updated>
+    <updated>2024-03-17T13:56:38.054Z</updated>
     
     
       
@@ -41,6 +41,34 @@
     <category term="Diffusion Distillation" scheme="https://bigwode.github.io/tags/Diffusion-Distillation/"/>
     
     <category term="Consistency Models" scheme="https://bigwode.github.io/tags/Consistency-Models/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SD3_Turbo论文笔记</title>
+    <link href="https://bigwode.github.io/2024/03/17/computervision/sd3-turbo/sd3-turbo/"/>
+    <id>https://bigwode.github.io/2024/03/17/computervision/sd3-turbo/sd3-turbo/</id>
+    <published>2024-03-17T12:41:28.000Z</published>
+    <updated>2024-03-20T14:57:48.605Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Title: &lt;a href=&quot;https://arxiv.org/abs/2403.12015&quot;&gt;Fast High-Resolution Image Synthesis with Latent Adversarial</summary>
+        
+      
+    
+    
+    
+    <category term="Image Generation" scheme="https://bigwode.github.io/categories/Image-Generation/"/>
+    
+    
+    <category term="Diffusion Distillation" scheme="https://bigwode.github.io/tags/Diffusion-Distillation/"/>
+    
+    <category term="Stable Diffusion" scheme="https://bigwode.github.io/tags/Stable-Diffusion/"/>
     
   </entry>
   
@@ -66,9 +94,9 @@
     <category term="Image Generation" scheme="https://bigwode.github.io/categories/Image-Generation/"/>
     
     
-    <category term="Consistency Models" scheme="https://bigwode.github.io/tags/Consistency-Models/"/>
-    
     <category term="Diffusion" scheme="https://bigwode.github.io/tags/Diffusion/"/>
+    
+    <category term="Consistency Models" scheme="https://bigwode.github.io/tags/Consistency-Models/"/>
     
     <category term="Score-based model" scheme="https://bigwode.github.io/tags/Score-based-model/"/>
     

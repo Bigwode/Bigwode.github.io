@@ -31,6 +31,33 @@
     
     
     <entry>
+      <title>SD3_Turbo论文笔记</title>
+      <link href="/2024/03/17/computervision/sd3-turbo/sd3-turbo/"/>
+      <url>/2024/03/17/computervision/sd3-turbo/sd3-turbo/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p><strong>Title: <a href="https://arxiv.org/abs/2403.12015">Fast High-Resolution Image Synthesis with Latent Adversarial Diffusion Distillation</a></strong> <br><strong>From Stability AI.</strong> <br><strong>ArXiv 2024.03.18</strong></p></blockquote><p><img src="Comparing_ADD_and_LADD.jpg" alt="图1.Comparing ADD and LADD."></p><h2 id="Highlight"><a href="#Highlight" class="headerlink" title="Highlight"></a>Highlight</h2><ul><li>本文对标的是Stability AI 同一个团队在之前提出的方法 Adversarial Diffusion Distillation (ADD)。本文首先指出ADD的缺点是需要依赖DINOv2来作为判别器，计算消耗过大且输入必须在pixel space上，导致可拓展性差。</li><li>本文提出的LADD直接在latent上做判别，避免了decoding到pixel space才能算loss的复杂计算。并且直接利用teacher模型当判别器，避免了ADD的缺点。</li><li>值得一提的是，LADD直接用teacher模型生成的数据进行student模型的学习，并且去掉了蒸馏loss，只使用discriminator loss就取得了很好的效果。</li><li>本文还研究了方法是否遵循scaling laws，得出结论是student模型的大小比teacher模型的大小以及训练数据的质量要更加重要。后两者很快会遇到性能的瓶颈。</li></ul><h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><h3 id="Unifying-teacher-and-discriminator"><a href="#Unifying-teacher-and-discriminator" class="headerlink" title="Unifying teacher and discriminator."></a>Unifying teacher and discriminator.</h3><ul><li>利用pretrained的diffusion模型的生成特征做判别器的好处是，可以对噪声程度进行针对性采样，当添加噪声程度高的时候，会更加关注global特征，当添加特征程度低的时候，会更加关注local特征，以此获取更好的balance。</li><li>teacher生成的图像加噪送到teacher里和student生成的图像进行加噪后不可区分，另外这样我们就不需要真实图像去训练了！</li><li>具体地，在得到的每一个token序列里，应用单独的判别器heads。另外，每一个判别器conditioned by noise level和池化后的CLIP Embedding。</li><li>对于判别器的结构，作者没有利用1D卷积，而是把token序列reshape成原始的spatial layout，然后使用2D卷积。这样做的原因是对于不同长宽比的图像生成，1D卷积会用不同的strides来处理token序列。</li></ul><h3 id="Leveraging-synthetic-data"><a href="#Leveraging-synthetic-data" class="headerlink" title="Leveraging synthetic data."></a>Leveraging synthetic data.</h3><ul><li>使用生成图像训练student是为了有更加均衡的image-text对齐的数据，可以被视作另一种蒸馏teacher知识的方法。</li><li>作者通过对比实验发现，真实数据对蒸馏loss有用，但是生成数据没有用。因此，作者只用了生成数据和advcersarial loss来训练student。</li></ul><h2 id="Thoughts"><a href="#Thoughts" class="headerlink" title="Thoughts"></a>Thoughts</h2><ul><li>使用teacher模型生辰数据训练student和用teacher模型当判别器两个点都是很make sense的点。</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Image Generation </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Diffusion Distillation </tag>
+            
+            <tag> Stable Diffusion </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Consistency Models论文笔记</title>
       <link href="/2024/03/12/computervision/consistency-models/consistency-models/"/>
       <url>/2024/03/12/computervision/consistency-models/consistency-models/</url>
@@ -47,9 +74,9 @@
       
         <tags>
             
-            <tag> Consistency Models </tag>
-            
             <tag> Diffusion </tag>
+            
+            <tag> Consistency Models </tag>
             
             <tag> Score-based model </tag>
             
