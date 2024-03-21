@@ -4,13 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Consistency Models论文笔记, 认养一只猪">
+    <meta name="keywords" content="SwiftBrush论文笔记, 认养一只猪">
     <meta name="description" content="
-Title: Consistency Models From OpenAI, Yang Song. ICML 2023.
-
-
-Highlight
-所谓的Consistency Models一致性模型，是约束在同一条PF ODE轨迹上的任意">
+Title: SwiftBrush: One-Step Text-to-Image Diffusion Model with Variational Score Distillation From VinAI Research. CVPR">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +18,7 @@ Highlight
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Consistency Models论文笔记 | 认养一只猪</title>
+    <title>SwiftBrush论文笔记 | 认养一只猪</title>
     <link rel="icon" type="image/png" href="../../../../../../favicon.png">
     
 
@@ -342,12 +338,12 @@ Highlight
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../../../medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../../../medias/featureimages/16.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Consistency Models论文笔记</h1>
+                    <h1 class="description center-align post-title">SwiftBrush论文笔记</h1>
                 </div>
             </div>
         </div>
@@ -371,16 +367,12 @@ Highlight
                     
                     <div class="article-tag">
                         
-                            <a href="../../../../../../tags/Diffusion/">
-                                <span class="chip bg-color">Diffusion</span>
+                            <a href="../../../../../../tags/Diffusion-Distillation/">
+                                <span class="chip bg-color">Diffusion Distillation</span>
                             </a>
                         
-                            <a href="../../../../../../tags/Score-based-model/">
-                                <span class="chip bg-color">Score-based model</span>
-                            </a>
-                        
-                            <a href="../../../../../../tags/Consistency-Models/">
-                                <span class="chip bg-color">Consistency Models</span>
+                            <a href="../../../../../../tags/Stable-Diffusion/">
+                                <span class="chip bg-color">Stable Diffusion</span>
                             </a>
                         
                     </div>
@@ -404,7 +396,7 @@ Highlight
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-03-12
+                    2024-03-21
                 </div>
                 
 
@@ -429,63 +421,42 @@ Highlight
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <blockquote>
-<p><strong>Title: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2303.01469">Consistency Models</a></strong> <br><strong>From OpenAI, Yang Song.</strong> <br><strong>ICML 2023.</strong></p>
+<p><strong>Title: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2312.05239">SwiftBrush: One-Step Text-to-Image Diffusion Model with Variational Score Distillation</a></strong> <br><strong>From VinAI Research.</strong> <br><strong>CVPR 2024</strong></p>
 </blockquote>
-<p><img src="Consistency_Models.jpg" alt="图1.Consistency Models."></p>
+<p><img src="SwiftBrush_overview.jpg" alt="图1.SwiftBrush overview."></p>
 <h2 id="Highlight"><a href="#Highlight" class="headerlink" title="Highlight"></a>Highlight</h2><ul>
-<li>所谓的Consistency Models一致性模型，是约束在同一条PF ODE轨迹上的任意点都对应相同的输出。满足这样的性质的生成模型则可获得不错的一步生成效果。</li>
+<li>作者提出了一个image-free的蒸馏方法SwiftBrush.</li>
+<li>已有方法Score Distillation Sampling (SDS)有过饱和，过平滑和多样性差的问题，本文基于SDS来提出了Variational Score Distillation (VSD) 的方法。</li>
 </ul>
-<h2 id="Background-for-Score-based-Models"><a href="#Background-for-Score-based-Models" class="headerlink" title="Background for Score-based Models"></a>Background for Score-based Models</h2><ul>
-<li>先来介绍一下关于score based model的一些基础知识。</li>
+<h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><h3 id="DREAMFUSION-TEXT-TO-3D-USING-2D-DIFFUSION"><a href="#DREAMFUSION-TEXT-TO-3D-USING-2D-DIFFUSION" class="headerlink" title="DREAMFUSION: TEXT-TO-3D USING 2D DIFFUSION"></a>DREAMFUSION: TEXT-TO-3D USING 2D DIFFUSION</h3><ul>
+<li>因为文章提到的score distillation的思想来自于论文DREAMFUSION，所以我们这里先简单介绍一下score distilltion是怎么来的。</li>
+<li>DreamFusion的提出来自于，3D生成需要大规模的有标签的3D 数据，并且需要对3D数据的去噪设计高效的结构。</li>
+<li>那我们能不能把pretrain好的2D的text-to-iamge的diffusion模型用来做text-to-3D的生成呢？</li>
+<li>DreamFusion作者提出了一个基于概率密度蒸馏的损失函数，可以使用2D扩散模型作为先验，优化一个参数化图像生成器。</li>
+<li>使用这个loss，我们可以通过梯度下降来优化一个随机初始化的3D模型（NeRF），这个3D模型从任意角度的的2D渲染图像可以获得一个更低的loss。</li>
+<li>这里的3D模型可以理解为一个深度模型，他建模了一个3D模型，我输入一个角度信息，他就可以给我一个渲染后的2D图像。</li>
 </ul>
-<p><img src="SDE.jpg" alt="图2.SDE."></p>
+<h3 id="HOW-CAN-WE-SAMPLE-IN-PARAMETER-SPACE-NOT-PIXEL-SPACE"><a href="#HOW-CAN-WE-SAMPLE-IN-PARAMETER-SPACE-NOT-PIXEL-SPACE" class="headerlink" title="HOW CAN WE SAMPLE IN PARAMETER SPACE, NOT PIXEL SPACE?"></a>HOW CAN WE SAMPLE IN PARAMETER SPACE, NOT PIXEL SPACE?</h3><ul>
+<li>可微图像参数化（differentiable image parameterization (DIP) ）, 可以把参数{\theta}转换为一个image x=g(\theta)</li>
+<li>然后需要一个可微的损失函数来使得渲染出来的好的图像有更低的loss。</li>
+<li>但是直接约束diffusion training loss不能生成一个真实的图像，为了理解为啥，作者计算了L_{diff}的梯度。</li>
+<li>作者发现在实际中，U-Net的雅可比项是expensive to compute的（需要通过diffusion模型UNet反传）, 并且不适合小噪声水平，因为它是被训练来近似边缘密度的缩放 Hessian 矩阵的。作者发现忽略U-Net的雅可比项可以有更好的梯度来优化DIPs。</li>
+<li>可以跟随diffusion模型的score function来移动到一个更高密度的区域。</li>
+</ul>
+<p><img src="L_diff.jpg" alt="图2.L_{Diff}."></p>
+<p><img src="gradient_L_diff.jpg" alt="图3.The gradient of L_{Diff}."></p>
+<p><img src="eff_gradient_L_diff.jpg" alt="图4.The effective gradient of L_{Diff}."></p>
+<h3 id="Variational-Score-Distillation-VSD"><a href="#Variational-Score-Distillation-VSD" class="headerlink" title="Variational Score Distillation (VSD)"></a>Variational Score Distillation (VSD)</h3><p><img src="L_VSD.jpg" alt="图5.L_{VSD}."></p>
 <ul>
-<li>如图2所示，Diffusion model对原始的数据的扩散过程（加噪过程）是一个随机过程，我们可以用一个随机微分方程SDE来建模它。</li>
-<li>这个SDE有个非常好的性质是存在一个常微分方程ODE，作者叫Probability Flow(PF) ODE，这个ODE的解轨迹在t采样时刻的分布和p_t(x)的score function有关。这个也叫做逆随机过程 Reverse SDE，也就是由噪声到生成图像的过程。如图3所示，</li>
+<li>x_t = \alpha_t g(\theta, c) + \delta_t \sigma，是一个在相机视角c下的加噪的渲染图像。</li>
+<li>εφ is parameterized by Low-Rank Adaption，</li>
+<li>pre-trained diffusion model εψ with some added layers for conditioning the camera view c.</li>
+<li>a pre-trained text-to-image teacher εψ and one additional LoRA teacher εφ.</li>
+<li>train both the student model and the LoRA teacher alternately using Eq. (5) and Eq. (6)。</li>
 </ul>
-<p><img src="Reverse_SDE.jpg" alt="图3.Reverse SDE."></p>
-<ul>
-<li><p>把一个SDE转换为ODE的表示的好处是什么呢？首先ODE的轨迹定义了data和noise之间的一对一的映射关系。然后我们就可以用一些ODE的求解器，比如DDIM，DPM-Solver等等去求解这个随机过程。这个发现非常重要，因为它意味着我们可以使用ODE求解器来连续地模拟逆向过程，而不是使用基于MCMC的迭代方法。这种方法可以显著提高采样效率，并且通常能够生成更高质量的样本。【我们熟知的DDIM对应了diffusion ODE的1阶ODE solver，它的加速效果好是因为它考虑了ODE的半线性结构，而DPM-Solver给出了对应的更高阶的solver，可以让10步左右的采样达到与DDPM的1000步的采样相当。】</p>
-</li>
-<li><p>和现有的Denoisers不一样的是，现有的Denoisers往往预测的是后验概率，所以对加噪图像进行去噪的话，更倾向于得到的是一个对不同噪声去噪结果的平均，所以图像会更加blur，而一致性模型预测的是ODE轨迹上的唯一的对应的image，所以其生成效果会sharp一些。</p>
-</li>
-</ul>
-<h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><p><img src="Condition.jpg" alt="图4.Consistency model properties."></p>
-<ul>
-<li>如图4所示，一个生成模型f_{\theta}要想具有上面所说的一步生成的能力，那它得满足两条基本的性质。<ul>
-<li>边界条件。当t非常小的时候，输入原图x_0得到的是x_0。这里用一个非常小的t而不是0是为了避免0带来的数值不稳定。这个条件可以通过网络参数化来约束，如图5所示，用skip connection改变一下UNet可以满足。</li>
-<li>Self-Consistency条件。而一致性要求两个不同时刻的采样点的预测结果一致。至于我们怎么找到在同一条ODE解轨迹上的两个点下面再讨论。</li>
-</ul>
-</li>
-</ul>
-<p><img src="boundary_conditions.jpg" alt="图5.Enforce the boundary conditions."></p>
-<ul>
-<li>我们通过一致性模型一步或者多步采样如图6和6-2所示，</li>
-</ul>
-<p><img src="sampling.jpg" alt="图6.Sampling."></p>
-<p><img src="Sampling_Algorithm.jpg" alt="图6-2.Sampling Algorithm."></p>
-<ul>
-<li>到这里，我们要说我们该怎么找到一条ODE轨迹上的两个点来训练一致性模型了。有两种训练方式，一种是通过蒸馏的方式，即我已经有一个训好的diffusion模型了，那我必然知道它每一条ODE解轨迹。另一种是模型通过近似的方式找到两个点自己学。</li>
-</ul>
-<p><strong>1. 通过Distillation训练</strong></p>
-<ul>
-<li>如图7所示，先随机采样一个timestep T_{n+}，然后运行一步ODE到t_{n}，得到的两个点送入模型来使用一致性loss约束。这里的EMA作者在Improved CM论文中说不带EMA效果更好～</li>
-</ul>
-<p><img src="distillation.jpg" alt="图7.Training CM via distillation."></p>
-<p><strong>2. 通过单独训练</strong></p>
-<ul>
-<li>如图8所示，作者在论文中也证明了当t_{n+1}和t_{n}间隔足够小的话，目标函数等价于distillation。</li>
-</ul>
-<p><img src="isolation.jpg" alt="图8.Training CM via isolation."></p>
-<ul>
-<li>训练一致性模型的算法流程图如图9所示。<br><img src="Training_Algorithm.jpg" alt="图9.Training Algorithm."></li>
-</ul>
-<h2 id="Thoughts"><a href="#Thoughts" class="headerlink" title="Thoughts"></a>Thoughts</h2><ul>
-<li>这种一致性约束的思想加在常规的Progressize Diffusion Distillation里不知道效果咋样。</li>
-</ul>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://neurips.cc/virtual/2023/75013">Yang Song‘s presentation about Consistency Models at NeuraIPS 2023.</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/openai/consistency_models">https://github.com/openai/consistency_models</a></li>
+<p><img src="SwiftBrush_distillation.jpg" alt="图6.SwiftBrush distillation."></p>
+<h2 id="Thoughts"><a href="#Thoughts" class="headerlink" title="Thoughts"></a>Thoughts</h2><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2209.14988">DREAMFUSION: TEXT-TO-3D USING 2D DIFFUSION</a></li>
 </ul>
 
                 
@@ -551,16 +522,12 @@ Highlight
                     
                         <div class="article-tag">
                             
-                                <a href="../../../../../../tags/Diffusion/">
-                                    <span class="chip bg-color">Diffusion</span>
+                                <a href="../../../../../../tags/Diffusion-Distillation/">
+                                    <span class="chip bg-color">Diffusion Distillation</span>
                                 </a>
                             
-                                <a href="../../../../../../tags/Score-based-model/">
-                                    <span class="chip bg-color">Score-based model</span>
-                                </a>
-                            
-                                <a href="../../../../../../tags/Consistency-Models/">
-                                    <span class="chip bg-color">Consistency Models</span>
+                                <a href="../../../../../../tags/Stable-Diffusion/">
+                                    <span class="chip bg-color">Stable Diffusion</span>
                                 </a>
                             
                         </div>
@@ -906,17 +873,18 @@ Highlight
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="../../../../17/computervision/sd3-turbo/sd3-turbo/">
+                <a href="">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../../../medias/featureimages/18.jpg" class="responsive-img" alt="SD3_Turbo论文笔记">
+                        <img src="../../../../../../medias/featureimages/16.jpg" class="responsive-img" alt="SwiftBrush论文笔记">
                         
-                        <span class="card-title">SD3_Turbo论文笔记</span>
+                        <span class="card-title">SwiftBrush论文笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -926,9 +894,9 @@ Highlight
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-03-17
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-03-21
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -941,6 +909,7 @@ Highlight
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -963,13 +932,13 @@ Highlight
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="../../../../../02/29/computervision/deepcache/deepcache/">
+                <a href="../../../../17/computervision/codi/codi/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../../../medias/featureimages/1.jpg" class="responsive-img" alt="DeepCache论文笔记">
+                        <img src="../../../../../../medias/featureimages/22.jpg" class="responsive-img" alt="CoDi论文笔记">
                         
-                        <span class="card-title">DeepCache论文笔记</span>
+                        <span class="card-title">CoDi论文笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -980,7 +949,7 @@ Highlight
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-02-29
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-03-17
                             </span>
                         <span class="publish-author">
                             
@@ -997,12 +966,12 @@ Highlight
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../../../tags/Diffusion/">
-                        <span class="chip bg-color">Diffusion</span>
+                    <a href="../../../../../../tags/Consistency-Models/">
+                        <span class="chip bg-color">Consistency Models</span>
                     </a>
                     
-                    <a href="../../../../../../tags/UNet/">
-                        <span class="chip bg-color">UNet</span>
+                    <a href="../../../../../../tags/Diffusion-Distillation/">
+                        <span class="chip bg-color">Diffusion Distillation</span>
                     </a>
                     
                 </div>
