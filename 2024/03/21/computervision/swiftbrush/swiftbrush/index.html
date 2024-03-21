@@ -448,9 +448,6 @@ Title: SwiftBrush: One-Step Text-to-Image Diffusion Model with Variational Score
 <p><img src="eff_gradient_L_diff.jpg" alt="图4.The effective gradient of L_{Diff}."></p>
 <h3 id="Variational-Score-Distillation-VSD"><a href="#Variational-Score-Distillation-VSD" class="headerlink" title="Variational Score Distillation (VSD)"></a>Variational Score Distillation (VSD)</h3><p><img src="L_VSD.jpg" alt="图5.L_{VSD}."></p>
 <ul>
-<li>x_t = \alpha_t g(\theta, c) + \delta_t \sigma，是一个在相机视角c下的加噪的渲染图像。</li>
-<li>εφ is parameterized by Low-Rank Adaption，</li>
-<li>pre-trained diffusion model εψ with some added layers for conditioning the camera view c.</li>
 <li>a pre-trained text-to-image teacher εψ and one additional LoRA teacher εφ.</li>
 <li>train both the student model and the LoRA teacher alternately using Eq. (5) and Eq. (6)。</li>
 </ul>
