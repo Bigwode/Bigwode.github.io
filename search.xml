@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Clockwork Diffusion论文笔记</title>
+      <link href="/2024/03/26/computervision/clockwork-diffusion/clockwork-diffusion/"/>
+      <url>/2024/03/26/computervision/clockwork-diffusion/clockwork-diffusion/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p><strong>Title: <a href="https://arxiv.org/abs/2312.08128">Clockwork Diffusion: Efficient Generation With Model-Step Distillation</a></strong> <br><strong>From Qualcomm AI Research.</strong> <br><strong>CVPR 2024.</strong></p></blockquote><p><img src="Perturbing.jpg" alt="图1.Perturbing Stable Diffusion v1.5 UNet representations."></p><h2 id="Highlight"><a href="#Highlight" class="headerlink" title="Highlight"></a>Highlight</h2><ul><li>作者发现并不是denoising model UNet里的所有operation都和最终输出的图像质量有关系。具体地说，UNet在高分辨率feature maps上的操作对于小的扰动来说更敏感一些，低分辨率feature maps影响的是图像的semantic layout，对于小的扰动来说不敏感。</li><li>基于这个发现，作者提出了Clockwork Diffusion。周期性地重复使用先前去噪步骤的计算来近似接下来的一个或多个步骤中的低分辨率特征图。周期性交替使用近似步骤和运行UNet的全部流程来避免误差累计的问题。</li></ul><h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><p><img src="Clockwork.jpg" alt="图2.Schematic view of Clockwork."></p><ul><li>作者说提出的方法是model distillation 和 step distillation的结合。</li><li>既然低分辨率对扰动不敏感，那我们就可以用一个更小的adaptor来代替原始的UNet的低分辨率部分。同时接收了起那一个采样步的features。</li></ul><p><img src="results.png" alt="图3. Text guided image generation results."></p><h2 id="Thoughts"><a href="#Thoughts" class="headerlink" title="Thoughts"></a>Thoughts</h2><ul><li>通过分析UNet在不同步骤不同层的特征表现来节省时间是有道理的。</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Image Generation </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Diffusion Distillation </tag>
+            
+            <tag> UNet </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>SwiftBrush论文笔记</title>
       <link href="/2024/03/21/computervision/swiftbrush/swiftbrush/"/>
       <url>/2024/03/21/computervision/swiftbrush/swiftbrush/</url>
@@ -47,9 +74,9 @@
       
         <tags>
             
-            <tag> Consistency Models </tag>
-            
             <tag> Diffusion Distillation </tag>
+            
+            <tag> Consistency Models </tag>
             
         </tags>
       
@@ -103,9 +130,9 @@
             
             <tag> Diffusion </tag>
             
-            <tag> Score-based model </tag>
-            
             <tag> Consistency Models </tag>
+            
+            <tag> Score-based model </tag>
             
         </tags>
       
@@ -130,9 +157,9 @@
       
         <tags>
             
-            <tag> Diffusion </tag>
-            
             <tag> UNet </tag>
+            
+            <tag> Diffusion </tag>
             
         </tags>
       
