@@ -6,7 +6,7 @@
   <link href="https://bigwode.github.io/atom.xml" rel="self"/>
   
   <link href="https://bigwode.github.io/"/>
-  <updated>2024-03-26T16:03:19.532Z</updated>
+  <updated>2024-04-02T16:36:22.584Z</updated>
   <id>https://bigwode.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SDXS论文笔记</title>
+    <link href="https://bigwode.github.io/2024/04/02/computervision/sdxs/sdxs/"/>
+    <id>https://bigwode.github.io/2024/04/02/computervision/sdxs/sdxs/</id>
+    <published>2024-04-02T15:35:28.000Z</published>
+    <updated>2024-04-02T16:36:22.584Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Title: &lt;a href=&quot;https://arxiv.org/abs/2403.16627&quot;&gt;SDXS: Real-Time One-Step Latent Diffusion Models with Image</summary>
+        
+      
+    
+    
+    
+    <category term="Image Generation" scheme="https://bigwode.github.io/categories/Image-Generation/"/>
+    
+    
+    <category term="Diffusion Distillation" scheme="https://bigwode.github.io/tags/Diffusion-Distillation/"/>
+    
+    <category term="Stable Diffusion" scheme="https://bigwode.github.io/tags/Stable-Diffusion/"/>
+    
+  </entry>
   
   <entry>
     <title>Clockwork Diffusion论文笔记</title>
@@ -150,9 +178,9 @@
     <category term="Image Generation" scheme="https://bigwode.github.io/categories/Image-Generation/"/>
     
     
-    <category term="Diffusion" scheme="https://bigwode.github.io/tags/Diffusion/"/>
-    
     <category term="Consistency Models" scheme="https://bigwode.github.io/tags/Consistency-Models/"/>
+    
+    <category term="Diffusion" scheme="https://bigwode.github.io/tags/Diffusion/"/>
     
     <category term="Score-based model" scheme="https://bigwode.github.io/tags/Score-based-model/"/>
     
