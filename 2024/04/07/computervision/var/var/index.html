@@ -4,12 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="SDXS论文笔记, 认养一只猪">
+    <meta name="keywords" content="VAR论文笔记, 认养一只猪">
     <meta name="description" content="
-Title: SDXS: Real-Time One-Step Latent Diffusion Models with Image Conditions From Xiaomi Inc. ArXiv 20240325
-
-
-Highlig">
+Title: Visual Autoregressive Modeling: Scalable Image Generation via Next-Scale Prediction From Bytedance Inc. ArXiv 20">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +18,7 @@ Highlig">
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>SDXS论文笔记 | 认养一只猪</title>
+    <title>VAR论文笔记 | 认养一只猪</title>
     <link rel="icon" type="image/png" href="../../../../../../favicon.png">
     
 
@@ -341,12 +338,12 @@ Highlig">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../../../medias/featureimages/19.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../../../medias/featureimages/16.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">SDXS论文笔记</h1>
+                    <h1 class="description center-align post-title">VAR论文笔记</h1>
                 </div>
             </div>
         </div>
@@ -370,12 +367,8 @@ Highlig">
                     
                     <div class="article-tag">
                         
-                            <a href="../../../../../../tags/Diffusion-Distillation/">
-                                <span class="chip bg-color">Diffusion Distillation</span>
-                            </a>
-                        
-                            <a href="../../../../../../tags/Stable-Diffusion/">
-                                <span class="chip bg-color">Stable Diffusion</span>
+                            <a href="../../../../../../tags/Auto-Regressive-Model/">
+                                <span class="chip bg-color">Auto Regressive Model</span>
                             </a>
                         
                     </div>
@@ -399,7 +392,7 @@ Highlig">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-04-02
+                    2024-04-07
                 </div>
                 
 
@@ -424,53 +417,33 @@ Highlig">
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <blockquote>
-<p><strong>Title: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2403.16627">SDXS: Real-Time One-Step Latent Diffusion Models with Image Conditions</a></strong> <br><strong>From Xiaomi Inc.</strong> <br><strong>ArXiv 20240325</strong></p>
+<p><strong>Title: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2404.02905">Visual Autoregressive Modeling: Scalable Image Generation via Next-Scale Prediction</a></strong> <br><strong>From Bytedance Inc.</strong> <br><strong>ArXiv 20240403</strong></p>
 </blockquote>
-<p><img src="SDXS.png" alt="图1. SDXS生成图展示."></p>
 <h2 id="Highlight"><a href="#Highlight" class="headerlink" title="Highlight"></a>Highlight</h2><ul>
-<li>作者提出了一个同时做diffusion模型轻量化和采样步数压缩的框架SDXS。</li>
-<li>该框架可以一步生成图像并且可以很好的迁移到image-conditioned ControlNet的训练中。</li>
-<li>对于模型压缩部分，主要关注于VAE的decoder和UNet的压缩，因为这两块占据的资源消耗是最多的。</li>
-<li>对于采样步数压缩部分，使用feature matching loss来代替蒸馏loss，<br>并且进一步地，扩展了Diff-Instruct训练策略，在timestep的后半部分，使用了feature matching loss的梯度来代替score distillation的梯度</li>
+<li>作者提出了一个新的自回归图像生成范式VAR(Visual AutoRegressive modeling)来预测下一个scale/resolution。</li>
+<li>实验验证了VAR具备更好的Scaling Laws和zero-shot泛化能力。</li>
 </ul>
-<p><img src="Network_architecture_distillation.png" alt="图2. Network architecture distillation."></p>
-<p><img src="LatencyComparison.png" alt="图3. Latency Comparison."></p>
-<h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><h3 id="Diff-Instruct"><a href="#Diff-Instruct" class="headerlink" title="Diff-Instruct"></a>Diff-Instruct</h3><ul>
-<li>这一部分的基础知识可以参考对<a href="https://bigwode.github.io/2024/03/21/computervision/swiftbrush/swiftbrush/">DreamFusion</a>中的介绍。</li>
-</ul>
-<h3 id="Architecture-Optimizations"><a href="#Architecture-Optimizations" class="headerlink" title="Architecture Optimizations"></a>Architecture Optimizations</h3><ul>
-<li>对VAE decoder的压缩是结合了output distillation loss和GAN loss来训练一个轻量化的image decoder来模仿原始的VAE decoder的输出。如公式1所示，G()是我要训练的tiny decoder，x是原始的decoder出来的图像，下采样了8倍计算的L1 loss, 说是为了减少冗余。使用的是一些包含残差块和上采样层的纯CNN结构。</li>
-</ul>
-<p><img src="L_VD.png" alt="公式1. L_VD."></p>
+<h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><h3 id="VAR"><a href="#VAR" class="headerlink" title="VAR"></a>VAR</h3><p><img src="AR.png" alt="图1. Standard autoregressive modeling (AR) vs. our proposed visual autoregressive modeling (VAR)."></p>
 <ul>
-<li><p>对于UNet，使用的是同时监督输出的OKD损失和监督中间层特征的FKD损失。如公式2所示。作者没有对其加原始的去噪损失。<br><img src="L_OKD.png" alt="公式2. L_OKD."></p>
-</li>
-<li><p>借鉴了block removal distillation策略，移除了对latency贡献最多的几个模块。比如，对于SD-2.1 base来说，去掉了middle stage，downsampling stage的最后一个stage，和upsampling的第一个stage，去除了最高分辨率stage的所有Transformer结构。</p>
-</li>
-<li><p>对于ontrolNet的蒸馏，也是蒸馏了UNet中间特征层和最终的输出, 考虑到ControlNet不影响原始的UNet encoder的特征层，所以特征蒸馏只是在UNet的decoder上去做的。</p>
-</li>
+<li>图1展示的是标准的自回归模型和本文提出的新的视觉自回归模型VAR的对比。</li>
+<li>因为自回归任务需要满足unidirectional特性，也就是说下一个tokens的预测只和前序的tokens有关系，和后面的没关系，但是AR经过quantization 和 flattening，就破坏了这个特性。由于flattening，还破坏了空间位置关系。</li>
+<li>因此，作者提出预测下一个分辨率的tokens来自回归生成图像。在rk次生成中，hk × wk tokens的所有分布都是相互有关系的，并且是被并行生成的。使用rk的前序和k-th position embedding map作为condition.</li>
+<li>VAR包含两个训练步骤。首先在图像上使用重建loss训练一个多尺度的VAQVAE，作为步骤2训练的gt，第二步是使用最大似然（最小化交叉熵loss）在tokens上通过next-scale prediction训练VAR Transoformer。<br><img src="VAR.png" alt="图2. VAR involves two separated training stages."></li>
 </ul>
-<h3 id="One-Step-Training"><a href="#One-Step-Training" class="headerlink" title="One-Step Training"></a>One-Step Training</h3><ul>
-<li>Feature Matching Warmup.</li>
-<li>这里借鉴了ReFlow的思想来讲故事，不过使用的是一个叫加权版SSIM的FM损失，如公式3所示。<br><img src="L_FM.png" alt="公式3. L_FM."></li>
-<li>约束tiny unet生成的图像和原始的UNet使用ODE采样器生成的图像两个过encoder $f_{\theta}$ 在不同层上的特征的SSIM一致，不过作者使用FM损失只是用于warmup少量的训练steps。</li>
+<h3 id="Tokenization"><a href="#Tokenization" class="headerlink" title="Tokenization"></a>Tokenization</h3><ul>
+<li>图3展示的是第一阶段多尺度VQVAE编码和重建算法步骤。作者使用了残差的设计来获取更好的效果。同时为了降低信息损失在每个插值后接了多个conv。</li>
 </ul>
-<h3 id="Segmented-Diff-Instruct"><a href="#Segmented-Diff-Instruct" class="headerlink" title="Segmented Diff-Instruct."></a>Segmented Diff-Instruct.</h3><ul>
-<li><p>虽然feature matching loss可以生成清晰的图像，但是毕竟还不是直接和真实分布的匹配关系，所以只能用来当初始化。</p>
-</li>
-<li><p>所以借鉴Diff-Instruct来匹配模型输出的分布。</p>
-</li>
-<li><p>作者发现在采样轨迹是corse to fine的，t-&gt;T，score function提供了低频信息的梯度，t-&gt;0，提供的是高频信息的梯度。因此作者把采样过程分成了两部分，[0, \alpha T]和(\alpha T, T]，后者使用L_FM来代替，因为它可以提供足够多的低频信息。* 随着训练过程，逐渐降低FM损失的权重。</p>
-</li>
+<p><img src="Algorithms.png" alt="图3. Algorithm: Multi-scale VQVAE Encoding and Multi-scale VQVAE Reconstruction ."></p>
+<h3 id="VAR-transformer"><a href="#VAR-transformer" class="headerlink" title="VAR transformer"></a>VAR transformer</h3><ul>
+<li>为了简单，作者直接使用了GPT-2和VQGAN的标准的decoder-only的结构。</li>
+<li>使用了AdaLN替代LN。</li>
+<li>对于带条件的生成，直接使用class embeddings作为start token [s]。</li>
 </ul>
-<p><img src="L_IKL.png" alt="公式4. L_IKL."></p>
-<p><img src="one-step_U-Net_training_strategy.png" alt="图4. one-step U-Net training strategy."></p>
-<ul>
-<li>实际中，online DM和student DM是交替训练的，并且在训练的中间阶段，将teacher DM 从预训练模型切换为经过训练的小型化一步模型本身，进一步减少了训练开销。</li>
-</ul>
-<p><img src="Performace.png" alt="图5. Performace."></p>
+<h2 id="Methods-1"><a href="#Methods-1" class="headerlink" title="Methods"></a>Methods</h2><p><img src="comparisons.png" alt="图4. Generative model family comparison on class-conditional ImageNet 256×256."></p>
+<p><img src="Scaling_behavior.png" alt="图5. Scaling behavior of different models on ImageNet 256×256 conditional generation benchmark."></p>
 <h2 id="Thoughts"><a href="#Thoughts" class="headerlink" title="Thoughts"></a>Thoughts</h2><ul>
-<li>DM蒸馏框架envolve的模型太多，蒸馏的过程显得很臃肿。不直接对Student DM使用去噪损失L_DM，而是把student模型生成的图像加噪后过Online DM和Offline DM算IKL损失和DM损失，反传梯度给student DM。这样做为什么会比直接对student算DM损失效果好？Online DM是必须的吗？</li>
+<li>VQVAE这种Tokenization编码方式还是有人一直在研究，看起来这种方式具有一定的意义。</li>
+<li>什么样的重建方式的scaling laws是更好的呢？</li>
 </ul>
 
                 
@@ -536,12 +509,8 @@ Highlig">
                     
                         <div class="article-tag">
                             
-                                <a href="../../../../../../tags/Diffusion-Distillation/">
-                                    <span class="chip bg-color">Diffusion Distillation</span>
-                                </a>
-                            
-                                <a href="../../../../../../tags/Stable-Diffusion/">
-                                    <span class="chip bg-color">Stable Diffusion</span>
+                                <a href="../../../../../../tags/Auto-Regressive-Model/">
+                                    <span class="chip bg-color">Auto Regressive Model</span>
                                 </a>
                             
                         </div>
@@ -887,11 +856,12 @@ Highlig">
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="../../../../07/computervision/var/var/">
+                <a href="">
                     <div class="card-image">
                         
                         
@@ -907,9 +877,9 @@ Highlig">
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-04-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-04-07
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -922,6 +892,7 @@ Highlig">
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -940,13 +911,13 @@ Highlig">
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="../../../../../03/26/computervision/clockwork-diffusion/clockwork-diffusion/">
+                <a href="../../../../02/computervision/sdxs/sdxs/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../../../medias/featureimages/5.jpg" class="responsive-img" alt="Clockwork Diffusion论文笔记">
+                        <img src="../../../../../../medias/featureimages/19.jpg" class="responsive-img" alt="SDXS论文笔记">
                         
-                        <span class="card-title">Clockwork Diffusion论文笔记</span>
+                        <span class="card-title">SDXS论文笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -957,7 +928,7 @@ Highlig">
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-03-26
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-04-02
                             </span>
                         <span class="publish-author">
                             
@@ -978,8 +949,8 @@ Highlig">
                         <span class="chip bg-color">Diffusion Distillation</span>
                     </a>
                     
-                    <a href="../../../../../../tags/UNet/">
-                        <span class="chip bg-color">UNet</span>
+                    <a href="../../../../../../tags/Stable-Diffusion/">
+                        <span class="chip bg-color">Stable Diffusion</span>
                     </a>
                     
                 </div>

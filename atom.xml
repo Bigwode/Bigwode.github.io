@@ -6,7 +6,7 @@
   <link href="https://bigwode.github.io/atom.xml" rel="self"/>
   
   <link href="https://bigwode.github.io/"/>
-  <updated>2024-04-02T16:36:22.584Z</updated>
+  <updated>2024-04-07T09:13:06.229Z</updated>
   <id>https://bigwode.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>VAR论文笔记</title>
+    <link href="https://bigwode.github.io/2024/04/07/computervision/var/var/"/>
+    <id>https://bigwode.github.io/2024/04/07/computervision/var/var/</id>
+    <published>2024-04-07T08:35:28.000Z</published>
+    <updated>2024-04-07T09:13:06.229Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Title: &lt;a href=&quot;https://arxiv.org/abs/2404.02905&quot;&gt;Visual Autoregressive Modeling: Scalable Image Generation via</summary>
+        
+      
+    
+    
+    
+    <category term="Image Generation" scheme="https://bigwode.github.io/categories/Image-Generation/"/>
+    
+    
+    <category term="Auto Regressive Model" scheme="https://bigwode.github.io/tags/Auto-Regressive-Model/"/>
+    
+  </entry>
   
   <entry>
     <title>SDXS论文笔记</title>

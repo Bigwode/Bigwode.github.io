@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>VAR论文笔记</title>
+      <link href="/2024/04/07/computervision/var/var/"/>
+      <url>/2024/04/07/computervision/var/var/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p><strong>Title: <a href="https://arxiv.org/abs/2404.02905">Visual Autoregressive Modeling: Scalable Image Generation via Next-Scale Prediction</a></strong> <br><strong>From Bytedance Inc.</strong> <br><strong>ArXiv 20240403</strong></p></blockquote><h2 id="Highlight"><a href="#Highlight" class="headerlink" title="Highlight"></a>Highlight</h2><ul><li>作者提出了一个新的自回归图像生成范式VAR(Visual AutoRegressive modeling)来预测下一个scale/resolution。</li><li>实验验证了VAR具备更好的Scaling Laws和zero-shot泛化能力。</li></ul><h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><h3 id="VAR"><a href="#VAR" class="headerlink" title="VAR"></a>VAR</h3><p><img src="AR.png" alt="图1. Standard autoregressive modeling (AR) vs. our proposed visual autoregressive modeling (VAR)."></p><ul><li>图1展示的是标准的自回归模型和本文提出的新的视觉自回归模型VAR的对比。</li><li>因为自回归任务需要满足unidirectional特性，也就是说下一个tokens的预测只和前序的tokens有关系，和后面的没关系，但是AR经过quantization 和 flattening，就破坏了这个特性。由于flattening，还破坏了空间位置关系。</li><li>因此，作者提出预测下一个分辨率的tokens来自回归生成图像。在rk次生成中，hk × wk tokens的所有分布都是相互有关系的，并且是被并行生成的。使用rk的前序和k-th position embedding map作为condition.</li><li>VAR包含两个训练步骤。首先在图像上使用重建loss训练一个多尺度的VAQVAE，作为步骤2训练的gt，第二步是使用最大似然（最小化交叉熵loss）在tokens上通过next-scale prediction训练VAR Transoformer。<br><img src="VAR.png" alt="图2. VAR involves two separated training stages."></li></ul><h3 id="Tokenization"><a href="#Tokenization" class="headerlink" title="Tokenization"></a>Tokenization</h3><ul><li>图3展示的是第一阶段多尺度VQVAE编码和重建算法步骤。作者使用了残差的设计来获取更好的效果。同时为了降低信息损失在每个插值后接了多个conv。</li></ul><p><img src="Algorithms.png" alt="图3. Algorithm: Multi-scale VQVAE Encoding and Multi-scale VQVAE Reconstruction ."></p><h3 id="VAR-transformer"><a href="#VAR-transformer" class="headerlink" title="VAR transformer"></a>VAR transformer</h3><ul><li>为了简单，作者直接使用了GPT-2和VQGAN的标准的decoder-only的结构。</li><li>使用了AdaLN替代LN。</li><li>对于带条件的生成，直接使用class embeddings作为start token [s]。</li></ul><h2 id="Methods-1"><a href="#Methods-1" class="headerlink" title="Methods"></a>Methods</h2><p><img src="comparisons.png" alt="图4. Generative model family comparison on class-conditional ImageNet 256×256."></p><p><img src="Scaling_behavior.png" alt="图5. Scaling behavior of different models on ImageNet 256×256 conditional generation benchmark."></p><h2 id="Thoughts"><a href="#Thoughts" class="headerlink" title="Thoughts"></a>Thoughts</h2><ul><li>VQVAE这种Tokenization编码方式还是有人一直在研究，看起来这种方式具有一定的意义。</li><li>什么样的重建方式的scaling laws是更好的呢？</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Image Generation </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Auto Regressive Model </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>SDXS论文笔记</title>
       <link href="/2024/04/02/computervision/sdxs/sdxs/"/>
       <url>/2024/04/02/computervision/sdxs/sdxs/</url>
