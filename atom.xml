@@ -6,7 +6,7 @@
   <link href="https://bigwode.github.io/atom.xml" rel="self"/>
   
   <link href="https://bigwode.github.io/"/>
-  <updated>2024-04-18T15:50:29.030Z</updated>
+  <updated>2024-06-11T01:42:53.462Z</updated>
   <id>https://bigwode.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>DepthAnything论文笔记</title>
+    <link href="https://bigwode.github.io/2024/06/11/computervision/depthanything/depthanything/"/>
+    <id>https://bigwode.github.io/2024/06/11/computervision/depthanything/depthanything/</id>
+    <published>2024-06-11T01:03:01.000Z</published>
+    <updated>2024-06-11T01:42:53.462Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Title: &lt;a href=&quot;https://arxiv.org/abs/2401.10891&quot;&gt;Depth Anything: Unleashing the Power of Large-Scale Unlabeled Data&lt;/a&gt;</summary>
+        
+      
+    
+    
+    
+    <category term="Computer Vision" scheme="https://bigwode.github.io/categories/Computer-Vision/"/>
+    
+    
+    <category term="Depth Estimation" scheme="https://bigwode.github.io/tags/Depth-Estimation/"/>
+    
+  </entry>
   
   <entry>
     <title>Diff-Instruct论文笔记</title>
@@ -153,6 +179,34 @@
   </entry>
   
   <entry>
+    <title>CoDi论文笔记</title>
+    <link href="https://bigwode.github.io/2024/03/17/computervision/codi/codi/"/>
+    <id>https://bigwode.github.io/2024/03/17/computervision/codi/codi/</id>
+    <published>2024-03-17T12:41:28.000Z</published>
+    <updated>2024-03-17T13:56:38.054Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Title: &lt;a href=&quot;https://arxiv.org/abs/2310.01407&quot;&gt;CoDi: Conditional Diffusion Distillation for Higher-Fidelity and</summary>
+        
+      
+    
+    
+    
+    <category term="Image Generation" scheme="https://bigwode.github.io/categories/Image-Generation/"/>
+    
+    
+    <category term="Diffusion Distillation" scheme="https://bigwode.github.io/tags/Diffusion-Distillation/"/>
+    
+    <category term="Consistency Models" scheme="https://bigwode.github.io/tags/Consistency-Models/"/>
+    
+  </entry>
+  
+  <entry>
     <title>SD3_Turbo论文笔记</title>
     <link href="https://bigwode.github.io/2024/03/17/computervision/sd3-turbo/sd3-turbo/"/>
     <id>https://bigwode.github.io/2024/03/17/computervision/sd3-turbo/sd3-turbo/</id>
@@ -177,34 +231,6 @@
     <category term="Diffusion Distillation" scheme="https://bigwode.github.io/tags/Diffusion-Distillation/"/>
     
     <category term="Stable Diffusion" scheme="https://bigwode.github.io/tags/Stable-Diffusion/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CoDi论文笔记</title>
-    <link href="https://bigwode.github.io/2024/03/17/computervision/codi/codi/"/>
-    <id>https://bigwode.github.io/2024/03/17/computervision/codi/codi/</id>
-    <published>2024-03-17T12:41:28.000Z</published>
-    <updated>2024-03-17T13:56:38.054Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Title: &lt;a href=&quot;https://arxiv.org/abs/2310.01407&quot;&gt;CoDi: Conditional Diffusion Distillation for Higher-Fidelity and</summary>
-        
-      
-    
-    
-    
-    <category term="Image Generation" scheme="https://bigwode.github.io/categories/Image-Generation/"/>
-    
-    
-    <category term="Consistency Models" scheme="https://bigwode.github.io/tags/Consistency-Models/"/>
-    
-    <category term="Diffusion Distillation" scheme="https://bigwode.github.io/tags/Diffusion-Distillation/"/>
     
   </entry>
   
@@ -260,9 +286,9 @@
     <category term="Image Generation" scheme="https://bigwode.github.io/categories/Image-Generation/"/>
     
     
-    <category term="Diffusion" scheme="https://bigwode.github.io/tags/Diffusion/"/>
-    
     <category term="UNet" scheme="https://bigwode.github.io/tags/UNet/"/>
+    
+    <category term="Diffusion" scheme="https://bigwode.github.io/tags/Diffusion/"/>
     
   </entry>
   
@@ -430,9 +456,9 @@
     
     <category term="Diffusion" scheme="https://bigwode.github.io/tags/Diffusion/"/>
     
-    <category term="Video Generation" scheme="https://bigwode.github.io/tags/Video-Generation/"/>
-    
     <category term="Transformer" scheme="https://bigwode.github.io/tags/Transformer/"/>
+    
+    <category term="Video Generation" scheme="https://bigwode.github.io/tags/Video-Generation/"/>
     
     <category term="Sora" scheme="https://bigwode.github.io/tags/Sora/"/>
     

@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>DepthAnything论文笔记</title>
+      <link href="/2024/06/11/computervision/depthanything/depthanything/"/>
+      <url>/2024/06/11/computervision/depthanything/depthanything/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>Title: <a href="https://arxiv.org/abs/2401.10891">Depth Anything: Unleashing the Power of Large-Scale Unlabeled Data</a> <br>From HKU &amp; TikTok. <br>CVPR 2024</p></blockquote><h2 id="Highlight"><a href="#Highlight" class="headerlink" title="Highlight"></a>Highlight</h2><ul><li>本文做的是用少量有标签数据和大规模无标签数据做一个有泛化性或者叫有scaling-up能力的深度估计模型。</li><li>作者基于两个发现（1）直接结合有标签和打伪标签的数据进行训练并不能提升只用有标签数据训的基础模型的性能。作者认为这是因为以self-teaching的方式学到的信息是有限的。（2）之前的深度估计工作中引入了语义分割的辅助任务带来了涨点，作者发现当深度估计模型性能非常强的时候，这么做并不会继续带来涨点，这是由于把一张图像编码到一个离散的类别空间会带来很严重的信息损失。</li><li>因此作者主要探索了两个策略，一个和是利用数据增强来构造一个更加具有挑战性的优化目标，迫使模型学习额外的视觉特征更加鲁棒的表征。<br>另一个是辅助监督，用于迫使模型从一个pretrained encoders（DINO-v2）里继承丰富的语义先验。</li></ul><p><img src="DepthAnythingPipeline.png" alt="图1. Depth Anything Pipeline."></p><h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><ul><li>为了使用多个数据集联合训练，作者设计了一个affine-invariant loss。</li><li>如图2所示，对于每个样本，减去均值除以方差。论文中的公式写的是减去每个样本的中位数，除以的也不是等价于方差。</li></ul><p><img src="variantscale_loss.png" alt="图2. affine-invariant loss."></p><ul><li>另外，为了强化Teacher模型从有标签数据的学习，作者使用了DINOv2的pretrain权重来初始化encoder。对于数据上，用一个预训练好的语义分割模型来将图像中的天空分割出来，然后将深度值设置为0（最远的）。</li><li>然后用这个teacher模型给无标签数据打伪标签。</li><li>另外不是从teacher的权重开始finetune一个student，而是从头训student。</li><li>数据增强主要考虑两个，一个是color distortions，包括color jittering和gaussian blurring, 一个是CutMix。</li><li>另外，作者还加了一个feature alignment loss来约束encoder学习到更具有语义性的特征。</li></ul><p><img src="L_feat.png" alt="图3. feature alignment loss."></p><h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><p><img src="exps.png" alt="Experiments."></p><h2 id="Thoughts"><a href="#Thoughts" class="headerlink" title="Thoughts"></a>Thoughts</h2><ul><li>利用无标签数据，需要设计比pseudo label更难的任务来迫使模型学习，并且最好是使用一个有充分语义的pretrain来带来额外监督。DINOv2好像本身就具有较强的深度估计能力，换其他任务怎么选这个语义pretrain可能另有说法。</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Computer Vision </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Depth Estimation </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Diff-Instruct论文笔记</title>
       <link href="/2024/04/18/computervision/diffinstruct/diffinstruct/"/>
       <url>/2024/04/18/computervision/diffinstruct/diffinstruct/</url>
@@ -135,6 +160,33 @@
     
     
     <entry>
+      <title>CoDi论文笔记</title>
+      <link href="/2024/03/17/computervision/codi/codi/"/>
+      <url>/2024/03/17/computervision/codi/codi/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p><strong>Title: <a href="https://arxiv.org/abs/2310.01407">CoDi: Conditional Diffusion Distillation for Higher-Fidelity and Faster Image Generation</a></strong> <br><strong>From Google Research.</strong> <br><strong>CVPR 2024.</strong></p></blockquote><p><img src="CoDi_Network.jpg" alt="图1.Network architecture illustration of CoDi."></p><h2 id="Highlight"><a href="#Highlight" class="headerlink" title="Highlight"></a>Highlight</h2><ul><li>本文在Consistency Models一致性模型的基础上，拓展到了带条件的生成模型的蒸馏上。</li><li>其他的还有几个点是作者声称可以original training-data free的和parameters efficient的蒸馏。</li></ul><h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><h3 id="Adapt-the-unconditional-diffusion-model-into-a-conditional-version"><a href="#Adapt-the-unconditional-diffusion-model-into-a-conditional-version" class="headerlink" title="Adapt the unconditional diffusion model into a conditional version"></a>Adapt the unconditional diffusion model into a conditional version</h3><ul><li>通过直接复制pretrained network的encoder层来引入conditional-module，其中 $h_{\theta}(.)$ 是pretrain模型的encoder feature，$h_{\eta}(.)$ 是新增的条件encoder，$\mu$ 是一个可学习的参数，初始化为0.<br><img src="conditional_encoder_params.jpg" alt="图2.new encoder features of the adapted model."></li></ul><h3 id="A-New-Conditional-Diffusion-Consistency"><a href="#A-New-Conditional-Diffusion-Consistency" class="headerlink" title="A New Conditional Diffusion Consistency"></a>A New Conditional Diffusion Consistency</h3><ul><li>Remark 1. 作者这里说在noise prediction上满足self-coinsistency性质的diffusion model，在signal prediction上也同样满足。</li><li>这是因为原始的Consistency model是约束的PF ODE轨迹上两个点的去噪图像的一致性，而这里作者用了预测噪声一致性来代替。这里的边界条件也是通过喝consistency model一样的skip connection来约束的。另外还有一个是学习在去噪图像基础上，学习新的条件生成。作者说这样两者的优化方向就不会冲突。。</li></ul><p><img src="conditional_distillation.jpg" alt="图3.training loss for conditional distillation."></p><ul><li>其中，$ Z^{hat}_{s}s $ 是通过adapted条件生成模型预测得到的。和consistency model一样也使用了EMA target模型来稳定训练。</li></ul><p><img src="Z_hat_s.jpg" alt="图4.training loss for conditional distillation."></p><h3 id="Parameter-Efficient-Conditional-Distillation"><a href="#Parameter-Efficient-Conditional-Distillation" class="headerlink" title="Parameter-Efficient Conditional Distillation"></a>Parameter-Efficient Conditional Distillation</h3><ul><li>作者生成自己是Parameter-Efficient Conditional Distillation，因为只更新了复制出来的encoder。</li><li>这里应该只用了new conditional data来训的蒸馏，所以作者论文里声称不需要原始的text-to-image data。</li><li>其实这里的条件控制是图像，有点类似于超分的任务。</li></ul><p><img src="CDD.jpg" alt="图5.Algorithm 1 Conditional Diffusion Distillation (CDD)."></p><h2 id="Thoughts"><a href="#Thoughts" class="headerlink" title="Thoughts"></a>Thoughts</h2><ul><li>通过蒸馏来缩减步数看上去只蒸结构的一部分也行，蒸哪一部分最重要呢？</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Image Generation </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Diffusion Distillation </tag>
+            
+            <tag> Consistency Models </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>SD3_Turbo论文笔记</title>
       <link href="/2024/03/17/computervision/sd3-turbo/sd3-turbo/"/>
       <url>/2024/03/17/computervision/sd3-turbo/sd3-turbo/</url>
@@ -154,33 +206,6 @@
             <tag> Diffusion Distillation </tag>
             
             <tag> Stable Diffusion </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>CoDi论文笔记</title>
-      <link href="/2024/03/17/computervision/codi/codi/"/>
-      <url>/2024/03/17/computervision/codi/codi/</url>
-      
-        <content type="html"><![CDATA[<blockquote><p><strong>Title: <a href="https://arxiv.org/abs/2310.01407">CoDi: Conditional Diffusion Distillation for Higher-Fidelity and Faster Image Generation</a></strong> <br><strong>From Google Research.</strong> <br><strong>CVPR 2024.</strong></p></blockquote><p><img src="CoDi_Network.jpg" alt="图1.Network architecture illustration of CoDi."></p><h2 id="Highlight"><a href="#Highlight" class="headerlink" title="Highlight"></a>Highlight</h2><ul><li>本文在Consistency Models一致性模型的基础上，拓展到了带条件的生成模型的蒸馏上。</li><li>其他的还有几个点是作者声称可以original training-data free的和parameters efficient的蒸馏。</li></ul><h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><h3 id="Adapt-the-unconditional-diffusion-model-into-a-conditional-version"><a href="#Adapt-the-unconditional-diffusion-model-into-a-conditional-version" class="headerlink" title="Adapt the unconditional diffusion model into a conditional version"></a>Adapt the unconditional diffusion model into a conditional version</h3><ul><li>通过直接复制pretrained network的encoder层来引入conditional-module，其中 $h_{\theta}(.)$ 是pretrain模型的encoder feature，$h_{\eta}(.)$ 是新增的条件encoder，$\mu$ 是一个可学习的参数，初始化为0.<br><img src="conditional_encoder_params.jpg" alt="图2.new encoder features of the adapted model."></li></ul><h3 id="A-New-Conditional-Diffusion-Consistency"><a href="#A-New-Conditional-Diffusion-Consistency" class="headerlink" title="A New Conditional Diffusion Consistency"></a>A New Conditional Diffusion Consistency</h3><ul><li>Remark 1. 作者这里说在noise prediction上满足self-coinsistency性质的diffusion model，在signal prediction上也同样满足。</li><li>这是因为原始的Consistency model是约束的PF ODE轨迹上两个点的去噪图像的一致性，而这里作者用了预测噪声一致性来代替。这里的边界条件也是通过喝consistency model一样的skip connection来约束的。另外还有一个是学习在去噪图像基础上，学习新的条件生成。作者说这样两者的优化方向就不会冲突。。</li></ul><p><img src="conditional_distillation.jpg" alt="图3.training loss for conditional distillation."></p><ul><li>其中，$ Z^{hat}_{s}s $ 是通过adapted条件生成模型预测得到的。和consistency model一样也使用了EMA target模型来稳定训练。</li></ul><p><img src="Z_hat_s.jpg" alt="图4.training loss for conditional distillation."></p><h3 id="Parameter-Efficient-Conditional-Distillation"><a href="#Parameter-Efficient-Conditional-Distillation" class="headerlink" title="Parameter-Efficient Conditional Distillation"></a>Parameter-Efficient Conditional Distillation</h3><ul><li>作者生成自己是Parameter-Efficient Conditional Distillation，因为只更新了复制出来的encoder。</li><li>这里应该只用了new conditional data来训的蒸馏，所以作者论文里声称不需要原始的text-to-image data。</li><li>其实这里的条件控制是图像，有点类似于超分的任务。</li></ul><p><img src="CDD.jpg" alt="图5.Algorithm 1 Conditional Diffusion Distillation (CDD)."></p><h2 id="Thoughts"><a href="#Thoughts" class="headerlink" title="Thoughts"></a>Thoughts</h2><ul><li>通过蒸馏来缩减步数看上去只蒸结构的一部分也行，蒸哪一部分最重要呢？</li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> Image Generation </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Consistency Models </tag>
-            
-            <tag> Diffusion Distillation </tag>
             
         </tags>
       
@@ -234,9 +259,9 @@
       
         <tags>
             
-            <tag> Diffusion </tag>
-            
             <tag> UNet </tag>
+            
+            <tag> Diffusion </tag>
             
         </tags>
       
@@ -396,9 +421,9 @@
             
             <tag> Diffusion </tag>
             
-            <tag> Video Generation </tag>
-            
             <tag> Transformer </tag>
+            
+            <tag> Video Generation </tag>
             
             <tag> Sora </tag>
             

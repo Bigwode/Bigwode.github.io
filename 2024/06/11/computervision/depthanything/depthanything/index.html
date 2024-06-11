@@ -4,12 +4,12 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Preserving Fairness Generalization in Deepfake Detection 论文笔记, 认养一只猪">
+    <meta name="keywords" content="DepthAnything论文笔记, 认养一只猪">
     <meta name="description" content="
-Title: 《Preserving Fairness Generalization in Deepfake Detection》 From Purdue University CVPR 2024 paper
+Title: Depth Anything: Unleashing the Power of Large-Scale Unlabeled Data From HKU &amp;amp; TikTok. CVPR 2024
 
 Highlight
-文中提">
+本">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +21,7 @@ Highlight
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Preserving Fairness Generalization in Deepfake Detection 论文笔记 | 认养一只猪</title>
+    <title>DepthAnything论文笔记 | 认养一只猪</title>
     <link rel="icon" type="image/png" href="../../../../../../favicon.png">
     
 
@@ -341,12 +341,12 @@ Highlight
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../../../medias/featureimages/10.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../../../medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Preserving Fairness Generalization in Deepfake Detection 论文笔记</h1>
+                    <h1 class="description center-align post-title">DepthAnything论文笔记</h1>
                 </div>
             </div>
         </div>
@@ -370,8 +370,8 @@ Highlight
                     
                     <div class="article-tag">
                         
-                            <a href="../../../../../../tags/Deepfake-Detection/">
-                                <span class="chip bg-color">Deepfake Detection</span>
+                            <a href="../../../../../../tags/Depth-Estimation/">
+                                <span class="chip bg-color">Depth Estimation</span>
                             </a>
                         
                     </div>
@@ -382,8 +382,8 @@ Highlight
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="../../../../../../categories/Deepfake-Detection/" class="post-category">
-                                Deepfake Detection
+                            <a href="../../../../../../categories/Computer-Vision/" class="post-category">
+                                Computer Vision
                             </a>
                         
                     </div>
@@ -395,7 +395,7 @@ Highlight
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-02-28
+                    2024-06-11
                 </div>
                 
 
@@ -420,50 +420,31 @@ Highlight
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <blockquote>
-<p><strong>Title:</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2402.17229">《Preserving Fairness Generalization in Deepfake Detection》</a> <br>From Purdue University <br>CVPR 2024 paper</p>
+<p>Title: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2401.10891">Depth Anything: Unleashing the Power of Large-Scale Unlabeled Data</a> <br>From HKU &amp; TikTok. <br>CVPR 2024</p>
 </blockquote>
 <h2 id="Highlight"><a href="#Highlight" class="headerlink" title="Highlight"></a>Highlight</h2><ul>
-<li>文中提出同时考虑features，loss，和optimization三方面来解决deepfake detection的问题。</li>
-<li>使用解偶学习来提取人种和domain无关的防伪特征，并在一个平坦的loss平面上通过fuse他们来促进fair learning。（平坦的loss平面是使用了SAM优化器。文中提到的fair learning其实是cross domain的generalization的问题，换了种说法而已。）</li>
+<li>本文做的是用少量有标签数据和大规模无标签数据做一个有泛化性或者叫有scaling-up能力的深度估计模型。</li>
+<li>作者基于两个发现（1）直接结合有标签和打伪标签的数据进行训练并不能提升只用有标签数据训的基础模型的性能。作者认为这是因为以self-teaching的方式学到的信息是有限的。（2）之前的深度估计工作中引入了语义分割的辅助任务带来了涨点，作者发现当深度估计模型性能非常强的时候，这么做并不会继续带来涨点，这是由于把一张图像编码到一个离散的类别空间会带来很严重的信息损失。</li>
+<li>因此作者主要探索了两个策略，一个和是利用数据增强来构造一个更加具有挑战性的优化目标，迫使模型学习额外的视觉特征更加鲁棒的表征。<br>另一个是辅助监督，用于迫使模型从一个pretrained encoders（DINO-v2）里继承丰富的语义先验。</li>
 </ul>
-<p><img src="Comparison.jpg" alt="Comparison with existing deepfake detection baselines."></p>
-<h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><p><img src="overview.jpg" alt="An overview of our proposed method."></p>
+<p><img src="DepthAnythingPipeline.png" alt="图1. Depth Anything Pipeline."></p>
+<h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><ul>
+<li>为了使用多个数据集联合训练，作者设计了一个affine-invariant loss。</li>
+<li>如图2所示，对于每个样本，减去均值除以方差。论文中的公式写的是减去每个样本的中位数，除以的也不是等价于方差。</li>
+</ul>
+<p><img src="variantscale_loss.png" alt="图2. affine-invariant loss."></p>
 <ul>
-<li>A代表的是Domain Label，例如real, DeepFake，Face2Face等不同伪造的数据集。</li>
-<li>Y代表的是real / fake</li>
-<li>D代表的是人口统计变量，比如根据性别可以分为{male, female}两个subgroups。</li>
+<li>另外，为了强化Teacher模型从有标签数据的学习，作者使用了DINOv2的pretrain权重来初始化encoder。对于数据上，用一个预训练好的语义分割模型来将图像中的天空分割出来，然后将深度值设置为0（最远的）。</li>
+<li>然后用这个teacher模型给无标签数据打伪标签。</li>
+<li>另外不是从teacher的权重开始finetune一个student，而是从头训student。</li>
+<li>数据增强主要考虑两个，一个是color distortions，包括color jittering和gaussian blurring, 一个是CutMix。</li>
+<li>另外，作者还加了一个feature alignment loss来约束encoder学习到更具有语义性的特征。</li>
 </ul>
-<h3 id="人口统计特征-防伪特征"><a href="#人口统计特征-防伪特征" class="headerlink" title="人口统计特征 &amp; 防伪特征"></a>人口统计特征 &amp; 防伪特征</h3><ul>
-<li>输入的是fake + real的一对儿images；</li>
-<li>包含三个独立的encoders用来提取content特征 c(和图像背景相关？)， 防伪特征 f，人口统计特征 d。</li>
-<li>防伪特征f里同时包含和domain相关f_a的以及和domain无关的f_g，</li>
+<p><img src="L_feat.png" alt="图3. feature alignment loss."></p>
+<h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><p><img src="exps.png" alt="Experiments."></p>
+<h2 id="Thoughts"><a href="#Thoughts" class="headerlink" title="Thoughts"></a>Thoughts</h2><ul>
+<li>利用无标签数据，需要设计比pseudo label更难的任务来迫使模型学习，并且最好是使用一个有充分语义的pretrain来带来额外监督。DINOv2好像本身就具有较强的深度估计能力，换其他任务怎么选这个语义pretrain可能另有说法。</li>
 </ul>
-<h3 id="Classification-Loss"><a href="#Classification-Loss" class="headerlink" title="Classification Loss"></a>Classification Loss</h3><ul>
-<li>deepfake数据集有人口统计subgroup分布的不均衡问题，所以使用均衡的ditribution-aware margin loss来分类D。</li>
-<li>同时，L_cls还包含区分Y和A的两个CE loss。</li>
-</ul>
-<h3 id="Contrastive-Loss"><a href="#Contrastive-Loss" class="headerlink" title="Contrastive Loss"></a>Contrastive Loss</h3><ul>
-<li>用的是一个triplet loss L_con</li>
-<li>L_con用在f_a和f_g上。</li>
-</ul>
-<h3 id="Reconstruction-Loss"><a href="#Reconstruction-Loss" class="headerlink" title="Reconstruction Loss"></a>Reconstruction Loss</h3><ul>
-<li>L_rec = ||X_i - D(c_i, f_i, d_i)|| + ||X_i - D(c_i, f_i’, d_i)||</li>
-<li>根据输入图像的latent feature来重建，后者是根据partner的forgery特征来进行重建。</li>
-</ul>
-<p><img src="resc.jpg" alt="The architecture details of the decoder."></p>
-<h3 id="Fair-Learning-under-Generalization"><a href="#Fair-Learning-under-Generalization" class="headerlink" title="Fair Learning under Generalization"></a>Fair Learning under Generalization</h3><ul>
-<li>获得了domain无关的防伪特征和人口统计特征，将他们使用AdaIN结合起来, 融合后的特征I_i为：</li>
-</ul>
-<p>I_i = \delta(d_i) * ((f_g - \mu(f_g)) / \delta(f_g)) + \mu(d_i)</p>
-<ul>
-<li>\mu和\delta为在feature的spatial维度上计算的均值和标准差，即将f_g的style转换为d的。</li>
-</ul>
-<h3 id="Fairness-Learning"><a href="#Fairness-Learning" class="headerlink" title="Fairness Learning"></a>Fairness Learning</h3><ul>
-<li>作者提出了bi-level fairness loss在不同的subgroups之间提高公平性。</li>
-<li>文章说的有点复杂不好理解，简单理解就是把domain无关的防伪特征便成对应不同人口统计特征对应的domain下的特征，然后去分类。</li>
-</ul>
-<p><img src="fair_loss.jpg" alt="bi-level fairness loss."><br><img src="algo.jpg" alt="End-to-end Training Algorithm."></p>
-<h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><p><img src="results.jpg" alt="Ablation study of the loss constraints."></p>
 
                 
             </div>
@@ -528,8 +509,8 @@ Highlight
                     
                         <div class="article-tag">
                             
-                                <a href="../../../../../../tags/Deepfake-Detection/">
-                                    <span class="chip bg-color">Deepfake Detection</span>
+                                <a href="../../../../../../tags/Depth-Estimation/">
+                                    <span class="chip bg-color">Depth Estimation</span>
                                 </a>
                             
                         </div>
@@ -875,17 +856,18 @@ Highlight
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="../../../../29/computervision/deepcache/deepcache/">
+                <a href="">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../../../medias/featureimages/1.jpg" class="responsive-img" alt="DeepCache论文笔记">
+                        <img src="../../../../../../medias/featureimages/22.jpg" class="responsive-img" alt="DepthAnything论文笔记">
                         
-                        <span class="card-title">DeepCache论文笔记</span>
+                        <span class="card-title">DepthAnything论文笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -895,9 +877,59 @@ Highlight
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-02-29
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-06-11
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="../../../../../../categories/Computer-Vision/" class="post-category">
+                                    Computer Vision
+                                </a>
+                            
+                            
                         </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="../../../../../../tags/Depth-Estimation/">
+                        <span class="chip bg-color">Depth Estimation</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="../../../../../04/18/computervision/diffinstruct/diffinstruct/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="../../../../../../medias/featureimages/11.jpg" class="responsive-img" alt="Diff-Instruct论文笔记">
+                        
+                        <span class="card-title">Diff-Instruct论文笔记</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-04-18
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -913,65 +945,8 @@ Highlight
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../../../tags/UNet/">
-                        <span class="chip bg-color">UNet</span>
-                    </a>
-                    
-                    <a href="../../../../../../tags/Diffusion/">
-                        <span class="chip bg-color">Diffusion</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="../../../../24/computervision/timesformer/timesformer/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="../../../../../../medias/featureimages/0.jpg" class="responsive-img" alt="TimeSformer论文笔记">
-                        
-                        <span class="card-title">TimeSformer论文笔记</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-02-24
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="../../../../../../categories/Video-Recognition/" class="post-category">
-                                    Video Recognition
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="../../../../../../tags/Transformer/">
-                        <span class="chip bg-color">Transformer</span>
-                    </a>
-                    
-                    <a href="../../../../../../tags/Video-Recognition/">
-                        <span class="chip bg-color">Video Recognition</span>
+                    <a href="../../../../../../tags/Diffusion-Distillation/">
+                        <span class="chip bg-color">Diffusion Distillation</span>
                     </a>
                     
                 </div>
