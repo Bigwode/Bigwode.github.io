@@ -8,7 +8,7 @@
       <link href="/2024/06/11/computervision/depthanything/depthanything/"/>
       <url>/2024/06/11/computervision/depthanything/depthanything/</url>
       
-        <content type="html"><![CDATA[<blockquote><p>Title: <a href="https://arxiv.org/abs/2401.10891">Depth Anything: Unleashing the Power of Large-Scale Unlabeled Data</a> <br>From HKU &amp; TikTok. <br>CVPR 2024</p></blockquote><h2 id="Highlight"><a href="#Highlight" class="headerlink" title="Highlight"></a>Highlight</h2><ul><li>本文做的是用少量有标签数据和大规模无标签数据做一个有泛化性或者叫有scaling-up能力的深度估计模型。</li><li>作者基于两个发现（1）直接结合有标签和打伪标签的数据进行训练并不能提升只用有标签数据训的基础模型的性能。作者认为这是因为以self-teaching的方式学到的信息是有限的。（2）之前的深度估计工作中引入了语义分割的辅助任务带来了涨点，作者发现当深度估计模型性能非常强的时候，这么做并不会继续带来涨点，这是由于把一张图像编码到一个离散的类别空间会带来很严重的信息损失。</li><li>因此作者主要探索了两个策略，一个和是利用数据增强来构造一个更加具有挑战性的优化目标，迫使模型学习额外的视觉特征更加鲁棒的表征。<br>另一个是辅助监督，用于迫使模型从一个pretrained encoders（DINO-v2）里继承丰富的语义先验。</li></ul><p><img src="DepthAnythingPipeline.png" alt="图1. Depth Anything Pipeline."></p><h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><ul><li>为了使用多个数据集联合训练，作者设计了一个affine-invariant loss。</li><li>如图2所示，对于每个样本，减去均值除以方差。论文中的公式写的是减去每个样本的中位数，除以的也不是等价于方差。</li></ul><p><img src="variantscale_loss.png" alt="图2. affine-invariant loss."></p><ul><li>另外，为了强化Teacher模型从有标签数据的学习，作者使用了DINOv2的pretrain权重来初始化encoder。对于数据上，用一个预训练好的语义分割模型来将图像中的天空分割出来，然后将深度值设置为0（最远的）。</li><li>然后用这个teacher模型给无标签数据打伪标签。</li><li>另外不是从teacher的权重开始finetune一个student，而是从头训student。</li><li>数据增强主要考虑两个，一个是color distortions，包括color jittering和gaussian blurring, 一个是CutMix。</li><li>另外，作者还加了一个feature alignment loss来约束encoder学习到更具有语义性的特征。</li></ul><p><img src="L_feat.png" alt="图3. feature alignment loss."></p><h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><p><img src="exps.png" alt="Experiments."></p><h2 id="Thoughts"><a href="#Thoughts" class="headerlink" title="Thoughts"></a>Thoughts</h2><ul><li>利用无标签数据，需要设计比pseudo label更难的任务来迫使模型学习，并且最好是使用一个有充分语义的pretrain来带来额外监督。DINOv2好像本身就具有较强的深度估计能力，换其他任务怎么选这个语义pretrain可能另有说法。</li></ul>]]></content>
+        <content type="html"><![CDATA[<blockquote><p>Title: <a href="https://arxiv.org/abs/2401.10891">Depth Anything: Unleashing the Power of Large-Scale Unlabeled Data</a> <br>From HKU &amp; TikTok. <br>CVPR 2024</p></blockquote><h2 id="Highlight"><a href="#Highlight" class="headerlink" title="Highlight"></a>Highlight</h2><ul><li>本文做的是用少量有标签数据和大规模无标签数据做一个有泛化性或者叫有scaling-up能力的深度估计模型。</li><li>作者基于两个发现（1）直接结合有标签和打伪标签的数据进行训练并不能提升只用有标签数据训的基础模型的性能。作者认为这是因为以self-teaching的方式学到的信息是有限的。（2）之前的深度估计工作中引入了语义分割的辅助任务带来了涨点，作者发现当深度估计模型性能非常强的时候，这么做并不会继续带来涨点，这是由于把一张图像编码到一个离散的类别空间会带来很严重的信息损失。</li><li>因此作者主要探索了两个策略，一个和是利用数据增强来构造一个更加具有挑战性的优化目标，迫使模型学习额外的视觉特征更加鲁棒的表征。另一个是辅助监督，用于迫使模型从一个pretrained encoders（DINO-v2）里继承丰富的语义先验。</li></ul><p><img src="DepthAnythingPipeline.png" alt="图1. Depth Anything Pipeline."></p><h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><ul><li>为了使用多个数据集联合训练，作者设计了一个affine-invariant loss。</li><li>如图2所示，对于每个样本，减去均值除以方差。论文中的公式写的是减去每个样本的中位数，除以的也不是等价于方差。可能差别不大。</li></ul><p><img src="variantscale_loss.png" alt="图2. affine-invariant loss."></p><img src="variantscale_loss.png" alt="图2. affine-invariant loss." width="50%"><ul><li>另外，为了强化Teacher模型从有标签数据的学习，作者使用了DINOv2的pretrain权重来初始化encoder。对于数据上，用一个预训练好的语义分割模型来将图像中的天空分割出来，然后将深度值设置为0（最远的）。</li><li>然后用这个teacher模型给无标签数据打伪标签。</li><li>另外不是从teacher的权重开始finetune一个student，而是从头训student。</li><li>数据增强主要考虑两个，一个是color distortions，包括color jittering和gaussian blurring, 一个是CutMix。</li><li>另外，作者还加了一个feature alignment loss来约束encoder学习到更具有语义性的特征。</li></ul><p><img src="L_feat.png" alt="图3. feature alignment loss."></p><h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><p><img src="exps.png" alt="Experiments."></p><h2 id="Thoughts"><a href="#Thoughts" class="headerlink" title="Thoughts"></a>Thoughts</h2><ul><li>利用无标签数据，需要设计比pseudo label更难的任务来迫使模型学习，并且最好是使用一个有充分语义的pretrain来带来额外监督。DINOv2好像本身就具有较强的深度估计能力，换其他任务怎么选这个语义pretrain可能另有说法。</li></ul>]]></content>
       
       
       <categories>
@@ -122,9 +122,9 @@
       
         <tags>
             
-            <tag> Diffusion Distillation </tag>
-            
             <tag> UNet </tag>
+            
+            <tag> Diffusion Distillation </tag>
             
         </tags>
       
@@ -232,9 +232,9 @@
             
             <tag> Diffusion </tag>
             
-            <tag> Score-based model </tag>
-            
             <tag> Consistency Models </tag>
+            
+            <tag> Score-based model </tag>
             
         </tags>
       
@@ -259,9 +259,9 @@
       
         <tags>
             
-            <tag> UNet </tag>
-            
             <tag> Diffusion </tag>
+            
+            <tag> UNet </tag>
             
         </tags>
       
@@ -421,9 +421,9 @@
             
             <tag> Diffusion </tag>
             
-            <tag> Transformer </tag>
-            
             <tag> Video Generation </tag>
+            
+            <tag> Transformer </tag>
             
             <tag> Sora </tag>
             
