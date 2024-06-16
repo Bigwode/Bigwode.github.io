@@ -4,7 +4,7 @@
   
     
     <entry>
-      <title>DepthAnythingV2论文笔记</title>
+      <title>DepthAnything论文笔记</title>
       <link href="/2024/06/16/computervision/depthanything/depthanything/"/>
       <url>/2024/06/16/computervision/depthanything/depthanything/</url>
       
@@ -29,7 +29,7 @@
     
     
     <entry>
-      <title>DepthAnything论文笔记</title>
+      <title>DepthAnything V2论文笔记</title>
       <link href="/2024/06/11/computervision/depthanythingv2/depthanythingv2/"/>
       <url>/2024/06/11/computervision/depthanythingv2/depthanythingv2/</url>
       
@@ -147,9 +147,9 @@
       
         <tags>
             
-            <tag> Diffusion Distillation </tag>
-            
             <tag> UNet </tag>
+            
+            <tag> Diffusion Distillation </tag>
             
         </tags>
       
@@ -255,9 +255,9 @@
       
         <tags>
             
-            <tag> Consistency Models </tag>
-            
             <tag> Diffusion </tag>
+            
+            <tag> Consistency Models </tag>
             
             <tag> Score-based model </tag>
             
@@ -284,9 +284,9 @@
       
         <tags>
             
-            <tag> UNet </tag>
-            
             <tag> Diffusion </tag>
+            
+            <tag> UNet </tag>
             
         </tags>
       

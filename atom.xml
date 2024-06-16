@@ -6,7 +6,7 @@
   <link href="https://bigwode.github.io/atom.xml" rel="self"/>
   
   <link href="https://bigwode.github.io/"/>
-  <updated>2024-06-16T07:25:48.473Z</updated>
+  <updated>2024-06-16T08:25:01.538Z</updated>
   <id>https://bigwode.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>DepthAnythingV2论文笔记</title>
+    <title>DepthAnything论文笔记</title>
     <link href="https://bigwode.github.io/2024/06/16/computervision/depthanything/depthanything/"/>
     <id>https://bigwode.github.io/2024/06/16/computervision/depthanything/depthanything/</id>
     <published>2024-06-16T07:24:01.000Z</published>
-    <updated>2024-06-16T07:25:48.473Z</updated>
+    <updated>2024-06-16T08:25:01.538Z</updated>
     
     
       
@@ -43,11 +43,11 @@
   </entry>
   
   <entry>
-    <title>DepthAnything论文笔记</title>
+    <title>DepthAnything V2论文笔记</title>
     <link href="https://bigwode.github.io/2024/06/11/computervision/depthanythingv2/depthanythingv2/"/>
     <id>https://bigwode.github.io/2024/06/11/computervision/depthanythingv2/depthanythingv2/</id>
     <published>2024-06-11T01:03:01.000Z</published>
-    <updated>2024-06-16T08:23:02.572Z</updated>
+    <updated>2024-06-16T08:24:51.115Z</updated>
     
     
       
@@ -170,9 +170,9 @@
     <category term="Image Generation" scheme="https://bigwode.github.io/categories/Image-Generation/"/>
     
     
-    <category term="Diffusion Distillation" scheme="https://bigwode.github.io/tags/Diffusion-Distillation/"/>
-    
     <category term="UNet" scheme="https://bigwode.github.io/tags/UNet/"/>
+    
+    <category term="Diffusion Distillation" scheme="https://bigwode.github.io/tags/Diffusion-Distillation/"/>
     
   </entry>
   
@@ -282,9 +282,9 @@
     <category term="Image Generation" scheme="https://bigwode.github.io/categories/Image-Generation/"/>
     
     
-    <category term="Consistency Models" scheme="https://bigwode.github.io/tags/Consistency-Models/"/>
-    
     <category term="Diffusion" scheme="https://bigwode.github.io/tags/Diffusion/"/>
+    
+    <category term="Consistency Models" scheme="https://bigwode.github.io/tags/Consistency-Models/"/>
     
     <category term="Score-based model" scheme="https://bigwode.github.io/tags/Score-based-model/"/>
     
@@ -312,9 +312,9 @@
     <category term="Image Generation" scheme="https://bigwode.github.io/categories/Image-Generation/"/>
     
     
-    <category term="UNet" scheme="https://bigwode.github.io/tags/UNet/"/>
-    
     <category term="Diffusion" scheme="https://bigwode.github.io/tags/Diffusion/"/>
+    
+    <category term="UNet" scheme="https://bigwode.github.io/tags/UNet/"/>
     
   </entry>
   
