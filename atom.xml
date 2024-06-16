@@ -47,7 +47,7 @@
     <link href="https://bigwode.github.io/2024/06/11/computervision/depthanythingv2/depthanythingv2/"/>
     <id>https://bigwode.github.io/2024/06/11/computervision/depthanythingv2/depthanythingv2/</id>
     <published>2024-06-11T01:03:01.000Z</published>
-    <updated>2024-06-16T08:26:31.049Z</updated>
+    <updated>2024-06-16T08:37:03.516Z</updated>
     
     
       
@@ -55,7 +55,7 @@
         
         
     <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;Title: &lt;a href=&quot;https://arxiv.org/abs/2406.09414&quot;&gt;Depth Anything: Unleashing the Power of Large-Scale Unlabeled Data&lt;/a&gt;</summary>
+&lt;p&gt;Title: &lt;a href=&quot;https://arxiv.org/abs/2406.09414&quot;&gt;Depth Anything V2&lt;/a&gt; &lt;br&gt;From HKU &amp;amp; TikTok. &lt;br&gt;ArXiv</summary>
         
       
     
@@ -282,11 +282,11 @@
     <category term="Image Generation" scheme="https://bigwode.github.io/categories/Image-Generation/"/>
     
     
+    <category term="Consistency Models" scheme="https://bigwode.github.io/tags/Consistency-Models/"/>
+    
     <category term="Diffusion" scheme="https://bigwode.github.io/tags/Diffusion/"/>
     
     <category term="Score-based model" scheme="https://bigwode.github.io/tags/Score-based-model/"/>
-    
-    <category term="Consistency Models" scheme="https://bigwode.github.io/tags/Consistency-Models/"/>
     
   </entry>
   
@@ -366,9 +366,9 @@
     <category term="Video Recognition" scheme="https://bigwode.github.io/categories/Video-Recognition/"/>
     
     
-    <category term="Video Recognition" scheme="https://bigwode.github.io/tags/Video-Recognition/"/>
-    
     <category term="Transformer" scheme="https://bigwode.github.io/tags/Transformer/"/>
+    
+    <category term="Video Recognition" scheme="https://bigwode.github.io/tags/Video-Recognition/"/>
     
   </entry>
   

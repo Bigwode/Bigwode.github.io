@@ -33,7 +33,7 @@
       <link href="/2024/06/11/computervision/depthanythingv2/depthanythingv2/"/>
       <url>/2024/06/11/computervision/depthanythingv2/depthanythingv2/</url>
       
-        <content type="html"><![CDATA[<blockquote><p>Title: <a href="https://arxiv.org/abs/2406.09414">Depth Anything: Unleashing the Power of Large-Scale Unlabeled Data</a> <br>From HKU &amp; TikTok. <br>ArXiv 2024.06.13</p></blockquote><h2 id="Highlight"><a href="#Highlight" class="headerlink" title="Highlight"></a>Highlight</h2><ul><li>本文从分析最近的两个深度估计的工作Depth Aynthing V1和Diffusion-based深度估计工作Marigold的性能对比来总结各自的优缺点，然后提出改进方向。</li><li>如图1所示，作者发现Depth Anything V1对细节估计效果差一些，而Marigold对于一些复杂场景的预测效果会差一点。</li><li>作者提出导致这两个问题的根源不是由于模型本身的差异，而是训练数据。</li></ul><p><img src="Preferable_properties.jpg" alt="图1. Preferable Properties."></p><h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><ul><li>方法分为三步</li><li>（1）只使用合成数据来训练largest teacher模型，因为合成数据的深度信息准确度是非常高的，但是缺点就是和真实数据有一定domain gap。</li><li>（2）因此，第二步是在大规模真实数据上使用largest teacher打伪标签。</li><li>（3）第三步是在pseudo-labeled real images 上训student model。</li></ul><p><img src="DepthAnythingV2.jpg" alt="图2. DepthAnything V2."></p><ul><li><p>loss上使用的是scale and shift-invariant loss $L_{ssi}$ and a gradient matching loss $L_{gm}$. 并且忽略了top-n(10%)-largest regions.</p></li><li><p>不过文章并没有说明，第二步打的伪标签是准确的，因为毕竟第一步说了和真实数据有domain gap，那么打的伪标签也有这个问题的话对第三步影响岂不是很大？</p></li></ul><h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><p><img src="performance.jpg" alt="Experiments."></p><h2 id="Thoughts"><a href="#Thoughts" class="headerlink" title="Thoughts"></a>Thoughts</h2><ul><li>如何缩小合成数据和真实数据之间的domain gap。</li></ul>]]></content>
+        <content type="html"><![CDATA[<blockquote><p>Title: <a href="https://arxiv.org/abs/2406.09414">Depth Anything V2</a> <br>From HKU &amp; TikTok. <br>ArXiv 2024.06.13</p></blockquote><h2 id="Highlight"><a href="#Highlight" class="headerlink" title="Highlight"></a>Highlight</h2><ul><li>本文从分析最近的两个深度估计的工作Depth Aynthing V1和Diffusion-based深度估计工作Marigold的性能对比来总结各自的优缺点，然后提出改进方向。</li><li>如图1所示，作者发现Depth Anything V1对细节估计效果差一些，而Marigold对于一些复杂场景的预测效果会差一点。</li><li>作者提出导致这两个问题的根源不是由于模型本身的差异，而是训练数据。</li></ul><p><img src="Preferable_properties.jpg" alt="图1. Preferable Properties."></p><h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><ul><li>方法分为三步</li><li>（1）只使用合成数据来训练largest teacher模型，因为合成数据的深度信息准确度是非常高的，但是缺点就是和真实数据有一定domain gap。</li><li>（2）因此，第二步是在大规模真实数据上使用largest teacher打伪标签。</li><li>（3）第三步是在pseudo-labeled real images 上训student model。</li></ul><p><img src="DepthAnythingV2.jpg" alt="图2. DepthAnything V2."></p><ul><li><p>loss上使用的是scale and shift-invariant loss $L_{ssi}$ and a gradient matching loss $L_{gm}$. 并且忽略了top-n(10%)-largest regions.</p></li><li><p>不过文章并没有说明，第二步打的伪标签是准确的，因为毕竟第一步说了和真实数据有domain gap，那么打的伪标签也有这个问题的话对第三步影响岂不是很大？</p></li></ul><h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><p><img src="performance.jpg" alt="Experiments."></p><h2 id="Thoughts"><a href="#Thoughts" class="headerlink" title="Thoughts"></a>Thoughts</h2><ul><li>如何缩小合成数据和真实数据之间的domain gap。</li></ul>]]></content>
       
       
       <categories>
@@ -255,11 +255,11 @@
       
         <tags>
             
+            <tag> Consistency Models </tag>
+            
             <tag> Diffusion </tag>
             
             <tag> Score-based model </tag>
-            
-            <tag> Consistency Models </tag>
             
         </tags>
       
@@ -336,9 +336,9 @@
       
         <tags>
             
-            <tag> Video Recognition </tag>
-            
             <tag> Transformer </tag>
+            
+            <tag> Video Recognition </tag>
             
         </tags>
       
