@@ -6,7 +6,7 @@
   <link href="https://bigwode.github.io/atom.xml" rel="self"/>
   
   <link href="https://bigwode.github.io/"/>
-  <updated>2024-06-11T01:49:50.575Z</updated>
+  <updated>2024-06-16T07:25:48.473Z</updated>
   <id>https://bigwode.github.io/</id>
   
   <author>
@@ -17,11 +17,37 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>DepthAnythingV2论文笔记</title>
+    <link href="https://bigwode.github.io/2024/06/16/computervision/depthanything/depthanything/"/>
+    <id>https://bigwode.github.io/2024/06/16/computervision/depthanything/depthanything/</id>
+    <published>2024-06-16T07:24:01.000Z</published>
+    <updated>2024-06-16T07:25:48.473Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Title: &lt;a href=&quot;https://arxiv.org/abs/2406.09414&quot;&gt;DepthAnythingV2&lt;/a&gt; &lt;br&gt;From HKU &amp;amp; TikTok. &lt;br&gt;ArXiv</summary>
+        
+      
+    
+    
+    
+    <category term="Computer Vision" scheme="https://bigwode.github.io/categories/Computer-Vision/"/>
+    
+    
+    <category term="Depth Estimation" scheme="https://bigwode.github.io/tags/Depth-Estimation/"/>
+    
+  </entry>
+  
+  <entry>
     <title>DepthAnything论文笔记</title>
-    <link href="https://bigwode.github.io/2024/06/11/computervision/depthanything/depthanything/"/>
-    <id>https://bigwode.github.io/2024/06/11/computervision/depthanything/depthanything/</id>
+    <link href="https://bigwode.github.io/2024/06/11/computervision/depthanythingv2/depthanythingv2/"/>
+    <id>https://bigwode.github.io/2024/06/11/computervision/depthanythingv2/depthanythingv2/</id>
     <published>2024-06-11T01:03:01.000Z</published>
-    <updated>2024-06-11T01:49:50.575Z</updated>
+    <updated>2024-06-16T08:23:02.572Z</updated>
     
     
       
@@ -256,11 +282,11 @@
     <category term="Image Generation" scheme="https://bigwode.github.io/categories/Image-Generation/"/>
     
     
+    <category term="Consistency Models" scheme="https://bigwode.github.io/tags/Consistency-Models/"/>
+    
     <category term="Diffusion" scheme="https://bigwode.github.io/tags/Diffusion/"/>
     
     <category term="Score-based model" scheme="https://bigwode.github.io/tags/Score-based-model/"/>
-    
-    <category term="Consistency Models" scheme="https://bigwode.github.io/tags/Consistency-Models/"/>
     
   </entry>
   
@@ -550,28 +576,6 @@
     <category term="Python" scheme="https://bigwode.github.io/tags/Python/"/>
     
     <category term="字符串" scheme="https://bigwode.github.io/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>欢迎</title>
-    <link href="https://bigwode.github.io/2024/01/21/hello-world/"/>
-    <id>https://bigwode.github.io/2024/01/21/hello-world/</id>
-    <published>2024-01-21T05:46:16.953Z</published>
-    <updated>2024-02-17T13:02:43.880Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;欢迎来到一只猪的圈。&lt;/p&gt;
-&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;持续学习&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
     
   </entry>
   
