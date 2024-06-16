@@ -6,7 +6,7 @@
   <link href="https://bigwode.github.io/atom.xml" rel="self"/>
   
   <link href="https://bigwode.github.io/"/>
-  <updated>2024-06-16T08:25:01.538Z</updated>
+  <updated>2024-06-16T08:26:06.607Z</updated>
   <id>https://bigwode.github.io/</id>
   
   <author>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>DepthAnything论文笔记</title>
-    <link href="https://bigwode.github.io/2024/06/16/computervision/depthanything/depthanything/"/>
-    <id>https://bigwode.github.io/2024/06/16/computervision/depthanything/depthanything/</id>
-    <published>2024-06-16T07:24:01.000Z</published>
-    <updated>2024-06-16T08:25:01.538Z</updated>
+    <link href="https://bigwode.github.io/2024/06/11/computervision/depthanything/depthanything/"/>
+    <id>https://bigwode.github.io/2024/06/11/computervision/depthanything/depthanything/</id>
+    <published>2024-06-11T01:03:01.000Z</published>
+    <updated>2024-06-16T08:26:06.607Z</updated>
     
     
       
@@ -29,7 +29,7 @@
         
         
     <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;Title: &lt;a href=&quot;https://arxiv.org/abs/2406.09414&quot;&gt;DepthAnythingV2&lt;/a&gt; &lt;br&gt;From HKU &amp;amp; TikTok. &lt;br&gt;ArXiv</summary>
+&lt;p&gt;Title: &lt;a href=&quot;https://arxiv.org/abs/2401.10891&quot;&gt;Depth Anything: Unleashing the Power of Large-Scale Unlabeled Data&lt;/a&gt;</summary>
         
       
     
@@ -47,7 +47,7 @@
     <link href="https://bigwode.github.io/2024/06/11/computervision/depthanythingv2/depthanythingv2/"/>
     <id>https://bigwode.github.io/2024/06/11/computervision/depthanythingv2/depthanythingv2/</id>
     <published>2024-06-11T01:03:01.000Z</published>
-    <updated>2024-06-16T08:24:51.115Z</updated>
+    <updated>2024-06-16T08:26:31.049Z</updated>
     
     
       
@@ -55,7 +55,7 @@
         
         
     <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;Title: &lt;a href=&quot;https://arxiv.org/abs/2401.10891&quot;&gt;Depth Anything: Unleashing the Power of Large-Scale Unlabeled Data&lt;/a&gt;</summary>
+&lt;p&gt;Title: &lt;a href=&quot;https://arxiv.org/abs/2406.09414&quot;&gt;Depth Anything: Unleashing the Power of Large-Scale Unlabeled Data&lt;/a&gt;</summary>
         
       
     
@@ -170,9 +170,9 @@
     <category term="Image Generation" scheme="https://bigwode.github.io/categories/Image-Generation/"/>
     
     
-    <category term="UNet" scheme="https://bigwode.github.io/tags/UNet/"/>
-    
     <category term="Diffusion Distillation" scheme="https://bigwode.github.io/tags/Diffusion-Distillation/"/>
+    
+    <category term="UNet" scheme="https://bigwode.github.io/tags/UNet/"/>
     
   </entry>
   
@@ -284,9 +284,9 @@
     
     <category term="Diffusion" scheme="https://bigwode.github.io/tags/Diffusion/"/>
     
-    <category term="Consistency Models" scheme="https://bigwode.github.io/tags/Consistency-Models/"/>
-    
     <category term="Score-based model" scheme="https://bigwode.github.io/tags/Score-based-model/"/>
+    
+    <category term="Consistency Models" scheme="https://bigwode.github.io/tags/Consistency-Models/"/>
     
   </entry>
   
@@ -312,9 +312,9 @@
     <category term="Image Generation" scheme="https://bigwode.github.io/categories/Image-Generation/"/>
     
     
-    <category term="Diffusion" scheme="https://bigwode.github.io/tags/Diffusion/"/>
-    
     <category term="UNet" scheme="https://bigwode.github.io/tags/UNet/"/>
+    
+    <category term="Diffusion" scheme="https://bigwode.github.io/tags/Diffusion/"/>
     
   </entry>
   
@@ -366,9 +366,9 @@
     <category term="Video Recognition" scheme="https://bigwode.github.io/categories/Video-Recognition/"/>
     
     
-    <category term="Transformer" scheme="https://bigwode.github.io/tags/Transformer/"/>
-    
     <category term="Video Recognition" scheme="https://bigwode.github.io/tags/Video-Recognition/"/>
+    
+    <category term="Transformer" scheme="https://bigwode.github.io/tags/Transformer/"/>
     
   </entry>
   
