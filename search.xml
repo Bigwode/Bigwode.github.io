@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>MAR 论文笔记</title>
+      <link href="/2024/06/22/computervision/mar/mar/"/>
+      <url>/2024/06/22/computervision/mar/mar/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>Title: <a href="https://arxiv.org/abs/2406.11838">Autoregressive Image Generation without Vector Quantization</a> <br>From MIT. <br>ArXiv 2024.06.17</p></blockquote><h2 id="Highlight"><a href="#Highlight" class="headerlink" title="Highlight"></a>Highlight</h2><ul><li><p>作者认为自回归图像生成模型中用到的vector-quantized tokens限制了模型性能，因为离散化的空间更便于表示类别分布，但是对于图像像素级别的自回归建模是不必要的。</p></li><li><p>因此作者提出使用diffusion过程来建模每一个token的概率分布，这样可以在自回归模型中使用连续值空间，另外定义了一个扩散loss来建模每个token的概率。</p></li><li><p>另外作者想从一个统一的自回归视角去看mask generative models. 即在一个随机顺序下同时预测多个tokens。</p></li></ul><p><img src="Diffusion_Loss.png" alt="图1. Diffusion Loss."></p><h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><ul><li><p>如图1所示，整体上是想预测每个token的概率分布，想要预测x，但不直接预测x，而是用预测值z当condition来去噪x，达到建模x分布的作用。</p></li><li><p>这里为什么直接自回归x不行啊，比如用mse训？</p></li><li><p>温度T在自回归任务中很重要，因为控制着样本的多样性，所以作者在这里也对噪声通过T rescale了一下。不知道scale noise 在常规的diffusion模型训练中是否会有用？</p></li></ul><p><img src="Generalized_AM.png" alt="图2. Generalized Autoregressive Models."></p><h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><p><img src="results.png" alt="图3. Results."></p><h2 id="Thoughts"><a href="#Thoughts" class="headerlink" title="Thoughts"></a>Thoughts</h2><ul><li>Diffusion可以作为一种建模数据分布的方式看起来可以作为一个小的模块来灵活使用。</li><li>文章没说明在baseline基础上将Vector Quantization改为连续的为什么效果不好，Diffusion来建模效果就好了。</li><li>或者有其他的比diffusion建模数据分布更好的方式。</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Computer Vision </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Diffusion </tag>
+            
+            <tag> Image Generation </tag>
+            
+            <tag> AutoRegressive </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>DepthAnything论文笔记</title>
       <link href="/2024/06/11/computervision/depthanything/depthanything/"/>
       <url>/2024/06/11/computervision/depthanything/depthanything/</url>
@@ -147,9 +176,9 @@
       
         <tags>
             
-            <tag> Diffusion Distillation </tag>
-            
             <tag> UNet </tag>
+            
+            <tag> Diffusion Distillation </tag>
             
         </tags>
       
@@ -255,11 +284,11 @@
       
         <tags>
             
-            <tag> Consistency Models </tag>
-            
             <tag> Diffusion </tag>
             
             <tag> Score-based model </tag>
+            
+            <tag> Consistency Models </tag>
             
         </tags>
       
@@ -284,9 +313,9 @@
       
         <tags>
             
-            <tag> UNet </tag>
-            
             <tag> Diffusion </tag>
+            
+            <tag> UNet </tag>
             
         </tags>
       
@@ -502,9 +531,9 @@
       
         <tags>
             
-            <tag> Computer Vision </tag>
-            
             <tag> Image Generation </tag>
+            
+            <tag> Computer Vision </tag>
             
             <tag> GAN </tag>
             

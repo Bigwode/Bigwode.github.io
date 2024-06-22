@@ -4,12 +4,12 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="SDXS论文笔记, 认养一只猪">
+    <meta name="keywords" content="MAR 论文笔记, 认养一只猪">
     <meta name="description" content="
-Title: SDXS: Real-Time One-Step Latent Diffusion Models with Image Conditions From Xiaomi Inc. ArXiv 20240325
+Title: Autoregressive Image Generation without Vector Quantization From MIT. ArXiv 2024.06.17
 
-
-Highlig">
+Highlight
+作者认为自回归图像生成模型中">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +21,7 @@ Highlig">
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>SDXS论文笔记 | 认养一只猪</title>
+    <title>MAR 论文笔记 | 认养一只猪</title>
     <link rel="icon" type="image/png" href="../../../../../../favicon.png">
     
 
@@ -341,12 +341,12 @@ Highlig">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../../../medias/featureimages/19.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../../../medias/featureimages/3.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">SDXS论文笔记</h1>
+                    <h1 class="description center-align post-title">MAR 论文笔记</h1>
                 </div>
             </div>
         </div>
@@ -370,12 +370,16 @@ Highlig">
                     
                     <div class="article-tag">
                         
-                            <a href="../../../../../../tags/Diffusion-Distillation/">
-                                <span class="chip bg-color">Diffusion Distillation</span>
+                            <a href="../../../../../../tags/Diffusion/">
+                                <span class="chip bg-color">Diffusion</span>
                             </a>
                         
-                            <a href="../../../../../../tags/Stable-Diffusion/">
-                                <span class="chip bg-color">Stable Diffusion</span>
+                            <a href="../../../../../../tags/Image-Generation/">
+                                <span class="chip bg-color">Image Generation</span>
+                            </a>
+                        
+                            <a href="../../../../../../tags/AutoRegressive/">
+                                <span class="chip bg-color">AutoRegressive</span>
                             </a>
                         
                     </div>
@@ -386,8 +390,8 @@ Highlig">
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="../../../../../../categories/Image-Generation/" class="post-category">
-                                Image Generation
+                            <a href="../../../../../../categories/Computer-Vision/" class="post-category">
+                                Computer Vision
                             </a>
                         
                     </div>
@@ -399,7 +403,7 @@ Highlig">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-04-02
+                    2024-06-22
                 </div>
                 
 
@@ -424,53 +428,31 @@ Highlig">
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <blockquote>
-<p><strong>Title: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2403.16627">SDXS: Real-Time One-Step Latent Diffusion Models with Image Conditions</a></strong> <br><strong>From Xiaomi Inc.</strong> <br><strong>ArXiv 20240325</strong></p>
+<p>Title: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2406.11838">Autoregressive Image Generation without Vector Quantization</a> <br>From MIT. <br>ArXiv 2024.06.17</p>
 </blockquote>
-<p><img src="SDXS.png" alt="图1. SDXS生成图展示."></p>
 <h2 id="Highlight"><a href="#Highlight" class="headerlink" title="Highlight"></a>Highlight</h2><ul>
-<li>作者提出了一个同时做diffusion模型轻量化和采样步数压缩的框架SDXS。</li>
-<li>该框架可以一步生成图像并且可以很好的迁移到image-conditioned ControlNet的训练中。</li>
-<li>对于模型压缩部分，主要关注于VAE的decoder和UNet的压缩，因为这两块占据的资源消耗是最多的。</li>
-<li>对于采样步数压缩部分，使用feature matching loss来代替蒸馏loss，<br>并且进一步地，扩展了Diff-Instruct训练策略，在timestep的后半部分，使用了feature matching loss的梯度来代替score distillation的梯度</li>
-</ul>
-<p><img src="Network_architecture_distillation.png" alt="图2. Network architecture distillation."></p>
-<p><img src="LatencyComparison.png" alt="图3. Latency Comparison."></p>
-<h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><h3 id="Diff-Instruct"><a href="#Diff-Instruct" class="headerlink" title="Diff-Instruct"></a>Diff-Instruct</h3><ul>
-<li>这一部分的基础知识可以参考对<a href="https://bigwode.github.io/2024/03/21/computervision/swiftbrush/swiftbrush/">DreamFusion</a>中的介绍。</li>
-</ul>
-<h3 id="Architecture-Optimizations"><a href="#Architecture-Optimizations" class="headerlink" title="Architecture Optimizations"></a>Architecture Optimizations</h3><ul>
-<li>对VAE decoder的压缩是结合了output distillation loss和GAN loss来训练一个轻量化的image decoder来模仿原始的VAE decoder的输出。如公式1所示，G()是我要训练的tiny decoder，x是原始的decoder出来的图像，下采样了8倍计算的L1 loss, 说是为了减少冗余。使用的是一些包含残差块和上采样层的纯CNN结构。</li>
-</ul>
-<p><img src="L_VD.png" alt="公式1. L_VD."></p>
-<ul>
-<li><p>对于UNet，使用的是同时监督输出的OKD损失和监督中间层特征的FKD损失。如公式2所示。作者没有对其加原始的去噪损失。<br><img src="L_OKD.png" alt="公式2. L_OKD."></p>
+<li><p>作者认为自回归图像生成模型中用到的vector-quantized tokens限制了模型性能，因为离散化的空间更便于表示类别分布，但是对于图像像素级别的自回归建模是不必要的。</p>
 </li>
-<li><p>借鉴了block removal distillation策略，移除了对latency贡献最多的几个模块。比如，对于SD-2.1 base来说，去掉了middle stage，downsampling stage的最后一个stage，和upsampling的第一个stage，去除了最高分辨率stage的所有Transformer结构。</p>
+<li><p>因此作者提出使用diffusion过程来建模每一个token的概率分布，这样可以在自回归模型中使用连续值空间，另外定义了一个扩散loss来建模每个token的概率。</p>
 </li>
-<li><p>对于ontrolNet的蒸馏，也是蒸馏了UNet中间特征层和最终的输出, 考虑到ControlNet不影响原始的UNet encoder的特征层，所以特征蒸馏只是在UNet的decoder上去做的。</p>
+<li><p>另外作者想从一个统一的自回归视角去看mask generative models. 即在一个随机顺序下同时预测多个tokens。</p>
 </li>
 </ul>
-<h3 id="One-Step-Training"><a href="#One-Step-Training" class="headerlink" title="One-Step Training"></a>One-Step Training</h3><ul>
-<li>Feature Matching Warmup.</li>
-<li>这里借鉴了ReFlow的思想来讲故事，不过使用的是一个叫加权版SSIM的FM损失，如公式3所示。<br><img src="L_FM.png" alt="公式3. L_FM."></li>
-<li>约束tiny unet生成的图像和原始的UNet使用ODE采样器生成的图像两个过encoder $f_{\theta}$ 在不同层上的特征的SSIM一致，不过作者使用FM损失只是用于warmup少量的训练steps。</li>
-</ul>
-<h3 id="Segmented-Diff-Instruct"><a href="#Segmented-Diff-Instruct" class="headerlink" title="Segmented Diff-Instruct."></a>Segmented Diff-Instruct.</h3><ul>
-<li><p>虽然feature matching loss可以生成清晰的图像，但是毕竟还不是直接和真实分布的匹配关系，所以只能用来当初始化。</p>
+<p><img src="Diffusion_Loss.png" alt="图1. Diffusion Loss."></p>
+<h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><ul>
+<li><p>如图1所示，整体上是想预测每个token的概率分布，想要预测x，但不直接预测x，而是用预测值z当condition来去噪x，达到建模x分布的作用。</p>
 </li>
-<li><p>所以借鉴Diff-Instruct来匹配模型输出的分布。</p>
+<li><p>这里为什么直接自回归x不行啊，比如用mse训？</p>
 </li>
-<li><p>作者发现在采样轨迹是corse to fine的，t-&gt;T，score function提供了低频信息的梯度，t-&gt;0，提供的是高频信息的梯度。因此作者把采样过程分成了两部分，[0, \alpha T]和(\alpha T, T]，后者使用L_FM来代替，因为它可以提供足够多的低频信息。* 随着训练过程，逐渐降低FM损失的权重。</p>
+<li><p>温度T在自回归任务中很重要，因为控制着样本的多样性，所以作者在这里也对噪声通过T rescale了一下。不知道scale noise 在常规的diffusion模型训练中是否会有用？</p>
 </li>
 </ul>
-<p><img src="L_IKL.png" alt="公式4. L_IKL."></p>
-<p><img src="one-step_U-Net_training_strategy.png" alt="图4. one-step U-Net training strategy."></p>
-<ul>
-<li>实际中，online DM和student DM是交替训练的，并且在训练的中间阶段，将teacher DM 从预训练模型切换为经过训练的小型化一步模型本身，进一步减少了训练开销。</li>
-</ul>
-<p><img src="Performace.png" alt="图5. Performace."></p>
+<p><img src="Generalized_AM.png" alt="图2. Generalized Autoregressive Models."></p>
+<h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><p><img src="results.png" alt="图3. Results."></p>
 <h2 id="Thoughts"><a href="#Thoughts" class="headerlink" title="Thoughts"></a>Thoughts</h2><ul>
-<li>DM蒸馏框架envolve的模型太多，蒸馏的过程显得很臃肿。不直接对Student DM使用去噪损失L_DM，而是把student模型生成的图像加噪后过Online DM和Offline DM算IKL损失和DM损失，反传梯度给student DM。这样做为什么会比直接对student算DM损失效果好？Online DM是必须的吗？</li>
+<li>Diffusion可以作为一种建模数据分布的方式看起来可以作为一个小的模块来灵活使用。</li>
+<li>文章没说明在baseline基础上将Vector Quantization改为连续的为什么效果不好，Diffusion来建模效果就好了。</li>
+<li>或者有其他的比diffusion建模数据分布更好的方式。</li>
 </ul>
 
                 
@@ -536,12 +518,16 @@ Highlig">
                     
                         <div class="article-tag">
                             
-                                <a href="../../../../../../tags/Diffusion-Distillation/">
-                                    <span class="chip bg-color">Diffusion Distillation</span>
+                                <a href="../../../../../../tags/Diffusion/">
+                                    <span class="chip bg-color">Diffusion</span>
                                 </a>
                             
-                                <a href="../../../../../../tags/Stable-Diffusion/">
-                                    <span class="chip bg-color">Stable Diffusion</span>
+                                <a href="../../../../../../tags/Image-Generation/">
+                                    <span class="chip bg-color">Image Generation</span>
+                                </a>
+                            
+                                <a href="../../../../../../tags/AutoRegressive/">
+                                    <span class="chip bg-color">AutoRegressive</span>
                                 </a>
                             
                         </div>
@@ -887,17 +873,18 @@ Highlig">
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="../../../../07/computervision/var/var/">
+                <a href="">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../../../medias/featureimages/16.jpg" class="responsive-img" alt="VAR论文笔记">
+                        <img src="../../../../../../medias/featureimages/3.jpg" class="responsive-img" alt="MAR 论文笔记">
                         
-                        <span class="card-title">VAR论文笔记</span>
+                        <span class="card-title">MAR 论文笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -907,26 +894,35 @@ Highlig">
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-04-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-06-22
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="../../../../../../categories/Image-Generation/" class="post-category">
-                                    Image Generation
+                            <a href="../../../../../../categories/Computer-Vision/" class="post-category">
+                                    Computer Vision
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../../../tags/Auto-Regressive-Model/">
-                        <span class="chip bg-color">Auto Regressive Model</span>
+                    <a href="../../../../../../tags/Diffusion/">
+                        <span class="chip bg-color">Diffusion</span>
+                    </a>
+                    
+                    <a href="../../../../../../tags/Image-Generation/">
+                        <span class="chip bg-color">Image Generation</span>
+                    </a>
+                    
+                    <a href="../../../../../../tags/AutoRegressive/">
+                        <span class="chip bg-color">AutoRegressive</span>
                     </a>
                     
                 </div>
@@ -940,13 +936,13 @@ Highlig">
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="../../../../../03/26/computervision/clockwork-diffusion/clockwork-diffusion/">
+                <a href="../../../../11/computervision/depthanything/depthanything/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../../../medias/featureimages/5.jpg" class="responsive-img" alt="Clockwork Diffusion论文笔记">
+                        <img src="../../../../../../medias/featureimages/22.jpg" class="responsive-img" alt="DepthAnything论文笔记">
                         
-                        <span class="card-title">Clockwork Diffusion论文笔记</span>
+                        <span class="card-title">DepthAnything论文笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -957,14 +953,14 @@ Highlig">
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-03-26
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-06-11
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="../../../../../../categories/Image-Generation/" class="post-category">
-                                    Image Generation
+                            <a href="../../../../../../categories/Computer-Vision/" class="post-category">
+                                    Computer Vision
                                 </a>
                             
                             
@@ -974,12 +970,8 @@ Highlig">
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../../../tags/UNet/">
-                        <span class="chip bg-color">UNet</span>
-                    </a>
-                    
-                    <a href="../../../../../../tags/Diffusion-Distillation/">
-                        <span class="chip bg-color">Diffusion Distillation</span>
+                    <a href="../../../../../../tags/Depth-Estimation/">
+                        <span class="chip bg-color">Depth Estimation</span>
                     </a>
                     
                 </div>

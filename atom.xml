@@ -6,7 +6,7 @@
   <link href="https://bigwode.github.io/atom.xml" rel="self"/>
   
   <link href="https://bigwode.github.io/"/>
-  <updated>2024-06-16T08:26:06.607Z</updated>
+  <updated>2024-06-22T13:55:10.262Z</updated>
   <id>https://bigwode.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MAR 论文笔记</title>
+    <link href="https://bigwode.github.io/2024/06/22/computervision/mar/mar/"/>
+    <id>https://bigwode.github.io/2024/06/22/computervision/mar/mar/</id>
+    <published>2024-06-22T11:38:01.000Z</published>
+    <updated>2024-06-22T13:55:10.262Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Title: &lt;a href=&quot;https://arxiv.org/abs/2406.11838&quot;&gt;Autoregressive Image Generation without Vector Quantization&lt;/a&gt; &lt;br&gt;From</summary>
+        
+      
+    
+    
+    
+    <category term="Computer Vision" scheme="https://bigwode.github.io/categories/Computer-Vision/"/>
+    
+    
+    <category term="Diffusion" scheme="https://bigwode.github.io/tags/Diffusion/"/>
+    
+    <category term="Image Generation" scheme="https://bigwode.github.io/tags/Image-Generation/"/>
+    
+    <category term="AutoRegressive" scheme="https://bigwode.github.io/tags/AutoRegressive/"/>
+    
+  </entry>
   
   <entry>
     <title>DepthAnything论文笔记</title>
@@ -170,9 +200,9 @@
     <category term="Image Generation" scheme="https://bigwode.github.io/categories/Image-Generation/"/>
     
     
-    <category term="Diffusion Distillation" scheme="https://bigwode.github.io/tags/Diffusion-Distillation/"/>
-    
     <category term="UNet" scheme="https://bigwode.github.io/tags/UNet/"/>
+    
+    <category term="Diffusion Distillation" scheme="https://bigwode.github.io/tags/Diffusion-Distillation/"/>
     
   </entry>
   
@@ -282,11 +312,11 @@
     <category term="Image Generation" scheme="https://bigwode.github.io/categories/Image-Generation/"/>
     
     
-    <category term="Consistency Models" scheme="https://bigwode.github.io/tags/Consistency-Models/"/>
-    
     <category term="Diffusion" scheme="https://bigwode.github.io/tags/Diffusion/"/>
     
     <category term="Score-based model" scheme="https://bigwode.github.io/tags/Score-based-model/"/>
+    
+    <category term="Consistency Models" scheme="https://bigwode.github.io/tags/Consistency-Models/"/>
     
   </entry>
   
@@ -312,9 +342,9 @@
     <category term="Image Generation" scheme="https://bigwode.github.io/categories/Image-Generation/"/>
     
     
-    <category term="UNet" scheme="https://bigwode.github.io/tags/UNet/"/>
-    
     <category term="Diffusion" scheme="https://bigwode.github.io/tags/Diffusion/"/>
+    
+    <category term="UNet" scheme="https://bigwode.github.io/tags/UNet/"/>
     
   </entry>
   
@@ -544,38 +574,11 @@
     <category term="Computer Vision" scheme="https://bigwode.github.io/categories/Computer-Vision/"/>
     
     
-    <category term="Computer Vision" scheme="https://bigwode.github.io/tags/Computer-Vision/"/>
-    
     <category term="Image Generation" scheme="https://bigwode.github.io/tags/Image-Generation/"/>
     
+    <category term="Computer Vision" scheme="https://bigwode.github.io/tags/Computer-Vision/"/>
+    
     <category term="GAN" scheme="https://bigwode.github.io/tags/GAN/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python字符串神奇用法</title>
-    <link href="https://bigwode.github.io/2024/01/23/python/zi-fu-chuan/"/>
-    <id>https://bigwode.github.io/2024/01/23/python/zi-fu-chuan/</id>
-    <published>2024-01-23T05:34:00.000Z</published>
-    <updated>2024-02-10T06:01:40.326Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h4 id=&quot;1-将一个字符串中的前两个’-’替换为’-’&quot;&gt;&lt;a href=&quot;#1-将一个字符串中的前两个’-’替换为’-’&quot; class=&quot;headerlink&quot; title=&quot;1. 将一个字符串中的前两个’_’替换为’:’&quot;&gt;&lt;/a&gt;1.</summary>
-        
-      
-    
-    
-    
-    <category term="Python" scheme="https://bigwode.github.io/categories/Python/"/>
-    
-    
-    <category term="Python" scheme="https://bigwode.github.io/tags/Python/"/>
-    
-    <category term="字符串" scheme="https://bigwode.github.io/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
     
   </entry>
   
