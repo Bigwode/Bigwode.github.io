@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>MUSE论文笔记</title>
+      <link href="/2024/07/06/computervision/muse/muse/"/>
+      <url>/2024/07/06/computervision/muse/muse/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>Title: <a href="https://arxiv.org/abs/2301.00704">Muse: Text-To-Image Generation via Masked Generative Transformers</a> <br>From Google Research. <br>ICML 2023.</p></blockquote><p><img src="title.png" alt="Paper Title"></p><h2 id="Highlight"><a href="#Highlight" class="headerlink" title="Highlight"></a>Highlight</h2><ul><li>作者提出了一种在离散token空间下的掩码建模任务上训练的图像生成模型MUSE。</li><li>和diffusion model以及自回归模型相比的优势是，MUSE生成因为使用了离散tokens和并行decoding，所以更加efficient。</li></ul><h2 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h2><p><img src="Muse_Framework.png" alt="图1. Muse Framework."></p><ul><li>如图1所示，MUSE包含几个子模型，首先是有两个VQGAN模型，用来做tokenizer。将输入图像编码为离散化的tokens同时可以解码回原始的图像。一个是用来处理256x256分辨率的低分辨率图，另一个用来处理 512x512 分辨率的高分辨率图。<ul><li>第一个VQGAN用来处理低分辨率图像，下采样16倍，得到16x16大小的tokens, 第二个用来处理高分辨率图像，下采样8倍，得到64x64大小的tokens。</li><li>离散tokens编码的好处是可以忽略掉low-level的噪声，并且可以让我们使用ce loss来预测masked tokens。</li></ul></li><li>然后是一个base masked image model。输入一个序列的部分被masked的低分辨率tokens，然后预测每个masked tokens的边际分布，conditioned on the unmasked tokens和text embeddings(frozen T5-XXL encoder)。<ul><li>训练阶段，随机将一部分image tokens masked掉然后用特殊的[MASK] token来代替。</li><li>inference阶段，mask prediction 使用迭代的方式来提升质量。具体的，每预测一步mask tokens，都会选出置信度最高的一部分tokens保留下来当作接下来step的没被mask的tokens。这样迭代几次会提升质量，base model用了24步，超分模型用了8步。</li></ul></li><li>然后是一个superres的transformer model将（unmasked）低分辨率tokens转换为高分辨率tokens，受控于text embeddings。<ul><li>作者发现直接预测512x512分辨率的图会导致模型更关注一些low-level的细节而不是large-scale语义。因此作者用了一个超分模型，如图2所示。</li></ul></li></ul><p><img src="Super-resolution-Model.png" alt="图2. Super-resolution Model."></p><ul><li>Decoder Finetuning<ul><li>为了提升VQGAN decoder的能力，作者添加了更多的残差层和channel数来finetune，同时保持encoder fixed。</li></ul></li></ul><h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><p><img src="Inference-samples.png" alt="图3. Inference samples."><br><img src="Examples-of-zero-shot-text-guided-image-editing-using-Muse.png" alt="图4. Examples of zero-shot text-guided image editing using Muse."><br><img src="evaluation.png" alt="图5. Quantitative evaluation of FID and CLIP score(where available) on MS-COCO for 256x256 image resolution."></p><h2 id="Thoughts"><a href="#Thoughts" class="headerlink" title="Thoughts"></a>Thoughts</h2><ul><li>一个VQGAN + masked transformer + 超分 做图像生成的工作。</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Computer Vision </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Image Generation </tag>
+            
+            <tag> Masked Generative Transformers </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>MAR 论文笔记</title>
       <link href="/2024/06/22/computervision/mar/mar/"/>
       <url>/2024/06/22/computervision/mar/mar/</url>
@@ -286,9 +313,9 @@
             
             <tag> Diffusion </tag>
             
-            <tag> Score-based model </tag>
-            
             <tag> Consistency Models </tag>
+            
+            <tag> Score-based model </tag>
             
         </tags>
       

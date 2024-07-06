@@ -6,7 +6,7 @@
   <link href="https://bigwode.github.io/atom.xml" rel="self"/>
   
   <link href="https://bigwode.github.io/"/>
-  <updated>2024-06-22T13:55:10.262Z</updated>
+  <updated>2024-07-06T07:37:29.224Z</updated>
   <id>https://bigwode.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MUSE论文笔记</title>
+    <link href="https://bigwode.github.io/2024/07/06/computervision/muse/muse/"/>
+    <id>https://bigwode.github.io/2024/07/06/computervision/muse/muse/</id>
+    <published>2024-07-06T03:47:58.000Z</published>
+    <updated>2024-07-06T07:37:29.224Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Title: &lt;a href=&quot;https://arxiv.org/abs/2301.00704&quot;&gt;Muse: Text-To-Image Generation via Masked Generative Transformers&lt;/a&gt;</summary>
+        
+      
+    
+    
+    
+    <category term="Computer Vision" scheme="https://bigwode.github.io/categories/Computer-Vision/"/>
+    
+    
+    <category term="Image Generation" scheme="https://bigwode.github.io/tags/Image-Generation/"/>
+    
+    <category term="Masked Generative Transformers" scheme="https://bigwode.github.io/tags/Masked-Generative-Transformers/"/>
+    
+  </entry>
   
   <entry>
     <title>MAR 论文笔记</title>
@@ -314,9 +342,9 @@
     
     <category term="Diffusion" scheme="https://bigwode.github.io/tags/Diffusion/"/>
     
-    <category term="Score-based model" scheme="https://bigwode.github.io/tags/Score-based-model/"/>
-    
     <category term="Consistency Models" scheme="https://bigwode.github.io/tags/Consistency-Models/"/>
+    
+    <category term="Score-based model" scheme="https://bigwode.github.io/tags/Score-based-model/"/>
     
   </entry>
   
@@ -547,38 +575,6 @@
     <category term="GPTs" scheme="https://bigwode.github.io/tags/GPTs/"/>
     
     <category term="nanoGPT" scheme="https://bigwode.github.io/tags/nanoGPT/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>VQGAN源码解析</title>
-    <link href="https://bigwode.github.io/2024/01/31/computervision/vqgan/vqgan/"/>
-    <id>https://bigwode.github.io/2024/01/31/computervision/vqgan/vqgan/</id>
-    <published>2024-01-31T14:27:28.000Z</published>
-    <updated>2024-02-01T09:58:32.870Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;ul&gt;
-&lt;li&gt;这里看的是一个外国小哥复现的简单版本的&lt;a href=&quot;https://github.com/dome272/VQGAN-pytorch&quot;&gt;VQGAN&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&quot;1-tqdm的一个用法&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="Computer Vision" scheme="https://bigwode.github.io/categories/Computer-Vision/"/>
-    
-    
-    <category term="Image Generation" scheme="https://bigwode.github.io/tags/Image-Generation/"/>
-    
-    <category term="Computer Vision" scheme="https://bigwode.github.io/tags/Computer-Vision/"/>
-    
-    <category term="GAN" scheme="https://bigwode.github.io/tags/GAN/"/>
     
   </entry>
   

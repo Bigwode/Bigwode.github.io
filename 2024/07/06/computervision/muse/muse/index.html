@@ -4,9 +4,13 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="SD3_Turbo论文笔记, 认养一只猪">
+    <meta name="keywords" content="MUSE论文笔记, 认养一只猪">
     <meta name="description" content="
-Title: Fast High-Resolution Image Synthesis with Latent Adversarial Diffusion Distillation From Stability AI. ArXiv 202">
+Title: Muse: Text-To-Image Generation via Masked Generative Transformers From Google Research. ICML 2023.
+
+
+Highlight
+作">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +22,7 @@ Title: Fast High-Resolution Image Synthesis with Latent Adversarial Diffusion Di
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>SD3_Turbo论文笔记 | 认养一只猪</title>
+    <title>MUSE论文笔记 | 认养一只猪</title>
     <link rel="icon" type="image/png" href="../../../../../../favicon.png">
     
 
@@ -338,12 +342,12 @@ Title: Fast High-Resolution Image Synthesis with Latent Adversarial Diffusion Di
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../../../medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('../../../../../../medias/featureimages/13.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">SD3_Turbo论文笔记</h1>
+                    <h1 class="description center-align post-title">MUSE论文笔记</h1>
                 </div>
             </div>
         </div>
@@ -367,12 +371,12 @@ Title: Fast High-Resolution Image Synthesis with Latent Adversarial Diffusion Di
                     
                     <div class="article-tag">
                         
-                            <a href="../../../../../../tags/Diffusion-Distillation/">
-                                <span class="chip bg-color">Diffusion Distillation</span>
+                            <a href="../../../../../../tags/Image-Generation/">
+                                <span class="chip bg-color">Image Generation</span>
                             </a>
                         
-                            <a href="../../../../../../tags/Stable-Diffusion/">
-                                <span class="chip bg-color">Stable Diffusion</span>
+                            <a href="../../../../../../tags/Masked-Generative-Transformers/">
+                                <span class="chip bg-color">Masked Generative Transformers</span>
                             </a>
                         
                     </div>
@@ -383,8 +387,8 @@ Title: Fast High-Resolution Image Synthesis with Latent Adversarial Diffusion Di
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="../../../../../../categories/Image-Generation/" class="post-category">
-                                Image Generation
+                            <a href="../../../../../../categories/Computer-Vision/" class="post-category">
+                                Computer Vision
                             </a>
                         
                     </div>
@@ -396,7 +400,7 @@ Title: Fast High-Resolution Image Synthesis with Latent Adversarial Diffusion Di
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-03-17
+                    2024-07-06
                 </div>
                 
 
@@ -421,27 +425,40 @@ Title: Fast High-Resolution Image Synthesis with Latent Adversarial Diffusion Di
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <blockquote>
-<p><strong>Title: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2403.12015">Fast High-Resolution Image Synthesis with Latent Adversarial Diffusion Distillation</a></strong> <br><strong>From Stability AI.</strong> <br><strong>ArXiv 2024.03.18</strong></p>
+<p>Title: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2301.00704">Muse: Text-To-Image Generation via Masked Generative Transformers</a> <br>From Google Research. <br>ICML 2023.</p>
 </blockquote>
-<p><img src="Comparing_ADD_and_LADD.jpg" alt="图1.Comparing ADD and LADD."></p>
+<p><img src="title.png" alt="Paper Title"></p>
 <h2 id="Highlight"><a href="#Highlight" class="headerlink" title="Highlight"></a>Highlight</h2><ul>
-<li>本文对标的是Stability AI 同一个团队在之前提出的方法 Adversarial Diffusion Distillation (ADD)。本文首先指出ADD的缺点是需要依赖DINOv2来作为判别器，计算消耗过大且输入必须在pixel space上，导致可拓展性差。</li>
-<li>本文提出的LADD直接在latent上做判别，避免了decoding到pixel space才能算loss的复杂计算。并且直接利用teacher模型当判别器，避免了ADD的缺点。</li>
-<li>值得一提的是，LADD直接用teacher模型生成的数据进行student模型的学习，并且去掉了蒸馏loss，只使用discriminator loss就取得了很好的效果。</li>
-<li>本文还研究了方法是否遵循scaling laws，得出结论是student模型的大小比teacher模型的大小以及训练数据的质量要更加重要。后两者很快会遇到性能的瓶颈。</li>
+<li>作者提出了一种在离散token空间下的掩码建模任务上训练的图像生成模型MUSE。</li>
+<li>和diffusion model以及自回归模型相比的优势是，MUSE生成因为使用了离散tokens和并行decoding，所以更加efficient。</li>
 </ul>
-<h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><h3 id="Unifying-teacher-and-discriminator"><a href="#Unifying-teacher-and-discriminator" class="headerlink" title="Unifying teacher and discriminator."></a>Unifying teacher and discriminator.</h3><ul>
-<li>利用pretrained的diffusion模型的生成特征做判别器的好处是，可以对噪声程度进行针对性采样，当添加噪声程度高的时候，会更加关注global特征，当添加特征程度低的时候，会更加关注local特征，以此获取更好的balance。</li>
-<li>teacher生成的图像加噪送到teacher里和student生成的图像进行加噪后不可区分，另外这样我们就不需要真实图像去训练了！</li>
-<li>具体地，在得到的每一个token序列里，应用单独的判别器heads。另外，每一个判别器conditioned by noise level和池化后的CLIP Embedding。</li>
-<li>对于判别器的结构，作者没有利用1D卷积，而是把token序列reshape成原始的spatial layout，然后使用2D卷积。这样做的原因是对于不同长宽比的图像生成，1D卷积会用不同的strides来处理token序列。</li>
+<h2 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h2><p><img src="Muse_Framework.png" alt="图1. Muse Framework."></p>
+<ul>
+<li>如图1所示，MUSE包含几个子模型，首先是有两个VQGAN模型，用来做tokenizer。将输入图像编码为离散化的tokens同时可以解码回原始的图像。一个是用来处理256x256分辨率的低分辨率图，另一个用来处理 512x512 分辨率的高分辨率图。<ul>
+<li>第一个VQGAN用来处理低分辨率图像，下采样16倍，得到16x16大小的tokens, 第二个用来处理高分辨率图像，下采样8倍，得到64x64大小的tokens。</li>
+<li>离散tokens编码的好处是可以忽略掉low-level的噪声，并且可以让我们使用ce loss来预测masked tokens。</li>
 </ul>
-<h3 id="Leveraging-synthetic-data"><a href="#Leveraging-synthetic-data" class="headerlink" title="Leveraging synthetic data."></a>Leveraging synthetic data.</h3><ul>
-<li>使用生成图像训练student是为了有更加均衡的image-text对齐的数据，可以被视作另一种蒸馏teacher知识的方法。</li>
-<li>作者通过对比实验发现，真实数据对蒸馏loss有用，但是生成数据没有用。因此，作者只用了生成数据和advcersarial loss来训练student。</li>
+</li>
+<li>然后是一个base masked image model。输入一个序列的部分被masked的低分辨率tokens，然后预测每个masked tokens的边际分布，conditioned on the unmasked tokens和text embeddings(frozen T5-XXL encoder)。<ul>
+<li>训练阶段，随机将一部分image tokens masked掉然后用特殊的[MASK] token来代替。</li>
+<li>inference阶段，mask prediction 使用迭代的方式来提升质量。具体的，每预测一步mask tokens，都会选出置信度最高的一部分tokens保留下来当作接下来step的没被mask的tokens。这样迭代几次会提升质量，base model用了24步，超分模型用了8步。</li>
 </ul>
+</li>
+<li>然后是一个superres的transformer model将（unmasked）低分辨率tokens转换为高分辨率tokens，受控于text embeddings。<ul>
+<li>作者发现直接预测512x512分辨率的图会导致模型更关注一些low-level的细节而不是large-scale语义。因此作者用了一个超分模型，如图2所示。</li>
+</ul>
+</li>
+</ul>
+<p><img src="Super-resolution-Model.png" alt="图2. Super-resolution Model."></p>
+<ul>
+<li>Decoder Finetuning<ul>
+<li>为了提升VQGAN decoder的能力，作者添加了更多的残差层和channel数来finetune，同时保持encoder fixed。</li>
+</ul>
+</li>
+</ul>
+<h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><p><img src="Inference-samples.png" alt="图3. Inference samples."><br><img src="Examples-of-zero-shot-text-guided-image-editing-using-Muse.png" alt="图4. Examples of zero-shot text-guided image editing using Muse."><br><img src="evaluation.png" alt="图5. Quantitative evaluation of FID and CLIP score(where available) on MS-COCO for 256x256 image resolution."></p>
 <h2 id="Thoughts"><a href="#Thoughts" class="headerlink" title="Thoughts"></a>Thoughts</h2><ul>
-<li>使用teacher模型生辰数据训练student和用teacher模型当判别器两个点都是很make sense的点。</li>
+<li>一个VQGAN + masked transformer + 超分 做图像生成的工作。</li>
 </ul>
 
                 
@@ -507,12 +524,12 @@ Title: Fast High-Resolution Image Synthesis with Latent Adversarial Diffusion Di
                     
                         <div class="article-tag">
                             
-                                <a href="../../../../../../tags/Diffusion-Distillation/">
-                                    <span class="chip bg-color">Diffusion Distillation</span>
+                                <a href="../../../../../../tags/Image-Generation/">
+                                    <span class="chip bg-color">Image Generation</span>
                                 </a>
                             
-                                <a href="../../../../../../tags/Stable-Diffusion/">
-                                    <span class="chip bg-color">Stable Diffusion</span>
+                                <a href="../../../../../../tags/Masked-Generative-Transformers/">
+                                    <span class="chip bg-color">Masked Generative Transformers</span>
                                 </a>
                             
                         </div>
@@ -858,17 +875,18 @@ Title: Fast High-Resolution Image Synthesis with Latent Adversarial Diffusion Di
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="../../codi/codi/">
+                <a href="">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../../../medias/featureimages/22.jpg" class="responsive-img" alt="CoDi论文笔记">
+                        <img src="../../../../../../medias/featureimages/13.jpg" class="responsive-img" alt="MUSE论文笔记">
                         
-                        <span class="card-title">CoDi论文笔记</span>
+                        <span class="card-title">MUSE论文笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -878,30 +896,31 @@ Title: Fast High-Resolution Image Synthesis with Latent Adversarial Diffusion Di
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-03-17
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-07-06
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="../../../../../../categories/Image-Generation/" class="post-category">
-                                    Image Generation
+                            <a href="../../../../../../categories/Computer-Vision/" class="post-category">
+                                    Computer Vision
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="../../../../../../tags/Diffusion-Distillation/">
-                        <span class="chip bg-color">Diffusion Distillation</span>
+                    <a href="../../../../../../tags/Image-Generation/">
+                        <span class="chip bg-color">Image Generation</span>
                     </a>
                     
-                    <a href="../../../../../../tags/Consistency-Models/">
-                        <span class="chip bg-color">Consistency Models</span>
+                    <a href="../../../../../../tags/Masked-Generative-Transformers/">
+                        <span class="chip bg-color">Masked Generative Transformers</span>
                     </a>
                     
                 </div>
@@ -915,13 +934,13 @@ Title: Fast High-Resolution Image Synthesis with Latent Adversarial Diffusion Di
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="../../../../12/computervision/consistency-models/consistency-models/">
+                <a href="../../../../../06/22/computervision/mar/mar/">
                     <div class="card-image">
                         
                         
-                        <img src="../../../../../../medias/featureimages/5.jpg" class="responsive-img" alt="Consistency Models论文笔记">
+                        <img src="../../../../../../medias/featureimages/3.jpg" class="responsive-img" alt="MAR 论文笔记">
                         
-                        <span class="card-title">Consistency Models论文笔记</span>
+                        <span class="card-title">MAR 论文笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -932,14 +951,14 @@ Title: Fast High-Resolution Image Synthesis with Latent Adversarial Diffusion Di
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-03-12
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-06-22
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="../../../../../../categories/Image-Generation/" class="post-category">
-                                    Image Generation
+                            <a href="../../../../../../categories/Computer-Vision/" class="post-category">
+                                    Computer Vision
                                 </a>
                             
                             
@@ -953,12 +972,12 @@ Title: Fast High-Resolution Image Synthesis with Latent Adversarial Diffusion Di
                         <span class="chip bg-color">Diffusion</span>
                     </a>
                     
-                    <a href="../../../../../../tags/Consistency-Models/">
-                        <span class="chip bg-color">Consistency Models</span>
+                    <a href="../../../../../../tags/Image-Generation/">
+                        <span class="chip bg-color">Image Generation</span>
                     </a>
                     
-                    <a href="../../../../../../tags/Score-based-model/">
-                        <span class="chip bg-color">Score-based model</span>
+                    <a href="../../../../../../tags/AutoRegressive/">
+                        <span class="chip bg-color">AutoRegressive</span>
                     </a>
                     
                 </div>
